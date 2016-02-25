@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- main activity -->
+    <string name="testButton">Active Tests</string>
+    <string name="record_start">Start Monitoring</string>
+    <string name="record_stop">Stop Monitoring</string>
+    
+    <!-- Prompt text -->
+    <string name="prompt_init">Initializing &#8230;</string>
+    <string name="prompt_ready">"Monitoring is off.\nPress Start to begin."</string>
+    <string name="prompt_sdcard_not_ready">SD card not ready\nPrepare card and restart.</string>
+    <string name="prompt_on">"Monitoring is active.\nPress Stop to end."</string>
+    <string name="spinner_prompt">Enter you state</string>
+    <string name="prompt_userid_invalid">Invalid User ID: only \"a-z\", \"A-Z\" and \"0-9\" are allowed</string>
+	<!-- active tests -->
+	<string name="start_test">Start test</string>
+	<string name="next_test_button">Next Test</string>
+	<string name="next_test_dir">The test is complete. Only %1$d tests left to go!</string>
+	<string name="react_button_text">Press!</string>
+	<string name="finish_button">Finish</string>
+    <string name="ins_taketest">It\'s time to take your tests.
+        </string>
+    
+    <string name="ins_voice"><b>1. Voice test</b>.
+        Find a quiet location. When you are ready, press the button below.
+		</string>
+		
+	<string name="ins_balance"><b>2. Balance test</b>.
+	    Now find a place where you can stand unaided.
+		</string>
+    
+	<string name="ins_gait"><b>3. Gait test</b>.
+	    Now find a place where you can walk for 20 yards unobstructed.
+		</string>
+	
+	<string name="ins_dexterity"><b>4. Dexterity test</b>.
+	    When you are ready, press the button below.
+		</string>
+		
+	<string name="ins_reaction"><b>5. Reaction test</b>.
+	    When you are ready, press the button below.
+		</string>
+	
+	<string name="ins_rest_tremor"><b>6. Rest tremor test</b>.
+	    Sit upright, hold the phone in your hand most affected by your tremor and rest it lightly in your lap. When you are ready, press the "Start test" button.
+		</string>
+	
+	<string name="ins_postural_tremor"><b>7. Postural tremor test</b>.
+	    Sit upright and hold the phone in the hand which is most affect by tremor, arm outstretched in front of you. Press Start.</string>
+		
+	<string name="ins_finish"><b>Tests successfully completed!</b>
+	    Please press the button below to exit.
+		</string>
+	
+	<string name="dir_voice"><b>1. Voice test</b>.
+	    Hold the phone to your ear. Take a deep breath, and say \'aaaaah\' at a comfortable
+	    and steady, tone and level, for as long as you can.
+	    </string>
+	    
+	<string name="dir_balance"><b>2. Balance test</b>.
+	    Stand up straight, and place the phone in your pocket. When the buzzer vibrates,
+	    stay standing until the buzzer vibrates again.
+	    </string>
+
+	<string name="dir_gait"><b>3. Gait test</b>.
+	    Stand up, and place the phone in your pocket. When the buzzer vibrates, walk forward 20 yards.
+	    Then stop, turn around, and walk back again.
+	    </string>
+	
+	<string name="dir_dexterity"><b>4. Dexterity test</b>.
+	    Tap the buttons below with the index and middle fingers of one hand alternately, in a regular rhythm.
+	    </string>
+	
+	<string name="dir_reaction"><b>5. Reaction test</b>.
+	    Press the button below as soon as it appears; release as soon as it disappears.
+	    </string>
+	    
+	<string name="dir_rest_tremor"><b>6. Rest tremor test</b>.
+	    Close your eyes and count backwards from 100 while you continue to hold the phone.
+	    </string>
+
+	<string name="dir_postural_tremor"><b>7. Postural tremor test</b>.
+	    Keep your arm holding the phone outstretched in front of you.
+	    </string>
+	    	
+	
+    
+</resources>

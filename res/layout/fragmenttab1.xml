@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:keepScreenOn="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+	android:background="@layout/shapebg"
+	android:padding="15sp"
+    android:weightSum="1.0" >
+    
+   	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight=".7"
+	    android:orientation="vertical" 
+	    android:weightSum="1.0" >
+	    <TextView
+		    android:id="@+id/messagetext"
+		    android:textSize="20sp" 
+			android:layout_width="wrap_content" 
+		    android:layout_height="wrap_content" 
+ 			/>   
+	    <TextView
+	        android:id="@+id/timertext"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="20sp" 
+			/>
+	    <TextView
+	        android:id="@+id/prompttext"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="20sp" 
+	        />	    
+	</LinearLayout>
+    <Button
+        android:id="@+id/logbutton"
+        android:textStyle="bold"
+        android:textSize="25sp" 
+        android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:layout_weight=".15"
+        android:padding="10sp"
+         />
+</LinearLayout>

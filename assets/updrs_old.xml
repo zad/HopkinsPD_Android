@@ -1,0 +1,795 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>UNIFIED PARKINSON'S DISEASE RATING SCALE</h:title>
+    <model>
+      <instance>
+        <data id="build_UNIFIED-PARKINSON-S-DISEASE-RATING-SCALE_1376683881">
+          <meta>
+            <instanceID/>
+          </meta>
+          <i0/>
+          <q1>
+            0
+          </q1>
+          <q2>
+            0
+          </q2>
+          <q3>
+            1
+          </q3>
+          <q4>
+            0
+          </q4>
+          <ii/>
+          <q5/>
+          <q6/>
+          <q7/>
+          <q8>
+            0
+          </q8>
+          <q9>
+            0
+          </q9>
+          <q10/>
+          <q11/>
+          <q12/>
+          <q13>
+            0
+          </q13>
+          <q14>
+            0
+          </q14>
+          <q15>
+            0
+          </q15>
+          <q16>
+            0
+          </q16>
+          <q17>
+            0
+          </q17>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="eng">
+          <text id="/data/i0:label">
+            <value>I. MENTATION, BEHAVIOR AND MOOD</value>
+          </text>
+          <text id="/data/q1:label">
+            <value>1. Intellectual Impairment</value>
+          </text>
+          <text id="/data/q1:option0">
+            <value>None.</value>
+          </text>
+          <text id="/data/q1:option1">
+            <value>Mild. Consistent forgetfulness with partial recollection of events and no other difficulties.</value>
+          </text>
+          <text id="/data/q1:option2">
+            <value>Moderate memory loss, with disorientation and moderate difficulty handling complex problems. Mild but definite impairment of function at home with need of occasional prompting.</value>
+          </text>
+          <text id="/data/q1:option3">
+            <value>Severe memory loss with disorientation for time and often to place. Severe impairment in handling problems.</value>
+          </text>
+          <text id="/data/q1:option4">
+            <value>Severe memory loss with orientation preserved to person only. Unable to make judgements or solve problems. Requires much help with personal care. Cannot be left alone at all.</value>
+          </text>
+          <text id="/data/q2:label">
+            <value>2. Thought Disorder</value>
+          </text>
+          <text id="/data/q2:hint">
+            <value>(Due to dementia or drug intoxication)</value>
+          </text>
+          <text id="/data/q2:option0">
+            <value>None.</value>
+          </text>
+          <text id="/data/q2:option1">
+            <value>Vivid dreaming.</value>
+          </text>
+          <text id="/data/q2:option2">
+            <value>&quot;Benign&quot; hallucinations with insight retained.</value>
+          </text>
+          <text id="/data/q2:option3">
+            <value>Occasional to frequent hallucinations or delusions; without insight; could interfere with daily activities.</value>
+          </text>
+          <text id="/data/q2:option4">
+            <value>Persistent hallucinations, delusions, or florrid psychosis. Not able to care for self.</value>
+          </text>
+          <text id="/data/q3:label">
+            <value>3. Depression</value>
+          </text>
+          <text id="/data/q3:option0">
+            <value>Periods of sadness or guilt greater than normal, never sustained for days or weeks.</value>
+          </text>
+          <text id="/data/q3:option1">
+            <value>Sustained depression (1 week or more).</value>
+          </text>
+          <text id="/data/q3:option2">
+            <value>Sustained depression with vegetative symptoms (insomnia, anorexia, weight loss, loss of interest).</value>
+          </text>
+          <text id="/data/q3:option3">
+            <value>Sustained depression with vegetative symptoms and suicidal thoughts or intent.</value>
+          </text>
+          <text id="/data/q4:label">
+            <value>4. Motivation/Initiative</value>
+          </text>
+          <text id="/data/q4:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q4:option1">
+            <value>Less assertive than usual; more passive.</value>
+          </text>
+          <text id="/data/q4:option2">
+            <value>Loss of initiative or disinterest in elective (nonroutine) activities.</value>
+          </text>
+          <text id="/data/q4:option3">
+            <value>Loss of initiative or disinterest in day to day (routine) activities.</value>
+          </text>
+          <text id="/data/q4:option4">
+            <value>Withdrawn, complete loss of motivation.</value>
+          </text>
+          <text id="/data/ii:label">
+            <value>II. ACTIVITIES OF DAILY LIVING</value>
+          </text>
+          <text id="/data/ii:hint">
+            <value>(for both &quot;on&quot; and &quot;off&quot;)</value>
+          </text>
+          <text id="/data/q5:label">
+            <value>5. Speech</value>
+          </text>
+          <text id="/data/q5:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q5:option1">
+            <value>Mildly affected. No difficulty being understood.</value>
+          </text>
+          <text id="/data/q5:option2">
+            <value>Moderately affected. Sometimes asked to repeat statements.</value>
+          </text>
+          <text id="/data/q5:option3">
+            <value>Severely affected. Frequently asked to repeat statements.</value>
+          </text>
+          <text id="/data/q5:option4">
+            <value>Unintelligible most of the time.</value>
+          </text>
+          <text id="/data/q6:label">
+            <value>6. Salivation</value>
+          </text>
+          <text id="/data/q6:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q6:option1">
+            <value>Slight but definite excess of saliva in mouth; may have nighttime drooling.</value>
+          </text>
+          <text id="/data/q6:option2">
+            <value>Moderately excessive saliva; may have minimal drooling.</value>
+          </text>
+          <text id="/data/q6:option3">
+            <value>Marked excess of saliva with some drooling.</value>
+          </text>
+          <text id="/data/q6:option4">
+            <value>Marked drooling, requires constant tissue or handkerchief.</value>
+          </text>
+          <text id="/data/q7:label">
+            <value>7. Swallowing</value>
+          </text>
+          <text id="/data/q7:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q7:option1">
+            <value>Rare choking.</value>
+          </text>
+          <text id="/data/q7:option2">
+            <value>Occasional choking.</value>
+          </text>
+          <text id="/data/q7:option3">
+            <value>Requires soft food.</value>
+          </text>
+          <text id="/data/q7:option4">
+            <value>Requires NG tube or gastrotomy feeding.</value>
+          </text>
+          <text id="/data/q8:label">
+            <value>8. Handwriting</value>
+          </text>
+          <text id="/data/q8:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q8:option1">
+            <value>Slightly slow or small.</value>
+          </text>
+          <text id="/data/q8:option2">
+            <value>Moderately slow or small; all words are legible.</value>
+          </text>
+          <text id="/data/q8:option3">
+            <value>Severely affected; not all words are legible.</value>
+          </text>
+          <text id="/data/q8:option4">
+            <value>The majority of words are not legible.</value>
+          </text>
+          <text id="/data/q9:label">
+            <value>9. Cutting food and handling utensils</value>
+          </text>
+          <text id="/data/q9:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q9:option1">
+            <value>Somewhat slow and clumsy, but no help needed.</value>
+          </text>
+          <text id="/data/q9:option2">
+            <value>Can cut most foods, although clumsy and slow; some help needed.</value>
+          </text>
+          <text id="/data/q9:option3">
+            <value>Food must be cut by someone, but can still feed slowly.</value>
+          </text>
+          <text id="/data/q9:option4">
+            <value>Needs to be fed.</value>
+          </text>
+          <text id="/data/q10:label">
+            <value>10. Dressing</value>
+          </text>
+          <text id="/data/q10:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q10:option1">
+            <value>Somewhat slow, but no help needed.</value>
+          </text>
+          <text id="/data/q10:option2">
+            <value>Occasional assistance with buttoning, getting arms in sleeves.</value>
+          </text>
+          <text id="/data/q10:option3">
+            <value>Considerable help required, but can do some things alone.</value>
+          </text>
+          <text id="/data/q10:option4">
+            <value>Helpless.</value>
+          </text>
+          <text id="/data/q11:label">
+            <value>11. Hygiene</value>
+          </text>
+          <text id="/data/q11:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q11:option1">
+            <value>Somewhat slow, but no help needed.</value>
+          </text>
+          <text id="/data/q11:option2">
+            <value>Needs help to shower or bathe; or very slow in hygienic care.</value>
+          </text>
+          <text id="/data/q11:option3">
+            <value>Requires assistance for washing, brushing teeth, combing hair, going to bathroom.</value>
+          </text>
+          <text id="/data/q11:option4">
+            <value>Foley catheter or other mechanical aids.</value>
+          </text>
+          <text id="/data/q12:label">
+            <value>12. Turning in bed and adjusting bed clothes</value>
+          </text>
+          <text id="/data/q12:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q12:option1">
+            <value>Somewhat slow and clumsy, but no help needed.</value>
+          </text>
+          <text id="/data/q12:option2">
+            <value>Can turn alone or adjust sheets, but with great difficulty.</value>
+          </text>
+          <text id="/data/q12:option3">
+            <value>Can initiate, but not turn or adjust sheets alone.</value>
+          </text>
+          <text id="/data/q12:option4">
+            <value>Helpless.</value>
+          </text>
+          <text id="/data/q13:label">
+            <value>13. Falling</value>
+          </text>
+          <text id="/data/q13:hint">
+            <value>(unrelated to freezing)</value>
+          </text>
+          <text id="/data/q13:option0">
+            <value>None.</value>
+          </text>
+          <text id="/data/q13:option1">
+            <value>Rare falling.</value>
+          </text>
+          <text id="/data/q13:option2">
+            <value>Occasionally falls, less than once per day.</value>
+          </text>
+          <text id="/data/q13:option3">
+            <value>Falls an average of once daily.</value>
+          </text>
+          <text id="/data/q13:option4">
+            <value>Falls more than once daily.</value>
+          </text>
+          <text id="/data/q14:label">
+            <value>14. Freezing when walking</value>
+          </text>
+          <text id="/data/q14:option0">
+            <value>None.</value>
+          </text>
+          <text id="/data/q14:option1">
+            <value>Rare freezing when walking; may have starthesitation.</value>
+          </text>
+          <text id="/data/q14:option2">
+            <value>Occasional freezing when walking.</value>
+          </text>
+          <text id="/data/q14:option3">
+            <value>Frequent freezing. Occasionally falls from freezing.</value>
+          </text>
+          <text id="/data/q14:option4">
+            <value>Frequent falls from freezing.</value>
+          </text>
+          <text id="/data/q15:label">
+            <value>15. Walking</value>
+          </text>
+          <text id="/data/q15:option0">
+            <value>Normal.</value>
+          </text>
+          <text id="/data/q15:option1">
+            <value>Mild difficulty. May not swing arms or may tend to drag leg.</value>
+          </text>
+          <text id="/data/q15:option2">
+            <value>Moderate difficulty, but requires little or no assistance.</value>
+          </text>
+          <text id="/data/q15:option3">
+            <value>Severe disturbance of walking, requiring assistance.</value>
+          </text>
+          <text id="/data/q15:option4">
+            <value>Cannot walk at all, even with assistance.</value>
+          </text>
+          <text id="/data/q16:label">
+            <value>16. Tremor</value>
+          </text>
+          <text id="/data/q16:option0">
+            <value>Absent.</value>
+          </text>
+          <text id="/data/q16:option1">
+            <value>Slight and infrequently present.</value>
+          </text>
+          <text id="/data/q16:option2">
+            <value>Moderate; bothersome to patient.</value>
+          </text>
+          <text id="/data/q16:option3">
+            <value>Severe; interferes with many activities.</value>
+          </text>
+          <text id="/data/q16:option4">
+            <value>Marked; interferes with most activities.</value>
+          </text>
+          <text id="/data/q17:label">
+            <value>17. Sensory complaints related to parkinsonism</value>
+          </text>
+          <text id="/data/q17:option0">
+            <value>None.</value>
+          </text>
+          <text id="/data/q17:option1">
+            <value>Occasionally has numbness, tingling, or mild aching.</value>
+          </text>
+          <text id="/data/q17:option2">
+            <value>Frequently has numbness, tingling, or aching; not distressing.</value>
+          </text>
+          <text id="/data/q17:option3">
+            <value>Frequent painful sensations.</value>
+          </text>
+          <text id="/data/q17:option4">
+            <value>Excruciating pain.</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string"/>
+      <bind nodeset="/data/i0" type="string" readonly="true()"/>
+      <bind nodeset="/data/q1" type="select1" required="true()"/>
+      <bind nodeset="/data/q2" type="select1" required="true()"/>
+      <bind nodeset="/data/q3" type="select1" required="true()"/>
+      <bind nodeset="/data/q4" type="select1" required="true()"/>
+      <bind nodeset="/data/ii" type="string" readonly="true()"/>
+      <bind nodeset="/data/q5" type="select1" required="true()"/>
+      <bind nodeset="/data/q6" type="select1" required="true()"/>
+      <bind nodeset="/data/q7" type="select1" required="true()"/>
+      <bind nodeset="/data/q8" type="select1" required="true()"/>
+      <bind nodeset="/data/q9" type="select1" required="true()"/>
+      <bind nodeset="/data/q10" type="select1" required="true()"/>
+      <bind nodeset="/data/q11" type="select1" required="true()"/>
+      <bind nodeset="/data/q12" type="select1" required="true()"/>
+      <bind nodeset="/data/q13" type="select1" required="true()"/>
+      <bind nodeset="/data/q14" type="select1" required="true()"/>
+      <bind nodeset="/data/q15" type="select1" required="true()"/>
+      <bind nodeset="/data/q16" type="select1" required="true()"/>
+      <bind nodeset="/data/q17" type="select1" required="true()"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/data/i0">
+      <label ref="jr:itext('/data/i0:label')"/>
+    </input>
+    <select1 ref="/data/q1">
+      <label ref="jr:itext('/data/q1:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q1:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q1:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q1:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q1:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q1:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q2">
+      <label ref="jr:itext('/data/q2:label')"/>
+      <hint ref="jr:itext('/data/q2:hint')"/>
+      <item>
+        <label ref="jr:itext('/data/q2:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q2:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q2:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q2:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q2:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q3">
+      <label ref="jr:itext('/data/q3:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q3:option0')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q3:option1')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q3:option2')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q3:option3')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q4">
+      <label ref="jr:itext('/data/q4:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q4:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q4:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q4:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q4:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q4:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <input ref="/data/ii">
+      <label ref="jr:itext('/data/ii:label')"/>
+      <hint ref="jr:itext('/data/ii:hint')"/>
+    </input>
+    <select1 ref="/data/q5">
+      <label ref="jr:itext('/data/q5:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q5:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q5:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q5:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q5:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q5:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q6">
+      <label ref="jr:itext('/data/q6:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q6:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q6:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q6:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q6:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q6:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q7">
+      <label ref="jr:itext('/data/q7:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q7:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q7:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q7:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q7:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q7:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q8">
+      <label ref="jr:itext('/data/q8:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q8:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q8:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q8:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q8:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q8:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q9">
+      <label ref="jr:itext('/data/q9:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q9:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q9:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q9:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q9:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q9:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q10">
+      <label ref="jr:itext('/data/q10:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q10:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q10:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q10:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q10:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q10:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q11">
+      <label ref="jr:itext('/data/q11:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q11:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q11:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q11:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q11:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q11:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q12">
+      <label ref="jr:itext('/data/q12:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q12:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q12:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q12:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q12:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q12:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q13">
+      <label ref="jr:itext('/data/q13:label')"/>
+      <hint ref="jr:itext('/data/q13:hint')"/>
+      <item>
+        <label ref="jr:itext('/data/q13:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q13:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q13:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q13:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q13:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q14">
+      <label ref="jr:itext('/data/q14:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q14:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q14:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q14:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q14:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q14:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q15">
+      <label ref="jr:itext('/data/q15:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q15:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q15:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q15:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q15:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q15:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q16">
+      <label ref="jr:itext('/data/q16:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q16:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q16:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q16:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q16:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q16:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <select1 ref="/data/q17">
+      <label ref="jr:itext('/data/q17:label')"/>
+      <item>
+        <label ref="jr:itext('/data/q17:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q17:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q17:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q17:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/q17:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+  </h:body>
+</h:html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:keepScreenOn="true"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+	android:background="@layout/shapebg"
+	android:padding="15dip"
+    android:weightSum="1.0" >
+	<Button
+        	android:id="@+id/button_next"
+            android:text="Skip" 
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            android:layout_height="0dp" 
+            android:layout_width="wrap_content" 
+            android:layout_weight=".1"
+            />
+        <TextView
+        android:id="@+id/dir_text"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.60"
+        android:padding="15dip"
+        android:text="@string/dir_reaction"
+        android:textSize="30dip" />
+
+    <Button
+        android:id="@+id/button_react"
+		android:text="@string/react_button_text"
+		android:textSize="40dip"
+		android:textStyle="bold"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".32" />
+    
+
+			
+</LinearLayout>

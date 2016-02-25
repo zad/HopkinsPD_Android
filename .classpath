@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry excluding="edu/jhu/hopkinspd/util/FileUtil.java|edu/jhu/hopkinspd/receiver/WifiRssiReceiver.java|edu/jhu/hopkinspd/FragmentTabMonitor.java|edu/jhu/hopkinspd/FragmentTabStats.java|edu/jhu/hopkinspd/FragmentTabTest.java|edu/jhu/hopkinspd/TabsActivity.java|edu/jhu/hopkinspd/ViewPagerAdapter.java|edu/jhu/hopkinspd/DashboardJSP.java" kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

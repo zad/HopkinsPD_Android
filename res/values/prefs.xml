@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="reset">reset</string>
+    <string name="colorHighContrastOn">colorHighContrastOn</string>
+    <string name="language">language</string>
+    <!-- menu -->
+    <string name="clearDataOn">clearDataOn</string>
+    <string name="uploadItemOn">uploadItemOn</string>
+    <string name="ntpItemOn">ntpItemOn</string>
+    <string name="enableRecordingWhileCharging">enableRecordingWhileCharging</string>
+    <!-- passive monitoring -->
+    <string name="sensorDataFormat">sensorDataFormat</string>
+    <string name="sensorAccelOn">sensorAccelOn</string>
+    <string name="sensorAccelRawOn">sensorAccelRawOn</string>
+    <string name="sensorAccelFeatureOn">sensorAccelFeatureOn</string>
+    <string name="sensorAudioOn">sensorAudioOn</string>
+    <string name="sensorAudioRawOn">sensorAudioRawOn</string>
+    <string name="sensorAudioFeatureOn">sensorAudioFeatureOn</string>
+    <string name="sensorGPSOn">sensorGPSOn</string>
+    <string name="sensorGPSInt">sensorGPSInt</string>
+    <string name="sensorGPSExtraFeatureOn">sensorGPSExtraFeatureOn</string>  
+    <string name="sensorLightOn">sensorLightOn</string>
+    <string name="sensorLightRawOn">sensorLightRawOn</string>
+    <string name="sensorProxOn">sensorProxOn</string>
+    <string name="sensorProxRawOn">sensorProxRawOn</string>
+    <string name="sensorCompOn">sensorCompOn</string>
+    <string name="sensorCompRawOn">sensorCompRawOn</string>
+    <string name="sensorCompFeatureOn">sensorCompFeatureOn</string>
+    <string name="sensorCtxOn">sensorCtxOn</string>
+    <string name="sensorTelephonyOn">sensorTelephonyOn</string>
+    <string name="sensorCallLogOn">sensorCallLogOn</string>
+    <string name="sensorSmsLogOn">sensorSmsLogOn</string>
+    <string name="sensorWifiOn">sensorWifiOn</string>
+    <string name="sensorWifiScanOn">sensorWifiScanOn</string>
+    <string name="sensorWifiScanInt">sensorWifiScanInt</string>
+    <string name="sensorGAROn">sensorGAROn</string>
+    <string name="sensorGARInt">sensorGARInt</string>
+    <string name="sensorBattOn">sensorBattOn</string>
+    <string name="sensorMetaOn">sensorMetaOn</string>
+    <string name="sensorRate">sensorRate</string>
+    <string name="wakeLock">wakelock</string>
+    <!-- services -->
+    <string name="zipServiceOn">zipServiceOn</string>
+    <string name="uploadServiceOn">uploadServiceOn</string>
+    <string name="zipInterval">zipInterval</string>
+    <string name="uploadInterval">uploadInterval</string>
+    <string name="uploadTimeRandom">uploadTimeRandom</string>
+    <string name="autoUpdateOn">autoUpdateOn</string>
+    <!-- active tests -->
+    <string name="test_demo">test_demo</string>
+    <string name="next_button">next_button</string>
+    <string name="single_test">single_test</string>
+    <string name="test_gyro">test_gyro</string>
+    <string name="test_voice">test_voice</string>
+    <string name="test_balance">test_balance</string>
+    <string name="test_gait">test_gait</string>
+    <string name="test_dexterity">test_dexterity</string>
+    <string name="test_reaction">test_reaction</string>
+    <string name="test_rest_tremor">test_rest_tremor</string>
+    <string name="test_postural_tremor">test_postural_tremor</string>
+    <!-- NTP Sync -->
+    <string name="ntpSyncOn">ntpSyncOn</string>
+    <string name="ntpSyncInt">ntpSyncInt</string>
+    <!-- motion label -->
+    <string name="motionLabelOn">motionLabelOn</string>
+    <!-- dashboard -->
+    <string name="dashboardOn">dashboardOn</string>
+    <!-- medication tracker -->
+    <string name="medTrackerOn">medTrackerOn</string>
+</resources>

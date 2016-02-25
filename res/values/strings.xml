@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HopkinsPD</string>
+    <string name="action_settings">Settings</string>
+    <string name="clear_data">Clear Data</string>
+    <string name="signin">Signin</string>
+    <string name="cancel">Cancel</string>
+    <string name="sync">Data Sync</string>
+    <string name="menu_ntp">Time Sync</string>
+    
+    <string name="fragment1">Monitoring</string>
+    <string name="fragment2">Tests</string>
+    <string name="fragment3">Stats</string>
+    
+    <string name="medButton_text">Medication Tracker</string>
+    
+    <!-- Fragment -->
+    <string name="surveyButton">UPDRS Test</string>
+    
+    
+    <!-- User Setting -->
+    <string name="user_setting">User</string>
+    <string name="userID">User ID</string>
+    <string name="userPassword">User Password</string>
+    <string name="userPassword_summary">Password used to encrypt your data</string>
+    <string name="default_userID">defaultUserID</string>
+    <string name="userID_summary">Input your userID here</string>
+    <string name="battery_setting">Battery</string>
+    <string name="battery_threshold">Battery Threshold</string>
+    <string name="battery_threshold_summary">Monitoring will be paused when the current battery level is lower than this threshold</string>
+    <string name="style_setting">Style</string>
+    <string name="network_setting">Network</string>
+    <string name="cellular_upload">Use Mobile Network</string>
+    <string name="cellular_upload_summary">Use your data plan to upload collected data</string>
+    <string name="charge_only_upload">Only upload while charging</string>
+    <string name="colorPref">High Contrast Text Color</string>
+    <string name="switchPref">Data Collection</string>
+    <string name="switchPrefSummaryOn">Monitoring is active</string>
+    <string name="switchPrefSummaryOff">Monitoring is stopped</string>
+    <string name="data_privacy_setting">Data Privacy</string>
+    <string name="allow_gps_raw">Raw GPS Data</string>
+    <string name="allow_gps_raw_summary">Allow upload of raw GPS coordinates to the server</string>
+    <string name="allow_audio_raw">Raw Audio Data</string>
+    <string name="allow_audio_raw_summary">Allow upload of raw audio data to the server</string>
+    
+
+    
+    <!-- User Event List -->
+    <string name="userClickOff">USER_CLICK_OFF</string>
+    <string name="userClickOn">USER_CLICK_ON</string>
+    <string name="userClickFail">USER_CLICK_FAIL</string>
+    <string name="userClickFailBattery">USER_CLICK_FAIL_BATTERY</string>
+    <string name="userClickFailSDCard">USER_CLICK_FAIL_SDCARD</string>
+    <string name="batteryLow">Battery level is too low</string>
+
+    <!-- Service Event List -->
+    <string name="serviceOnTaskRemoved">SERVICE_ONTASKREMOVED</string>
+    <string name="serviceOnDestroy">SEVICE_ONDESTORY</string>
+    <string name="serviceOnPause">SEVICE_ONPAUSE</string>
+    
+    <!-- Notification -->
+    <string name="notification_title">HopkinsPD</string>
+    <string name="notification_running">Monitoring started at %s</string>
+    <string name="notification_running_watchdog">Monitoring started from watchdog at %s</string>
+    <string name="notification_stop">Monitoring stopped at %s</string>
+    <string name="notification_pause_low_battery">Monitoring paused by low battery at %s</string>
+    <string name="notification_pause_in_charge">Monitoring paused by charging at %s</string>
+    <string name="notification_resume">Monitoring resumed at %s</string>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="blue">#1F497D</color>
+    
+    <!-- Toast -->
+    <string name="msgSetupPrefs">Please setup user information first.</string>
+    <string name="sdcard_not_ready">SD card not ready, prepare SD card and restart</string>
+    <string name="userinfo_request">You need to input your user ID and password to enter this app</string>
+    <string name="forbid_to_enter_settings">You cannot change settings when monitoring is active</string>
+    <string name="data_cleared">Data cleared</string>
+    <string name="toast_ntp">NTP Sync to %s</string>
+    <string name="toast_ntp_start">NTP Synchronizing</string>
+    <string name="crash_toast_text">Sorry, your app crashed. The report will be sent to the developer.</string>
+    
+    <!-- medication tracker -->
+    <string name="medName_summary">Select medication</string>
+    
+</resources>

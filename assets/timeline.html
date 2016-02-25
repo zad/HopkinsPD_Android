@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["timeline"]});
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var container = document.getElementById('timeline');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'President' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+          [ 'Medication', new Date(2015, 2, 3, 9, 20, 0), new Date(2015, 2, 3, 9, 21, 0) ],
+          [ 'Medication', new Date(2015, 2, 3, 13, 0, 0), new Date(2015, 2, 3, 13, 1, 0) ],
+          [ 'Severe Dyskinesia', new Date(2015, 2, 3, 11, 30, 0), new Date(2015, 2, 3, 12, 0, 0) ],
+          [ 'Some Dyskinesia',      new Date(2015, 2, 3, 11, 0, 0),  new Date(2015, 2, 3, 11, 30, 0) ],
+          [ 'Some Dyskinesia',      new Date(2015, 2, 3, 12, 0, 0),  new Date(2015, 2, 3, 12, 30, 0) ],
+          [ 'Good Movement',  new Date(2015, 2, 3, 10, 0, 0),  new Date(2015, 2, 3, 11, 0, 0) ],
+          [ 'Good Movement',  new Date(2015, 2, 3, 12, 30, 0),  new Date(2015, 2, 3, 13, 0, 0) ],
+          [ 'Good Movement',  new Date(2015, 2, 3, 13, 30, 0),  new Date(2015, 2, 3, 14, 30, 0) ],
+          [ 'Slow Movement',  new Date(2015, 2, 3, 9, 30, 0),  new Date(2015, 2, 3, 10, 0, 0) ],
+          [ 'Slow Movement',  new Date(2015, 2, 3, 13, 0, 0),  new Date(2015, 2, 3, 13, 30, 0) ],
+          [ 'Frozen',  new Date(2015, 2, 3, 9, 0, 0),  new Date(2015, 2, 3, 9, 30, 0) ],
+        ]);
+		
+		var options = {
+			title : 'Daily Motor Fluctuation View',
+            width : 600,
+            height : 480,
+			colors: ['#000000', '#FF3300', '#FFFF00', '#009900', '#66CCFF','#000066'],
+			enableInteractivity: false,
+			
+		}
+		
+        chart.draw(dataTable, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="timeline" style="width: 600px; height: 480px"></div>
+  </body>
+</html>

@@ -1,0 +1,393 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>UPDRS</h:title>
+    <model>
+      <instance>
+        <data id="UPDRS">
+          <meta>
+            <instanceID/>
+          </meta>
+          <q1/>
+          <a1>
+            0
+          </a1>
+          <q2/>
+          <a2>
+            0
+          </a2>
+          <q3/>
+          <a3>
+            0
+          </a3>
+          <q4/>
+          <a4>
+            0
+          </a4>
+          <q5/>
+          <a5>
+            0
+          </a5>
+          <q6/>
+          <a6>
+            0
+          </a6>
+          <q7/>
+          <a7/>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="eng">
+          <text id="/data/q1:label">
+            <value>1. SLEEP PROBLEMS: Over the past week, have you had trouble going to sleep at night or staying asleep through the night? Consider how rested you felt after waking up in the morning.</value>
+          </text>
+          <text id="/data/a1:label">
+            <value>Please select one option:</value>
+          </text>
+          <text id="/data/a1:option0">
+            <value>Normal: No problems.</value>
+          </text>
+          <text id="/data/a1:option1">
+            <value>Slight: Sleep problems are present but usually do not cause trouble getting a full night of sleep.</value>
+          </text>
+          <text id="/data/a1:option2">
+            <value>Mild: Sleep problems usually cause some difficulties getting a full night of sleep.</value>
+          </text>
+          <text id="/data/a1:option3">
+            <value>Moderate: Sleep problems cause a lot of difficulties getting a full night of sleep, but I still usually sleep for more than half the night.</value>
+          </text>
+          <text id="/data/a1:option4">
+            <value>Severe: I usually do not sleep for most of the night.</value>
+          </text>
+          <text id="/data/q2:label">
+            <value>2. DAYTIME SLEEPINESS: Over the past week, have you had trouble staying awake during the daytime?</value>
+          </text>
+          <text id="/data/a2:label">
+            <value>Please select one option:</value>
+          </text>
+          <text id="/data/a2:option0">
+            <value>Normal: No daytime sleepiness.</value>
+          </text>
+          <text id="/data/a2:option1">
+            <value>Slight: Daytime sleepiness occurs but I can resist and I stay awake.</value>
+          </text>
+          <text id="/data/a2:option2">
+            <value>Mild: Sometimes I fall asleep when alone and relaxing. For example, while reading or watching TV.</value>
+          </text>
+          <text id="/data/a2:option3">
+            <value>Moderate: I sometimes fall asleep when I should not. For example, while eating or talking with other people.</value>
+          </text>
+          <text id="/data/a2:option4">
+            <value>Severe: I often fall asleep when I should not. For example, while eating or talking with other people.</value>
+          </text>
+          <text id="/data/q3:label">
+            <value>3. PAIN AND OTHER SENSATIONS: Over the past week, have you had uncomfortable feelings in your body like pain, aches tingling or cramps?</value>
+          </text>
+          <text id="/data/a3:label">
+            <value>Please select one option:</value>
+          </text>
+          <text id="/data/a3:option0">
+            <value>Normal: No uncomfortable feelings.</value>
+          </text>
+          <text id="/data/a3:option1">
+            <value>Slight: I have these feelings. However, I can do things and be with other people without difficulty.</value>
+          </text>
+          <text id="/data/a3:option2">
+            <value>Mild: These feelings cause some problems when I do things or am with other people.</value>
+          </text>
+          <text id="/data/a3:option3">
+            <value>Moderate: These feelings cause a lot of problems, but they do not stop me from doing things or being with other people.</value>
+          </text>
+          <text id="/data/a3:option4">
+            <value>Severe: These feelings stop me from doing things or being with other people.</value>
+          </text>
+          <text id="/data/q4:label">
+            <value>4. URINARY PROBLEMS: Over the past week, have you had trouble with urine control? For example, an urgent need to urinate, a need to urinate too often, or urine accidents?</value>
+          </text>
+          <text id="/data/a4:label">
+            <value>Please select one option:</value>
+          </text>
+          <text id="/data/a4:option0">
+            <value>Normal: No urine control problems.</value>
+          </text>
+          <text id="/data/a4:option1">
+            <value>Slight: I need to urinate often or urgently. However, these problems do not cause difficulties with my daily activities.</value>
+          </text>
+          <text id="/data/a4:option2">
+            <value>Mild: Urine problems cause some difficulties with my daily activities. However, I do not have urine accidents.</value>
+          </text>
+          <text id="/data/a4:option3">
+            <value>Moderate: Urine problems cause a lot of difficulties with my daily activities, including urine accidents.</value>
+          </text>
+          <text id="/data/a4:option4">
+            <value>Severe: I cannot control my urine and use a protective garment or have a bladder tube.</value>
+          </text>
+          <text id="/data/q5:label">
+            <value>5. CONSTIPATION PROBLEMS: Over the past week have you had constipation troubles that cause you difficulty moving your bowels?</value>
+          </text>
+          <text id="/data/a5:label">
+            <value>Please select one option:</value>
+          </text>
+          <text id="/data/a5:option0">
+            <value>Normal: No constipation.</value>
+          </text>
+          <text id="/data/a5:option1">
+            <value>Slight: I have been constipated. I use extra effort to move my bowels. However, this problem does not disturb my activities or my being comfortable.</value>
+          </text>
+          <text id="/data/a5:option2">
+            <value>Mild: Constipation causes me to have some troubles doing things or being comfortable.</value>
+          </text>
+          <text id="/data/a5:option3">
+            <value>Moderate: Constipation causes me to have a lot of trouble doing things or being comfortable. However, it does not stop me from doing anything.</value>
+          </text>
+          <text id="/data/a5:option4">
+            <value>Severe: I usually need physical help from someone else to empty my bowels.</value>
+          </text>
+          <text id="/data/a5:option5">
+            <value></value>
+          </text>
+          <text id="/data/q6:label">
+            <value>6. LIGHT HEADEDNESS ON STANDING: Over the past week, have you felt faint, dizzy or foggy when you stand up after sitting or lying down?</value>
+          </text>
+          <text id="/data/a6:label">
+            <value>Please select one option:</value>
+          </text>
+          <text id="/data/a6:option0">
+            <value>Normal: No dizzy or foggy feelings.</value>
+          </text>
+          <text id="/data/a6:option1">
+            <value>Slight: Dizzy or foggy feelings occur. However, they do not cause me troubles doing things.</value>
+          </text>
+          <text id="/data/a6:option2">
+            <value>Mild: Dizzy or foggy feelings cause me to hold on to something, but I do not need to sit or lie back down.</value>
+          </text>
+          <text id="/data/a6:option3">
+            <value>Moderate: Dizzy or foggy feelings cause me to sit or lie down to avoid fainting or falling.</value>
+          </text>
+          <text id="/data/a6:option4">
+            <value>Severe: Dizzy or foggy feelings cause me to fall or faint.</value>
+          </text>
+          <text id="/data/q7:label">
+            <value>7. FATIGUE: Over the past week, have you usually felt fatigued? This feeling is not part of being sleepy or sad</value>
+          </text>
+          <text id="/data/a7:label">
+            <value>Please select one option:</value>
+          </text>
+          <text id="/data/a7:option0">
+            <value>Normal: No fatigue.</value>
+          </text>
+          <text id="/data/a7:option1">
+            <value>Slight: Fatigue occurs. However it does not cause me troubles doing things or being with people.</value>
+          </text>
+          <text id="/data/a7:option2">
+            <value>Mild: Fatigue causes me some troubles doing things or being with people.</value>
+          </text>
+          <text id="/data/a7:option3">
+            <value>Moderate: Fatigue causes me a lot of troubles doing things or being with people. However, it does not stop me from doing anything.</value>
+          </text>
+          <text id="/data/a7:option4">
+            <value>Severe: Fatigue stops me from doing things or being with people.</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string"/>
+      <bind nodeset="/data/q1" type="string" readonly="true()"/>
+      <bind nodeset="/data/a1" type="select1" required="true()"/>
+      <bind nodeset="/data/q2" type="string" readonly="true()"/>
+      <bind nodeset="/data/a2" type="select1" required="true()"/>
+      <bind nodeset="/data/q3" type="string" readonly="true()"/>
+      <bind nodeset="/data/a3" type="select1" required="true()"/>
+      <bind nodeset="/data/q4" type="string" readonly="true()"/>
+      <bind nodeset="/data/a4" type="select1" required="true()"/>
+      <bind nodeset="/data/q5" type="string" readonly="true()"/>
+      <bind nodeset="/data/a5" type="select1" required="true()"/>
+      <bind nodeset="/data/q6" type="string" readonly="true()"/>
+      <bind nodeset="/data/a6" type="select1" required="true()"/>
+      <bind nodeset="/data/q7" type="string" readonly="true()"/>
+      <bind nodeset="/data/a7" type="select1" required="true()"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/data/q1">
+      <label ref="jr:itext('/data/q1:label')"/>
+    </input>
+    <select1 ref="/data/a1">
+      <label ref="jr:itext('/data/a1:label')"/>
+      <item>
+        <label ref="jr:itext('/data/a1:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a1:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a1:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a1:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a1:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <input ref="/data/q2">
+      <label ref="jr:itext('/data/q2:label')"/>
+    </input>
+    <select1 ref="/data/a2">
+      <label ref="jr:itext('/data/a2:label')"/>
+      <item>
+        <label ref="jr:itext('/data/a2:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a2:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a2:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a2:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a2:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <input ref="/data/q3">
+      <label ref="jr:itext('/data/q3:label')"/>
+    </input>
+    <select1 ref="/data/a3">
+      <label ref="jr:itext('/data/a3:label')"/>
+      <item>
+        <label ref="jr:itext('/data/a3:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a3:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a3:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a3:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a3:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <input ref="/data/q4">
+      <label ref="jr:itext('/data/q4:label')"/>
+    </input>
+    <select1 ref="/data/a4">
+      <label ref="jr:itext('/data/a4:label')"/>
+      <item>
+        <label ref="jr:itext('/data/a4:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a4:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a4:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a4:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a4:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <input ref="/data/q5">
+      <label ref="jr:itext('/data/q5:label')"/>
+    </input>
+    <select1 ref="/data/a5">
+      <label ref="jr:itext('/data/a5:label')"/>
+      <item>
+        <label ref="jr:itext('/data/a5:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a5:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a5:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a5:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a5:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <input ref="/data/q6">
+      <label ref="jr:itext('/data/q6:label')"/>
+    </input>
+    <select1 ref="/data/a6">
+      <label ref="jr:itext('/data/a6:label')"/>
+      <item>
+        <label ref="jr:itext('/data/a6:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a6:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a6:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a6:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a6:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+    <input ref="/data/q7">
+      <label ref="jr:itext('/data/q7:label')"/>
+    </input>
+    <select1 ref="/data/a7">
+      <label ref="jr:itext('/data/a7:label')"/>
+      <item>
+        <label ref="jr:itext('/data/a7:option0')"/>
+        <value>0</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a7:option1')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a7:option2')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a7:option3')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/data/a7:option4')"/>
+        <value>4</value>
+      </item>
+    </select1>
+  </h:body>
+</h:html>

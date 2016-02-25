@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:keepScreenOn="false"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+	android:background="@layout/shapebg"
+	android:padding="15sp"
+    android:weightSum="1.0" >
+    
+   	<LinearLayout
+   	    android:layout_width="fill_parent"
+   	    android:layout_height="wrap_content"
+   	    android:layout_weight=".7"
+   	    android:orientation="vertical"
+   	    android:weightSum="1.0" >
+  
+	    <TextView
+	        android:id="@+id/timertext"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="20sp" 
+			/>
+	    <TextView
+	        android:id="@+id/prompttext"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textSize="20sp" 
+	        />	    
+	</LinearLayout>
+	<Spinner
+        android:id="@+id/spinner"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:padding="15sp"
+        android:layout_weight=".05"
+        android:visibility="gone"
+        android:prompt="@string/spinner_prompt"
+         />
+	<Button
+        android:id="@+id/medButton"
+        android:text="@string/medButton_text"
+        android:textStyle="bold"
+        android:textSize="25sp" 
+        android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:layout_weight=".08"
+        android:padding="15sp"
+        android:visibility="gone"
+         />
+	<Button
+        android:id="@+id/testButton"
+        android:textStyle="bold"
+        android:textSize="25sp" 
+        android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:layout_weight=".08"
+        android:padding="15sp"
+         />
+	
+    <Button
+        android:id="@+id/logbutton"
+        android:textStyle="bold"
+        android:textSize="25sp"    
+        android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:layout_weight=".08"
+        android:padding="15sp"
+         />
+    
+    <Button
+        android:id="@+id/dashbutton"
+        android:textStyle="bold"
+        android:textSize="25sp"    
+        android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:layout_weight=".08"
+        android:padding="15sp"
+        android:visibility="gone"
+         />
+</LinearLayout>

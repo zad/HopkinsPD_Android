@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+	<edu.jhu.hopkinspd.medtracker.MedPreference
+          android:key="medBrand"
+          android:title="Brand"
+          android:summary="Select brand"/>
+	<edu.jhu.hopkinspd.medtracker.MedPreference
+          android:key="medName"
+          android:title="Medication"
+          android:summary="@string/medName_summary"/>
+	<!-- <EditTextPreference
+	    android:key="medDosage"
+	    android:title="Number of tablets"
+	    android:summary="Select Number of tablets"
+	    />    
+     -->
+	 
+	<Preference 
+	    android:key="medDate"
+	    android:title="Date"
+	    android:summary="Select date"
+	    
+	    />
+    <Preference 
+	    android:key="medTime"
+	    android:title="Time"
+	    android:summary="Select time"
+	    />
+
+</PreferenceScreen>

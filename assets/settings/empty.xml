@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- menu -->
+    <bool name="clearDataOn">false</bool>
+    <bool name="uploadItemOn">false</bool>
+    <bool name="ntpItemOn">false</bool>
+    <bool name="enableRecordingWhileCharging">false</bool>
+    <!-- passive monitoring -->
+    <!--
+    	<item name="0">SENSOR_DELAY_FASTEST</item>
+        <item name="1">SENSOR_DELAY_GAME</item>
+        <item name="2">SENSOR_DELAY_UI</item>
+        <item name="3">SENSOR_DELAY_NORMAL</item> 
+     -->
+    <string name="sensorRate">0</string>
+    <!--
+    	<item name="0">OFF</item>
+        <item name="1">PARTIAL_WAKE_LOCK</item>
+        <item name="268435456">ACQUIRE_CAUSES_WAKEUP</item>
+        <item name="515151">AUTO</item> 
+     -->
+    <string name="wakelock">515151</string>
+    <!--
+        <item name="0">Text</item>
+        <item name="1">Binary</item> 
+     -->
+    <string name="sensorDataFormat">1</string>
+    
+    <!-- accelerometer -->
+    <bool name="sensorAccelOn">false</bool>
+    <bool name="sensorAccelRawOn">false</bool>
+    <bool name="sensorAccelFeatureOn">false</bool>
+    
+    <!-- audio -->
+    <bool name="sensorAudioOn">false</bool>
+    <bool name="sensorAudioRawOn">false</bool>
+    <bool name="sensorAudioFeatureOn">false</bool>
+    <!-- gps -->
+    <bool name="sensorGPSOn">false</bool>
+    <string name="sensorGPSInt">60</string>
+    <bool name="sensorGPSExtraFeatureOn">false</bool> 
+    <!-- light --> 
+    <bool name="sensorLightOn">false</bool>
+    <bool name="sensorLightRawOn">false</bool>
+    <!-- proximity -->
+    <bool name="sensorProxOn">false</bool>
+    <bool name="sensorProxRawOn">false</bool>
+    <!-- compass -->
+    <bool name="sensorCompOn">false</bool>
+    <bool name="sensorCompRawOn">false</bool>
+    <bool name="sensorCompFeatureOn">false</bool>
+    <!-- network -->
+    <bool name="sensorTelephonyOn">false</bool>
+    <bool name="sensorWifiOn">false</bool>
+    <bool name="sensorWifiScanOn">false</bool>
+    <string name="sensorWifiScanInt">60</string>
+    <!-- context -->
+    <bool name="sensorCtxOn">false</bool>
+    <bool name="sensorGAROn">false</bool>
+    <string name="sensorGARInt">60</string>
+    <!-- misc -->
+    <bool name="sensorBattOn">false</bool>
+    <bool name="sensorMetaOn">false</bool>
+    
+    <!-- services -->
+    <!-- zip service -->
+    <bool name="zipServiceOn">false</bool>
+    <string name="zipInterval">1800000</string>
+    <!-- upload service -->
+    <bool name="uploadServiceOn">false</bool>
+    <string name="uploadInterval">3600000</string>
+    <bool name="uploadTimeRandom">false</bool>
+    <bool name="autoUpdateOn">false</bool>
+    <!-- active tests -->
+    <bool name="test_demo">false</bool>
+    <bool name="test_voice">false</bool>
+    <bool name="test_balance">false</bool>
+    <bool name="test_gait">false</bool>
+    <bool name="test_dexterity">false</bool>
+    <bool name="test_reaction">false</bool>
+    <!-- NTP Sync -->
+    <bool name="ntpSyncOn">false</bool>
+    <string name="ntpSyncInt">3600000</string>
+    <!-- motion label -->
+    <bool name="motionLabelOn">false</bool>
+</resources>

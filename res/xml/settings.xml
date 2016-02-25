@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+	
+
+	
+	<PreferenceCategory android:title="@string/user_setting" >
+	   	<EditTextPreference
+		    android:key="userIDPref"
+		    android:title="@string/userID"
+		    android:summary="@string/userID_summary"
+		    /> 
+		<EditTextPreference
+		    android:key="userPasswordPref"
+		    android:title="@string/userPassword"
+		    android:summary="@string/userPassword_summary"
+		    android:inputType="textPassword"
+		    /> 	  
+	</PreferenceCategory>   
+
+    <PreferenceCategory android:title="@string/battery_setting" >
+        <ListPreference
+            android:key="batteryThresholdPref"
+	        android:title="@string/battery_threshold"
+	        android:summary="@string/battery_threshold_summary"
+	        android:entryValues="@array/batteryThresholdsValuesPref"
+	        android:entries="@array/batteryThresholdsPref"
+	        android:defaultValue="@string/default_battery_threshold"
+	        />
+    </PreferenceCategory> 
+ 	<PreferenceCategory android:title="@string/network_setting" >
+ 	    <CheckBoxPreference
+            android:defaultValue="@bool/default_use_mobile_internet"
+            android:key="useMobileInternetPref"
+            android:summary="@string/cellular_upload_summary"
+            android:title="@string/cellular_upload" 
+            >
+        </CheckBoxPreference>
+        <!-- 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="chargeOnlyInternetPref"
+            android:title="@string/charge_only_upload" 
+            android:enabled="false">
+        </CheckBoxPreference>
+        -->
+ 	</PreferenceCategory> 
+ 	<PreferenceCategory android:title="@string/style_setting" >
+ 		<CheckBoxPreference
+		    android:key="@string/colorHighContrastOn"
+		    android:title="@string/colorPref"
+		    android:defaultValue="@bool/default_color"
+		    >
+		</CheckBoxPreference>
+	</PreferenceCategory> 
+ 	<!-- 
+ 	<PreferenceCategory android:title="@string/data_privacy_setting" >
+ 		<CheckBoxPreference
+            android:defaultValue="true"
+            android:key="allowGPSRawDataPref"
+            android:summary="@string/allow_gps_raw_summary"
+            android:title="@string/allow_gps_raw" >
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="allowAudioRawDataPref"
+            android:summary="@string/allow_audio_raw_summary"
+            android:title="@string/allow_audio_raw" >
+        </CheckBoxPreference>
+ 	</PreferenceCategory>
+ 	 -->
+ 	 
+ 	<ListPreference
+    	android:key="@string/language"
+     	android:title="Language"
+     	android:entryValues="@array/languageValuesPref"
+     	android:entries="@array/languagePref"
+     	android:defaultValue="@string/default_language"
+    />
+ 	<PreferenceScreen
+	    android:key="Advanced" 
+	    android:title="Advanced Configuration"
+	    >
+ 	    
+        <PreferenceScreen android:title="Menu">
+        	<CheckBoxPreference 
+		        android:key="@string/clearDataOn"
+		      	android:title="Enable Clear Data Item" 
+		      	android:defaultValue="@bool/default_menu_cleardata"
+		    />
+	       	<CheckBoxPreference 
+		        android:key="@string/uploadItemOn"
+		      	android:title="Enable Sync Item" 
+		      	android:defaultValue="@bool/default_menu_upload"
+		    />
+	       	<CheckBoxPreference 
+		        android:key="@string/ntpItemOn"
+		      	android:title="Enable NTP Sync Item" 
+		      	android:defaultValue="@bool/default_menu_ntp"
+		      	android:summary="Root privilege is required!"
+		    />
+        </PreferenceScreen>
+        <PreferenceScreen android:title="Active Tests">
+            <CheckBoxPreference 
+		        android:key="@string/test_demo"
+		      	android:title="Demo mode" 
+		      	android:defaultValue="@bool/default_test_demo"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/next_button"
+		      	android:title="Next test screen" 
+		      	android:defaultValue="@bool/default_next_button"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/single_test"
+		      	android:title="Enable single test" 
+		      	android:defaultValue="@bool/default_single_test"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_gyro"
+		      	android:title="Use gyroscope" 
+		      	android:defaultValue="@bool/default_test_gyro"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_voice"
+		      	android:title="Test Voice" 
+		      	android:defaultValue="@bool/default_test_voice"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_balance"
+		      	android:title="Test Balance" 
+		      	android:defaultValue="@bool/default_test_balance"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_gait"
+		      	android:title="Test Gait" 
+		      	android:defaultValue="@bool/default_test_gait"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_dexterity"
+		      	android:title="Test Dexterity" 
+		      	android:defaultValue="@bool/default_test_dexterity"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_reaction"
+		      	android:title="Test Reaction" 
+		      	android:defaultValue="@bool/default_test_reaction"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_rest_tremor"
+		      	android:title="Test Rest Tremor" 
+		      	android:defaultValue="@bool/default_test_rest_tremor"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_postural_tremor"
+		      	android:title="Test Postural Tremor" 
+		      	android:defaultValue="@bool/default_test_postural_tremor"
+		    />
+        </PreferenceScreen>
+		<PreferenceScreen android:title="Passive Monitoring">
+		    <PreferenceScreen android:title="General Configuration">
+		        <ListPreference android:title="Sensing Rate"
+		            android:key="@string/sensorRate" 
+		            android:entries="@array/sensorRatePref"
+		            android:defaultValue="@string/default_sensor_rate"
+		            android:entryValues="@array/sensorRateValuesPref" />
+		        <ListPreference android:title="Data Format"
+		            android:key="@string/sensorDataFormat" 
+		            android:entries="@array/sensorDataFormatPref"
+		            android:defaultValue="@string/default_data_format"
+		            android:entryValues="@array/sensorDataFormatValuesPref" />
+		       	<ListPreference 
+			        android:key="@string/wakeLock"
+			      	android:title="Wake Lock" 
+			      	android:entryValues="@array/wakeLockValuesPref"
+			        android:entries="@array/wakeLockPref"
+			        android:defaultValue="@string/default_wakelock"
+			    />
+		
+		       	<CheckBoxPreference 
+			        android:key="@string/enableRecordingWhileCharging"
+			      	android:title="Enable Recording While Charging" 
+			      	android:defaultValue="@bool/default_enable_recording_while_charging"
+			    />    
+		    </PreferenceScreen>    
+	        <PreferenceScreen android:title="Accelerometer" >
+			    <CheckBoxPreference 
+			        android:key="@string/sensorAccelOn"
+			      	android:title="Accelerometer" 
+			      	android:defaultValue="@bool/default_accel_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorAccelRawOn"
+			      	android:title="Accelerometer Raw Data" 
+			      	android:defaultValue="@bool/default_accel_raw"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorAccelFeatureOn"
+			      	android:title="Accelerometer Feature Data" 
+			      	android:defaultValue="@bool/default_accel_feature"
+			    />		    		    
+			</PreferenceScreen>
+			<PreferenceScreen android:title="Audio Recording" >
+			    <CheckBoxPreference 
+			        android:key="@string/sensorAudioOn"
+			      	android:title="Audio" 
+			      	android:defaultValue="@bool/default_audio_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorAudioRawOn"
+			      	android:title="Audio Raw Data" 
+			      	android:defaultValue="@bool/default_audio_raw"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorAudioFeatureOn"
+			      	android:title="Audio Feature Data" 
+			      	android:defaultValue="@bool/default_audio_feature"
+			    />		    		    
+			</PreferenceScreen>
+			<PreferenceScreen android:title="GPS" >
+			    <CheckBoxPreference 
+			        android:key="@string/sensorGPSOn"
+			      	android:title="GPS" 
+			      	android:defaultValue="@bool/default_gps_on"
+			    />
+			    <EditTextPreference 
+			        android:title="GPS Sample Interval (Sec)"
+			        android:key="@string/sensorGPSInt"
+			        android:defaultValue="@string/default_gps_interval_second"
+			        android:inputType="number"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorGPSExtraFeatureOn"
+			      	android:title="GPS Extra Features" 
+			      	android:summary="(accuracy, bearing, speed)"
+			      	android:defaultValue="@bool/default_gps_extra_feature"
+			    />		    
+			</PreferenceScreen>
+			<PreferenceScreen android:title="Light" >
+			    <CheckBoxPreference 
+			        android:key="@string/sensorLightOn"
+			      	android:title="Light" 
+			      	android:defaultValue="@bool/default_light_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorLightRawOn"
+			      	android:title="Light Raw Data" 
+			      	android:defaultValue="@bool/default_light_raw"
+			    />		    
+		    </PreferenceScreen>
+			<PreferenceScreen android:title="Proximity" >
+			    <CheckBoxPreference 
+			        android:key="@string/sensorProxOn"
+			      	android:title="Proximity" 
+			      	android:defaultValue="@bool/default_proximity_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorProxRawOn"
+			      	android:title="Proximity Raw Data" 
+			      	android:defaultValue="@bool/default_proximity_raw"
+			    />		    
+			</PreferenceScreen>
+			<PreferenceScreen android:title="Compass" >
+			    <CheckBoxPreference 
+			        android:key="@string/sensorCompOn"
+			      	android:title="Compass" 
+			      	android:defaultValue="@bool/default_compass_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorCompRawOn"
+			      	android:title="Compass Raw Data" 
+			      	android:defaultValue="@bool/default_compass_raw"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorCompFeatureOn"
+			      	android:title="Compass Feature Data" 
+			      	android:defaultValue="@bool/default_compass_feature"
+			    />		    
+			</PreferenceScreen>
+			<PreferenceScreen android:title="Network" >
+			    <CheckBoxPreference 
+			        android:key="@string/sensorTelephonyOn"
+			      	android:title="Telephony" 
+			      	android:defaultValue="@bool/default_telephony_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorWifiOn"
+			      	android:title="Wifi" 
+			      	android:defaultValue="@bool/default_wifi_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorWifiScanOn"
+			      	android:title="Wifi Scan" 
+			      	android:defaultValue="@bool/default_wifiscan_on"
+			    />
+			    <EditTextPreference 
+			        android:title="Wifi Scan Interval (Sec)"
+			        android:key="@string/sensorWifiScanInt"
+			        android:defaultValue="@string/default_wifiscan_interval_second"
+			        android:inputType="number"
+			    />
+			</PreferenceScreen>
+			<PreferenceScreen android:title="Context" >
+			    <CheckBoxPreference 
+			        android:key="@string/sensorCtxOn"
+			      	android:title="Foreground Application" 
+			      	android:defaultValue="@bool/default_context_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorCallLogOn"
+			      	android:title="Call Log" 
+			      	android:defaultValue="@bool/default_calllog_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorSmsLogOn"
+			      	android:title="SMS Log" 
+			      	android:defaultValue="@bool/default_smslog_on"
+			    />
+			     		    
+			    <CheckBoxPreference 
+			        android:key="@string/sensorGAROn"
+			      	android:title="Google Activity Recognition" 
+			      	android:defaultValue="@bool/default_gar_on"
+			    />
+			    <EditTextPreference 
+			        android:title="GAR Sample Interval (Sec)"
+			        android:key="@string/sensorGARInt"
+			        android:defaultValue="@string/default_gar_interval_second"
+			        android:inputType="number"
+			    />		    
+			</PreferenceScreen>
+			<PreferenceScreen android:title="Misc" >
+			    <CheckBoxPreference 
+			        android:key="@string/sensorBattOn"
+			      	android:title="Battery" 
+			      	android:defaultValue="@bool/default_battery_on"
+			    />
+			    <CheckBoxPreference 
+			        android:key="@string/sensorMetaOn"
+			      	android:title="Meta Data" 
+			      	android:defaultValue="@bool/default_meta_on"
+			    />
+		    </PreferenceScreen>		    
+		</PreferenceScreen>
+		<PreferenceScreen android:title="Zip Service">
+        	<CheckBoxPreference 
+		        android:key="@string/zipServiceOn"
+		      	android:title="ZipService" 
+		      	android:defaultValue="@bool/default_zip_on"
+		    />
+        	<ListPreference
+	            android:key="@string/zipInterval"
+		        android:title="ZIP Interval"
+		        android:entryValues="@array/intervelValuesPref"
+		        android:entries="@array/intervelPref"
+		        android:defaultValue="@string/default_zip_interval"
+	        />		    
+		</PreferenceScreen>
+		<PreferenceScreen android:title="Sync Service">
+        	<CheckBoxPreference 
+		        android:key="@string/uploadServiceOn"
+		      	android:title="SyncService" 
+		      	android:defaultValue="@bool/default_upload_on"
+		    />
+        	
+        	<CheckBoxPreference 
+		        android:key="@string/uploadTimeRandom"
+		      	android:title="Random Sync Time" 
+		      	android:defaultValue="@bool/default_upload_random_time"
+		    />
+        	<ListPreference
+	            android:key="@string/uploadInterval"
+		        android:title="Sync Interval"
+		        android:entryValues="@array/intervelValuesPref"
+		        android:entries="@array/intervelPref"
+		        android:defaultValue="@string/default_upload_interval"
+	        />
+        	<CheckBoxPreference 
+		        android:key="@string/autoUpdateOn"
+		      	android:title="Auto Update"
+		      	android:summary="System will be updated automatically when the latest version is available" 
+		      	android:defaultValue="@bool/default_upload_random_time"
+		    />		    
+		</PreferenceScreen>
+		<PreferenceScreen android:title="NTP Auto Sync" android:summary="Need ROOT privilege">
+		    <CheckBoxPreference 
+		        android:key="@string/ntpSyncOn"
+		      	android:title="NTP Auto Sync" 
+		      	android:defaultValue="@bool/default_ntpsync_on"
+		    />
+		    <ListPreference 
+		        android:title="NTP Auto Sync Interval"
+		        android:key="@string/ntpSyncInt"
+		        android:entryValues="@array/intervelValuesPref"
+		        android:entries="@array/intervelPref"
+		        android:defaultValue="@string/default_ntpsync_interval"
+		    />
+		</PreferenceScreen>
+		<CheckBoxPreference android:key="@string/motionLabelOn"
+		      	android:title="Motion Labels" 
+		      	android:defaultValue="@bool/default_motionLabelOn"
+		      	android:summary="A spinner in the main activity to label current motion mode"/>
+		
+		<PreferenceScreen android:title="Dashboard">
+		    <CheckBoxPreference 
+		        android:key="@string/dashboardOn"
+		      	android:title="Show Dashboard" 
+		      	android:defaultValue="@bool/default_dashboard_on"
+		    />
+		</PreferenceScreen>
+		<PreferenceScreen android:title="Medication">
+		    <CheckBoxPreference 
+		        android:key="@string/medTrackerOn"
+		      	android:title="Medication Tracker" 
+		      	android:defaultValue="@bool/default_medtracker_on"
+		    />
+		</PreferenceScreen>
+		<ListPreference android:title="Reset"
+            android:key="@string/reset" 
+         />
+  	</PreferenceScreen> 
+</PreferenceScreen>

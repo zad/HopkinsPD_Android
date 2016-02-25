@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- User Settings: default values -->
+    <string name="default_battery_threshold">10</string>
+    <bool name="default_use_mobile_internet">false</bool>
+    <string name="default_language">en</string>
+    <!-- menu -->
+    <bool name="default_menu_cleardata">false</bool>
+    <bool name="default_menu_upload">false</bool>
+    <bool name="default_menu_ntp">false</bool>
+    <!-- test -->
+    <bool name="default_next_button">false</bool>
+    <bool name="default_single_test">false</bool>
+    <bool name="default_test_demo">false</bool>
+    <bool name="default_test_gyro">false</bool> 
+    <bool name="default_test_voice">true</bool>
+    <bool name="default_test_balance">true</bool>
+    <bool name="default_test_gait">true</bool>
+    <bool name="default_test_dexterity">true</bool>
+    <bool name="default_test_reaction">true</bool>
+    <bool name="default_test_rest_tremor">false</bool>
+    <bool name="default_test_postural_tremor">false</bool>
+    <!-- passive monitoring -->
+    <!--
+    	<item name="0">SENSOR_DELAY_FASTEST</item>
+        <item name="1">SENSOR_DELAY_GAME</item>
+        <item name="2">SENSOR_DELAY_UI</item>
+        <item name="3">SENSOR_DELAY_NORMAL</item> 
+     -->
+    <string name="default_sensor_rate">0</string>
+    <!--
+        <item name="0">Text</item>
+        <item name="1">Binary</item> 
+     -->
+    <string name="default_data_format">1</string>
+    <!--
+    	<item name="0">OFF</item>
+        <item name="1">PARTIAL_WAKE_LOCK</item>
+        <item name="268435456">ACQUIRE_CAUSES_WAKEUP</item>
+        <item name="515151">AUTO</item> 
+     -->
+    <string name="default_wakelock">515151</string>
+    <bool name="default_enable_recording_while_charging">false</bool>
+    <!-- accelerometer -->
+    <bool name="default_accel_on">true</bool>
+    <bool name="default_accel_raw">true</bool>
+    <bool name="default_accel_feature">false</bool>
+    <!-- audio -->
+    <bool name="default_audio_on">false</bool>
+    <bool name="default_audio_raw">false</bool>
+    <bool name="default_audio_feature">false</bool>
+    <!-- gps -->
+    <bool name="default_gps_on">true</bool>
+    <string name="default_gps_interval_second">60</string>
+    <bool name="default_gps_extra_feature">true</bool><!-- (accuracy, bearing, speed) -->
+    <!-- light -->
+    <bool name="default_light_on">true</bool>
+    <bool name="default_light_raw">true</bool>
+    <!-- proximity -->
+    <bool name="default_proximity_on">true</bool>
+    <bool name="default_proximity_raw">true</bool>
+    <!-- compass -->
+    <bool name="default_compass_on">true</bool>
+    <bool name="default_compass_raw">true</bool>
+    <bool name="default_compass_feature">false</bool>
+    <!-- network -->
+    <bool name="default_telephony_on">true</bool>
+    <bool name="default_wifi_on">true</bool>
+    <bool name="default_wifiscan_on">true</bool>
+    <string name="default_wifiscan_interval_second">60</string>
+    <!-- context -->
+    <bool name="default_context_on">false</bool>
+    <bool name="default_calllog_on">false</bool>
+    <bool name="default_smslog_on">false</bool>
+    <bool name="default_gar_on">false</bool>
+    <string name="default_gar_interval_second">60</string>
+    <!-- misc -->
+    <bool name="default_battery_on">true</bool>
+    <bool name="default_meta_on">true</bool>
+    <!-- zip service -->
+    <bool name="default_zip_on">true</bool>
+    <string name="default_zip_interval">1800000</string>
+    <!-- upload service -->
+    <bool name="default_upload_on">true</bool>
+    <bool name="default_upload_random_time">false</bool>
+    <string name="default_upload_interval">3600000</string>
+    <bool name="autoUpdateOn">false</bool>
+    
+    <!-- ntp auto sync -->
+    <bool name="default_ntpsync_on">false</bool>
+    <string name="default_ntpsync_interval">3600000</string>
+    <!-- motion label -->
+    <bool name="default_motionLabelOn">false</bool>
+    
+    <!-- Dashboard -->
+    <bool name="default_dashboard_on">false</bool>
+    <bool name="default_color">false</bool>
+    
+    <!-- Medication Tracker -->
+    <bool name="default_medtracker_on">false</bool>
+</resources>
