@@ -58,7 +58,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 	    
 	    ins = (TextView)findViewById(R.id.text_ins);
 	    ins.setTextSize(GlobalApp.ACTIVE_TESTS_FONT_SIZE);
-	    icon = (ImageView)findViewById(R.id.icon);
+	    icon = (ImageView)findViewById(R.id.text_icon);
 	    Bundle bundle = getIntent().getExtras();
 	    if (bundle != null)
 	    {
