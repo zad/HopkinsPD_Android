@@ -313,27 +313,27 @@ public class GlobalApp extends Application{
 //	private static DataOutputStream testStreamFile = null;
 	public static double[][] streamBuffer = null;
 	
-	public static final int TEST_VOICE = 0;
-	public static final int TEST_BALANCE = 1;
-	public static final int TEST_GAIT = 2;
-	public static final int TEST_DEXTERITY = 3;
-	public static final int TEST_REACTION = 4;
-	
-	public static final int TEST_REST_TREMOR = 5;
-	
-	public static final int TEST_POSTURAL_TREMOR = 6;
+//	public static final int TEST_VOICE = 0;
+//	public static final int TEST_BALANCE = 1;
+//	public static final int TEST_GAIT = 2;
+//	public static final int TEST_DEXTERITY = 3;
+//	public static final int TEST_REACTION = 4;
+//	
+//	public static final int TEST_REST_TREMOR = 5;
+//	
+//	public static final int TEST_POSTURAL_TREMOR = 6;
 	
 
 	
 	
 	
 	//                                      Vo, Ba, Ga, Dx, Re, RT, PT
-	public static int[] preTestPauseDur  = {2,  5,  5,  2,  2, 5, 5};
-	public static int[] postTestPauseDur = {0,  0,  0,  2,  0, 0, 0};
-	public static int[] testCaptureDur   = {20, 20, 30, 20, 30, 45, 45};
+//	public static int[] preTestPauseDur  = {2,  5,  5,  2,  2, 5, 5};
+//	public static int[] postTestPauseDur = {0,  0,  0,  2,  0, 0, 0};
+//	public static int[] testCaptureDur   = {20, 20, 30, 20, 30, 45, 45};
 //	public static int[] testCaptureDur   = {5, 5, 5, 5, 5};		// Short for tests
-	public static boolean[] preTestVibrate = {false, true, true, false, false, true, true};
-	public static boolean[] postTestVibrate = {false, true, true, false, false, true, true};
+//	public static boolean[] preTestVibrate = {false, true, true, false, false, true, true};
+//	public static boolean[] postTestVibrate = {false, true, true, false, false, true, true};
 	
 	public static int ZIP_BUFFER_SIZE = 65536;
 
@@ -1067,24 +1067,42 @@ public class GlobalApp extends Application{
 	public String getMedTrackerFilename(Date time)
 	{
 		Resources res = getResources();
-		String userID = getStringPref(PREF_KEY_USERID, res.getString(R.string.default_userID));
+		String userID = getStringPref(PREF_KEY_USERID, 
+				res.getString(R.string.default_userID));
 		String phoneID = getStringPhoneID();
 		String rootPath = getStringPref(PREF_KEY_ROOT_PATH, "");
-		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_med_" + userID + "_" + phoneID + 
-			"_" + timeString(time) + ".csv";
+		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_med_" 
+				+ userID + "_" + phoneID + "_" + timeString(time) + ".csv";
 	}
 	
-	public String getTestDataFilename(Date time, int testNumber, String type, String ext)
-	{
-		Resources res = getResources();
-		String userID = getStringPref(PREF_KEY_USERID, res.getString(R.string.default_userID));
-		String phoneID = getStringPhoneID();
-		String rootPath = getStringPref(PREF_KEY_ROOT_PATH, "");
-		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_test" + testNumber + "_" + type + "_" + userID + "_" + phoneID + 
-			"_" + timeString(time) + "." + ext;
-	}
+//	public String getTestDataFilename(Date time, int testNumber, String type, 
+//			String ext)
+//	{
+//		Resources res = getResources();
+//		String userID = getStringPref(PREF_KEY_USERID, 
+//				res.getString(R.string.default_userID));
+//		String phoneID = getStringPhoneID();
+//		String rootPath = getStringPref(PREF_KEY_ROOT_PATH, "");
+//		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_test" 
+//				+ testNumber + "_" + type + "_" + userID + "_" + phoneID + 
+//			"_" + timeString(time) + "." + ext;
+//	}
 	
 
+	public String getTestDataFilename(Date time, int testName, 
+			String type, String ext)
+	{
+		Resources res = getResources();
+		String userID = getStringPref(PREF_KEY_USERID, 
+				res.getString(R.string.default_userID));
+		String phoneID = getStringPhoneID();
+		String rootPath = getStringPref(PREF_KEY_ROOT_PATH, "");
+		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_" 
+				+ getString(testName).replace('_', '-') + "_" 
+				+ type + "_" + userID + "_" 
+				+ phoneID +	"_" + timeString(time) + "." + ext;
+	}	
+	
 	public String getTestZipPackageFilename(Date time)
 	{
 		Resources res = getResources();
@@ -1448,85 +1466,85 @@ public class GlobalApp extends Application{
 		
 	}
 	
-	public int getNumberOfRestTests(int curTestNum){
-		int rest = 0;
-		int test = curTestNum++;
-		while(test < GlobalApp.NUMBER_OF_TESTS){
-			switch(test){
-			case GlobalApp.TEST_VOICE:
-				if(app.getBooleanPref(getString(R.string.test_voice)))
-					rest++;
-				break;
-			case GlobalApp.TEST_BALANCE:
-				if(app.getBooleanPref(getString(R.string.test_balance)))
-					rest++;
-				break;
-			case GlobalApp.TEST_GAIT:
-				if(app.getBooleanPref(getString(R.string.test_gait)))
-					rest++;
-				break;
-			case GlobalApp.TEST_DEXTERITY:
-				if(app.getBooleanPref(getString(R.string.test_dexterity)))
-					rest++;
-				break;
-			case GlobalApp.TEST_REACTION:
-				if(app.getBooleanPref(getString(R.string.test_reaction)))
-					rest++;
-				break;
-			case GlobalApp.TEST_REST_TREMOR:
-				if(app.getBooleanPref(getString(R.string.test_rest_tremor)))
-					rest++;
-				break;
-			case GlobalApp.TEST_POSTURAL_TREMOR:
-				if(app.getBooleanPref(getString(R.string.test_postural_tremor)))
-					rest++;
-				break;
-			}
-			
-				
-			test ++;
-		}
-		return rest;
-	}
+//	public int getNumberOfRestTests(int curTestNum){
+//		int rest = 0;
+//		int test = curTestNum++;
+//		while(test < GlobalApp.NUMBER_OF_TESTS){
+//			switch(test){
+//			case GlobalApp.TEST_VOICE:
+//				if(app.getBooleanPref(getString(R.string.test_voice)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_BALANCE:
+//				if(app.getBooleanPref(getString(R.string.test_balance)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_GAIT:
+//				if(app.getBooleanPref(getString(R.string.test_gait)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_DEXTERITY:
+//				if(app.getBooleanPref(getString(R.string.test_dexterity)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_REACTION:
+//				if(app.getBooleanPref(getString(R.string.test_reaction)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_REST_TREMOR:
+//				if(app.getBooleanPref(getString(R.string.test_rest_tremor)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_POSTURAL_TREMOR:
+//				if(app.getBooleanPref(getString(R.string.test_postural_tremor)))
+//					rest++;
+//				break;
+//			}
+//			
+//				
+//			test ++;
+//		}
+//		return rest;
+//	}
 
-	public int getNextTestNumber(int num) {
-		while(num < GlobalApp.NUMBER_OF_TESTS){
-			switch(num){
-			case GlobalApp.TEST_VOICE:
-				if(app.getBooleanPref(getString(R.string.test_voice)))
-					return num;
-				break;
-			case GlobalApp.TEST_BALANCE:
-				if(app.getBooleanPref(getString(R.string.test_balance)))
-					return num;
-				break;
-			case GlobalApp.TEST_GAIT:
-				if(app.getBooleanPref(getString(R.string.test_gait)))
-					return num;
-				break;
-			case GlobalApp.TEST_DEXTERITY:
-				if(app.getBooleanPref(getString(R.string.test_dexterity)))
-					return num;
-				break;
-			case GlobalApp.TEST_REACTION:
-				if(app.getBooleanPref(getString(R.string.test_reaction)))
-					return num;
-				break;
-			case GlobalApp.TEST_REST_TREMOR:
-				if(app.getBooleanPref(getString(R.string.test_rest_tremor)))
-					return num;
-				break;
-			case GlobalApp.TEST_POSTURAL_TREMOR:
-				if(app.getBooleanPref(getString(R.string.test_postural_tremor)))
-					return num;
-				break;
-			}
-			
-				
-			num ++;
-		}
-		return num;
-	}
+//	public int getNextTestNumber(int num) {
+//		while(num < GlobalApp.NUMBER_OF_TESTS){
+//			switch(num){
+//			case GlobalApp.TEST_VOICE:
+//				if(app.getBooleanPref(getString(R.string.test_voice)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_BALANCE:
+//				if(app.getBooleanPref(getString(R.string.test_balance)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_GAIT:
+//				if(app.getBooleanPref(getString(R.string.test_gait)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_DEXTERITY:
+//				if(app.getBooleanPref(getString(R.string.test_dexterity)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_REACTION:
+//				if(app.getBooleanPref(getString(R.string.test_reaction)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_REST_TREMOR:
+//				if(app.getBooleanPref(getString(R.string.test_rest_tremor)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_POSTURAL_TREMOR:
+//				if(app.getBooleanPref(getString(R.string.test_postural_tremor)))
+//					return num;
+//				break;
+//			}
+//			
+//				
+//			num ++;
+//		}
+//		return num;
+//	}
 
 	public void runLastUpload(Context ctx, BufferedWriter logTextStream) {
 		app.writeLogTextLine(logTextStream, "run last upload", false);

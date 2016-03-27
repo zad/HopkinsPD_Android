@@ -2,6 +2,7 @@ package edu.jhu.hopkinspd.test;
 
 import edu.jhu.hopkinspd.GlobalApp;
 import edu.jhu.hopkinspd.R;
+import edu.jhu.hopkinspd.test.conf.TestConfig;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +28,7 @@ public class TestPostActivity extends Activity implements SensorEventListener{
 	private SensorManager sensorManager = null;
 	private Sensor sensor = null;
 	GlobalApp app;
-	int testNumber = 0;
+	int completeTestNumber = 0;
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -44,22 +45,22 @@ public class TestPostActivity extends Activity implements SensorEventListener{
 	    ins.setTextSize(GlobalApp.ACTIVE_TESTS_FONT_SIZE);
 	    
 	    Bundle bundle = getIntent().getExtras();
+	    completeTestNumber = 0;
 	    if (bundle != null)
-	    {
-	    	testNumber = bundle.getInt("TestNumber", 0);
-		    
-	    }else{
-			testNumber = app.getNextTestNumber(0);
-			if(testNumber >= GlobalApp.NUMBER_OF_TESTS)
-			{
-				Log.i(TAG, "testNumber reaches to NUMBER_OF_TESTS: " + testNumber);
-				finish();
-				return;
-			}
-			
+	    	completeTestNumber = bundle.getInt("TestNumber", 0);
+		
+		if(completeTestNumber >= TestConfig.getNumberOfTests())
+		{
+			Log.i(TAG, "testNumber reaches to NUMBER_OF_TESTS: " 
+					+ completeTestNumber);
+			finish();
+			return;
 		}
+			
+		
 	    
-	    int numRestTests = app.getNumberOfRestTests(testNumber);
+	    int numRestTests = TestConfig.getNumberOfTests() 
+	    		- completeTestNumber - 1;
 	    //ins.setText("The test is complete. Only " + numRestTests + " tests left to go!");
 	    ins.setText(String.format(getString(R.string.next_test_dir), numRestTests));
 		next = (Button)findViewById(R.id.button_nexttest);
@@ -68,9 +69,9 @@ public class TestPostActivity extends Activity implements SensorEventListener{
             public void onClick(View view)
             {
 //            	GlobalApp.writeLogTextLine("Start test " + testNumber + " button pressed", false);
-            	Log.i(TAG, "click next test " + testNumber + " button pressed");
+            	Log.i(TAG, "click next test " + completeTestNumber + " button pressed");
             	Intent nextPage = new Intent(app, TestPrepActivity.class);
-				nextPage.putExtra("TestNumber", testNumber);
+				nextPage.putExtra("TestNumber", completeTestNumber);
                                
                 startActivity(nextPage);
                 finish();

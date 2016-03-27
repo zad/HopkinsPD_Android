@@ -30,7 +30,7 @@ public class SelectTestActivity extends Activity{
             public void onClick(DialogInterface dialog, int item) {
                 // Do something with the selection
             	Intent takeTests = new Intent(app, TestPrepActivity.class);
-            	TestPrepActivity.singleTest = true;
+            	TestPrepActivity.singleTestMode = true;
         		// Jump to specific test
         		takeTests.putExtra("TestNumber", item);
         		app.initActiveTests();

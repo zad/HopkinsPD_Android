@@ -22,21 +22,21 @@
   <string name="react_button_text">Drück mich!</string>
     
   <string name="ins_taketest">Nehmen Sie sich Zeit um ihren Test zu starten! </string>
-  <string name="ins_voice"><b>1. Stimmtest</b>. Suchen Sie sich einen ruhigen Ort. Wenn Sie bereit sind, tippen Sie auf &quot;Test starten. </string>
-  <string name="ins_balance"><b>2. Gleichgewichtstest</b>. Suchen Sie sich einen Platz, an dem Sie frei stehen können. </string>
-  <string name="ins_gait"><b>3. Lauftest</b>. Nun suchen Sie sich nun einen Ort, an dem Sie etwa 20 Meter gehen können.</string>
-  <string name="ins_dexterity"><b>4. Feinmotoriktest</b>. Wenn Sie bereit sind, tippen Sie bitte auf &quot;Test starten&quot;. </string>
-  <string name="ins_reaction"><b>5. Reaktionstest</b>. Wenn Sie bereit sind, tippen Sie bitte auf &quot;Test starten&quot;</string>
-  <string name="ins_rest_tremor"><b>6. Ruhetremor</b>. Bitte setzen Sie sich nun bequem hin. Halten Sie das Telefon mit der Hand, die am meisten vom Zittern betroffen ist. Legen Sie die Hand mit dem Telefon in den Schoß. Wenn Sie bereit sind, tippen Sie bitte auf &quot;Test starten&quot;</string>
-  <string name="ins_postural_tremor"><b>7. Haltetremor</b>. Bitte bleiben Sie sitzen. Strecken Sie nun die Hand mitsamt dem Telefon nach vorne aus und drücken Sie auf &quot;Test starten&quot;. </string>
+  <string name="ins_voice"><b>%1$d. Stimmtest</b>. Suchen Sie sich einen ruhigen Ort. Wenn Sie bereit sind, tippen Sie auf &quot;Test starten. </string>
+  <string name="ins_balance"><b>%1$d. Gleichgewichtstest</b>. Suchen Sie sich einen Platz, an dem Sie frei stehen können. </string>
+  <string name="ins_gait"><b>%1$d. Lauftest</b>. Nun suchen Sie sich nun einen Ort, an dem Sie etwa 20 Meter gehen können.</string>
+  <string name="ins_dexterity"><b>%1$d. Feinmotoriktest</b>. Wenn Sie bereit sind, tippen Sie bitte auf &quot;Test starten&quot;. </string>
+  <string name="ins_reaction"><b>%1$d. Reaktionstest</b>. Wenn Sie bereit sind, tippen Sie bitte auf &quot;Test starten&quot;</string>
+  <string name="ins_rest_tremor"><b>%1$d. Ruhetremor</b>. Bitte setzen Sie sich nun bequem hin. Halten Sie das Telefon mit der Hand, die am meisten vom Zittern betroffen ist. Legen Sie die Hand mit dem Telefon in den Schoß. Wenn Sie bereit sind, tippen Sie bitte auf &quot;Test starten&quot;</string>
+  <string name="ins_postural_tremor"><b>%1$d. Haltetremor</b>. Bitte bleiben Sie sitzen. Strecken Sie nun die Hand mitsamt dem Telefon nach vorne aus und drücken Sie auf &quot;Test starten&quot;. </string>
   <string name="ins_finish"><b>Fertig!</b> Bitte warten Sie, bis Ihre Daten verarbeitet sind. Vielen Dank! </string>
-  <string name="dir_voice"><b>1. Stimmtest</b>. Halten Sie das Telefon an Ihr Ohr. Atmen Sie tief ein, dann sagen Sie bitte “Ahhhhh” mit gleichmäßiger Lautstärke so lange Sie können.</string>
-  <string name="dir_balance"><b>2. Gleichgewichtstest</b>. Bleiben Sie nun aufrecht stehen und stecken Sie das Telefon in Ihre Hosentasche oder in Ihr Armband. Sobald das Telefon vibriert, bleiben Sie bitte solange ruhig stehen, bis das Telefon abermals vibriert. </string>
-  <string name="dir_gait"><b>3. Lauftest</b>. Bitte stecken Sie das Telefon in ihre Hosentasche oder in Ihr Armband. Sobald das Telefon vibriert, gehen Sie 20 Meter. Dann drehen Sie sich bitte um und laufen zurück zum Ausgangspunkt. </string>
-  <string name="dir_dexterity"><b>4. Feinmotoriktest</b>. Tippen Sie nun abwechselnd und regelmäßig mit Zeige- und Mittelfinger auf die beiden unteren Felder (1, 2). </string>
+  <string name="dir_voice"><b>%1$d. Stimmtest</b>. Halten Sie das Telefon an Ihr Ohr. Atmen Sie tief ein, dann sagen Sie bitte “Ahhhhh” mit gleichmäßiger Lautstärke so lange Sie können.</string>
+  <string name="dir_balance"><b>%1$d. Gleichgewichtstest</b>. Bleiben Sie nun aufrecht stehen und stecken Sie das Telefon in Ihre Hosentasche oder in Ihr Armband. Sobald das Telefon vibriert, bleiben Sie bitte solange ruhig stehen, bis das Telefon abermals vibriert. </string>
+  <string name="dir_gait"><b>%1$d. Lauftest</b>. Bitte stecken Sie das Telefon in ihre Hosentasche oder in Ihr Armband. Sobald das Telefon vibriert, gehen Sie 20 Meter. Dann drehen Sie sich bitte um und laufen zurück zum Ausgangspunkt. </string>
+  <string name="dir_dexterity"><b>%1$d. Feinmotoriktest</b>. Tippen Sie nun abwechselnd und regelmäßig mit Zeige- und Mittelfinger auf die beiden unteren Felder (1, 2). </string>
 
-  <string name="dir_reaction"><b>5. Reaktionstest</b>. Sobald Sie dieTaste &quot;Drück mich!&quot; sehen, drücken und halten Sie diese gedrückt, bis Sie wieder verschwindet.</string>
+  <string name="dir_reaction"><b>%1$d. Reaktionstest</b>. Sobald Sie dieTaste &quot;Drück mich!&quot; sehen, drücken und halten Sie diese gedrückt, bis Sie wieder verschwindet.</string>
                                                   
-  <string name="dir_rest_tremor"><b>6. Ruhetremor</b>. Bitte schließen Sie nun Ihre Augen und zählen Sie rückwarts von 100.</string>
-  <string name="dir_postural_tremor"><b>7. Haltetremor</b>. Bitte halten Sie das Telefon mit ausgestrecktem Arm in Ihrer Hand. </string>
+  <string name="dir_rest_tremor"><b>%1$d. Ruhetremor</b>. Bitte schließen Sie nun Ihre Augen und zählen Sie rückwarts von 100.</string>
+  <string name="dir_postural_tremor"><b>%1$d. Haltetremor</b>. Bitte halten Sie das Telefon mit ausgestrecktem Arm in Ihrer Hand. </string>
 </resources>

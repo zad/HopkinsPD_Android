@@ -2,9 +2,11 @@ package edu.jhu.hopkinspd.test;
 
 import edu.jhu.hopkinspd.GlobalApp;
 import edu.jhu.hopkinspd.R;
+import edu.jhu.hopkinspd.test.conf.TestConfig;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.hardware.*;
 import android.os.Bundle;
@@ -18,21 +20,21 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 	private static final int SENSOR_RATE = SensorManager.SENSOR_DELAY_FASTEST;
 	protected static final String TAG = GlobalApp.TAG + "|" + "TestPrepActivity";;
 	
-	int[] testList = {R.string.ins_voice,
-			R.string.ins_balance, R.string.ins_gait,
-			R.string.ins_dexterity, R.string.ins_reaction,
-			R.string.ins_rest_tremor, R.string.ins_postural_tremor
-			};
+//	int[] testList = {R.string.ins_voice,
+//			R.string.ins_balance, R.string.ins_gait,
+//			R.string.ins_dexterity, R.string.ins_reaction,
+//			R.string.ins_rest_tremor, R.string.ins_postural_tremor
+//			};
 
-	int[] iconList = {
-			R.drawable.voice_test,
-			R.drawable.balance_test,
-			R.drawable.gait_test,
-			R.drawable.tap_test,
-			R.drawable.reaction_test,
-			R.drawable.rest_tremor_test,
-			R.drawable.postural_tremor_test,
-			};
+//	int[] iconList = {
+//			R.drawable.voice_test,
+//			R.drawable.balance_test,
+//			R.drawable.gait_test,
+//			R.drawable.tap_test,
+//			R.drawable.reaction_test,
+//			R.drawable.rest_tremor_test,
+//			R.drawable.postural_tremor_test,
+//			};
 	
 	private SensorManager sensorManager = null;
 	private Sensor sensor = null;
@@ -42,7 +44,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 	TextView ins;
 	ImageView icon;
 	GlobalApp app;
-	public static boolean singleTest;
+	public static boolean singleTestMode;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState)
@@ -60,24 +62,23 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 	    ins.setTextSize(GlobalApp.ACTIVE_TESTS_FONT_SIZE);
 	    icon = (ImageView)findViewById(R.id.text_icon);
 	    Bundle bundle = getIntent().getExtras();
-	    if (bundle != null)
-	    {
-	    	// single test
-	    	testNumber = bundle.getInt("TestNumber", 0);
-		    
-	    }else{
-	    	// all tests
-			testNumber = app.getNextTestNumber(0);
-	    }
+	    if(bundle == null)
+	    	testNumber = 0;
+	    else
+	    	// single test mode contains TestNumber in bundle
+	    	testNumber = bundle.getInt("TestNumber", 0);	    
 	    
-		if(testNumber >= GlobalApp.NUMBER_OF_TESTS)
+		if(testNumber >= TestConfig.getNumberOfTests())
 		{
 			Log.i(TAG, "testNumber reaches to NUMBER_OF_TESTS: " + testNumber);
 			finish();
 			return;
 		}
-		ins.setText(testList[testNumber]);
-		icon.setImageResource(iconList[testNumber]);
+		TestConfig testConf = TestConfig.getTestConfig(testNumber);
+		Resources res = getResources();
+		String text = String.format(res.getString(testConf.pre_test_text), testNumber+1);
+		ins.setText(text);
+		icon.setImageResource(testConf.pre_icon);
 	 
 	    
 		next = (Button)findViewById(R.id.button_starttest);

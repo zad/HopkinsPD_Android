@@ -4,6 +4,7 @@ import java.io.DataOutputStream;
 import java.util.Date;
 
 import edu.jhu.hopkinspd.GlobalApp;
+import edu.jhu.hopkinspd.test.conf.TestConfig;
 import android.content.Context;
 import android.hardware.*;
 
@@ -24,12 +25,13 @@ public class GyroCapture implements SensorEventListener
 	private Sensor sensor = null;
 	public boolean isRecording = false;
 	private int bufferItems = 0;
-	private int testNumber = 0;
+//	private int testNumber = 0;
 	private GlobalApp app;
 	private boolean sensorAvailable = true;
 	private DataOutputStream testStreamFile = null;
+	private TestConfig testConf;
 	
-	public GyroCapture(GlobalApp app, int testNumber)
+	public GyroCapture(GlobalApp app, TestConfig testConf)
     {
 		this.app = app;
     	sensorManager = (SensorManager)app.getSystemService(Context.SENSOR_SERVICE);
@@ -38,7 +40,8 @@ public class GyroCapture implements SensorEventListener
         
         app.allocateStreamBuffer(CAPTURE_BUFFER_LENGTH, CAPTURE_BUFFER_ENTRIES);
 		bufferItems = 0;
-		this.testNumber = testNumber;
+//		this.testNumber = testNumber;
+		this.testConf = testConf;
     }
     
     public void destroy()
@@ -53,7 +56,8 @@ public class GyroCapture implements SensorEventListener
     	if(sensorAvailable)
 		{
     		Date time = new Date();
-			String filename = app.getTestDataFilename(time, testNumber, CAPTURE_FILETYPE, OUTPUT_EXT);
+			String filename = app.getTestDataFilename(time, testConf.test_name, 
+					CAPTURE_FILETYPE, OUTPUT_EXT);
 			testStreamFile = app.openTestStreamFile(filename);
 	    	bufferItems = 0;
 	    	isRecording = true;
