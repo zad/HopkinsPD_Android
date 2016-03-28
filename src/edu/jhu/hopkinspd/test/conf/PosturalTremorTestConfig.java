@@ -47,7 +47,7 @@ public class PosturalTremorTestConfig extends TestConfig{
 	public void runTest(TestActivity activity, BufferedWriter logWriter) {
 		GlobalApp app = GlobalApp.getApp();
 		accelObj = new AccelCapture(app, this);
-		accelObj.startRecording();
+		accelObj.startRecording(null);
 		
 		if(gyro_on){
 			gyroObj = new GyroCapture(app, this);

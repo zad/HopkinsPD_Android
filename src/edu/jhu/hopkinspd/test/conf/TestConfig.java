@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import edu.jhu.hopkinspd.GlobalApp;
 import edu.jhu.hopkinspd.R;
 import edu.jhu.hopkinspd.test.TestActivity;
+import edu.jhu.hopkinspd.test.TestPrepActivity;
 
 public abstract class TestConfig {
 
@@ -50,6 +51,7 @@ public abstract class TestConfig {
 	public int testCaptureDur = 20;
 	public boolean preTestVibrate = false;
 	public boolean postTestVibrate = false;
+	public int pre_test_layout = R.layout.testpreppage;
 	
 	private static ArrayList<TestConfig> enabled_tests = null;
 	public static boolean gyro_on = false; 
@@ -89,6 +91,8 @@ public abstract class TestConfig {
 	public void dispatchTouchEvent(MotionEvent me) {}
 
 	public void onInTestTimerTick(TestActivity activity) {}
+
+    public void createPreTest(TestPrepActivity testPrepActivity) {}
 	
 	
 }

@@ -18,23 +18,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 {
 	private static final int SENSOR_TYPE = Sensor.TYPE_PROXIMITY;
 	private static final int SENSOR_RATE = SensorManager.SENSOR_DELAY_FASTEST;
-	protected static final String TAG = GlobalApp.TAG + "|" + "TestPrepActivity";;
-	
-//	int[] testList = {R.string.ins_voice,
-//			R.string.ins_balance, R.string.ins_gait,
-//			R.string.ins_dexterity, R.string.ins_reaction,
-//			R.string.ins_rest_tremor, R.string.ins_postural_tremor
-//			};
-
-//	int[] iconList = {
-//			R.drawable.voice_test,
-//			R.drawable.balance_test,
-//			R.drawable.gait_test,
-//			R.drawable.tap_test,
-//			R.drawable.reaction_test,
-//			R.drawable.rest_tremor_test,
-//			R.drawable.postural_tremor_test,
-//			};
+	public static final String TAG = GlobalApp.TAG + "|" + "TestPrepActivity";;
 	
 	private SensorManager sensorManager = null;
 	private Sensor sensor = null;
@@ -56,11 +40,6 @@ public class TestPrepActivity extends Activity implements SensorEventListener
         sensorManager.getDefaultSensor(SENSOR_TYPE);
         sensorManager.registerListener(this, sensor, SENSOR_RATE);
 	    
-	    setContentView(R.layout.testpreppage);
-	    
-	    ins = (TextView)findViewById(R.id.text_ins);
-	    ins.setTextSize(GlobalApp.ACTIVE_TESTS_FONT_SIZE);
-	    icon = (ImageView)findViewById(R.id.text_icon);
 	    Bundle bundle = getIntent().getExtras();
 	    if(bundle == null)
 	    	testNumber = 0;
@@ -75,6 +54,11 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 			return;
 		}
 		TestConfig testConf = TestConfig.getTestConfig(testNumber);
+		setContentView(testConf.pre_test_layout);
+        
+        ins = (TextView)findViewById(R.id.text_ins);
+        ins.setTextSize(GlobalApp.ACTIVE_TESTS_FONT_SIZE);
+        icon = (ImageView)findViewById(R.id.text_icon);
 		Resources res = getResources();
 		String text = String.format(res.getString(testConf.pre_test_text), testNumber+1);
 		ins.setText(text);
@@ -95,7 +79,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 
         });
         setTextColor(app.getBooleanPref(getString(R.string.colorHighContrastOn)));
-		
+		testConf.createPreTest(this);
     }
 	
 	private void setTextColor(boolean highContrast) {
@@ -137,4 +121,8 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 			next.setEnabled(false);
 		}
 	}
+
+    public int getTestNumber() {
+        return testNumber;
+    }
 }

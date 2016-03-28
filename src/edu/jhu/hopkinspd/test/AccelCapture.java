@@ -1,12 +1,14 @@
 package edu.jhu.hopkinspd.test;
 
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.Date;
 
 import edu.jhu.hopkinspd.GlobalApp;
 import edu.jhu.hopkinspd.test.conf.TestConfig;
 import android.content.Context;
 import android.hardware.*;
+import android.util.Log;
 
 public class AccelCapture implements SensorEventListener
 {
@@ -49,7 +51,7 @@ public class AccelCapture implements SensorEventListener
     	sensor = null;
     }
 	    
-    public void startRecording()
+    public void startRecording(String phone_position)
     {
 		Date time = new Date();
 		String filename = app.getTestDataFilename(time, testConf.test_name, 
@@ -57,6 +59,19 @@ public class AccelCapture implements SensorEventListener
 		testStreamFile = app.openTestStreamFile(filename);
     	bufferItems = 0;
     	isRecording = true;
+    	if(phone_position != null){
+    	    String phonePosFileName = app.getTestDataFilename(time, 
+    	            testConf.test_name, "phone", "txt");
+    	    DataOutputStream phonePosFile = 
+    	            app.openTestStreamFile(phonePosFileName);
+    	    try {
+                phonePosFile.writeChars(phone_position);
+            } catch (IOException e) {
+                Log.e(AccelCapture.class.getName(), 
+                        "phonePosFile WriteException");
+            }
+    	    app.closeTestStreamFile(phonePosFile);
+    	}
     }
     
     public void stopRecording()
