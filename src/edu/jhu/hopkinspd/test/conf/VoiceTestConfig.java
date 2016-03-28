@@ -14,6 +14,7 @@ public class VoiceTestConfig extends TestConfig{
         pre_icon = R.drawable.voice_test;
         test_text = R.string.dir_voice;
         test_view = R.layout.testpage;
+        // TODO: add voice test video
     }
     
 	

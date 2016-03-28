@@ -46,6 +46,7 @@ public class GaitTestConfig extends TestConfig{
         preTestVibrate = true;
         postTestVibrate = true;    
         pre_test_layout = R.layout.testpreppage_gait;
+        help_link = "https://youtu.be/2BidIYn1Nrg";
     }
 	
 	

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.hardware.*;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
@@ -29,7 +30,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 	ImageView icon;
 	GlobalApp app;
 	public static boolean singleTestMode;
-	
+	private TestConfig testConf;
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -53,7 +54,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 			finish();
 			return;
 		}
-		TestConfig testConf = TestConfig.getTestConfig(testNumber);
+		testConf = TestConfig.getTestConfig(testNumber);
 		setContentView(testConf.pre_test_layout);
         
         ins = (TextView)findViewById(R.id.text_ins);
@@ -124,5 +125,34 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 
     public int getTestNumber() {
         return testNumber;
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.pretest_menu, menu);
+        MenuItem help = menu.findItem(R.id.pretest_help);
+        help.setIcon(android.R.drawable.ic_menu_help);
+        return true;
+    }
+    
+
+    
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item) {
+        // Handle item selection
+        switch(item.getItemId()){
+            case R.id.pretest_help:
+                if(testConf.help_link != null){
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                    intent.setData(Uri.parse(testConf.help_link));
+                    startActivity(intent);
+                        
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -19,6 +19,7 @@ public class ReactionTestConfig extends TestConfig{
         test_text = R.string.dir_reaction;
         test_view = R.layout.testreactpage;
         testCaptureDur = 30;
+        help_link = "https://youtu.be/Brz2yZp_O7M";
     }
     
 	private ReactCapture reactObj = null;

@@ -18,7 +18,8 @@ public class RestTremorTestConfig extends TestConfig{
         preTestPauseDur = 5;
         testCaptureDur = 45;
         preTestVibrate = true;
-        postTestVibrate = true;    
+        postTestVibrate = true;  
+        help_link = "https://youtu.be/cPd1Ct0xOCg";
     }
 	
 	public RestTremorTestConfig(String hand) {
@@ -37,6 +38,7 @@ public class RestTremorTestConfig extends TestConfig{
         testCaptureDur = 45;
         preTestVibrate = true;
         postTestVibrate = true;   
+        help_link = "https://youtu.be/cPd1Ct0xOCg";
     }
 
     private AccelCapture accelObj = null;

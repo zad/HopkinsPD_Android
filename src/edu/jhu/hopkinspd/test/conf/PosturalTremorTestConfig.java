@@ -19,7 +19,7 @@ public class PosturalTremorTestConfig extends TestConfig{
         testCaptureDur = 45;
         preTestVibrate = true;
         postTestVibrate = true;
-            
+        help_link = "https://youtu.be/6QjjBa1HFVk";
     }
 	
 	public PosturalTremorTestConfig(String hand) {
@@ -38,6 +38,7 @@ public class PosturalTremorTestConfig extends TestConfig{
         testCaptureDur = 45;
         preTestVibrate = true;
         postTestVibrate = true;
+        help_link = "https://youtu.be/6QjjBa1HFVk";
     }
 
     private AccelCapture accelObj = null;

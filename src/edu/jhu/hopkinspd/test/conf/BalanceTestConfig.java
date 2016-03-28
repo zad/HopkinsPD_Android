@@ -17,7 +17,8 @@ public class BalanceTestConfig extends TestConfig{
         test_view = R.layout.testpage;
         preTestPauseDur = 5;
         preTestVibrate = true;
-        postTestVibrate = true;    
+        postTestVibrate = true;
+        help_link = "https://youtu.be/xwJsLGdlhsE";
     }
 	
 	private AccelCapture accelObj = null;

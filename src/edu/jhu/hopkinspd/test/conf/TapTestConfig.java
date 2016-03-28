@@ -17,12 +17,12 @@ public class TapTestConfig extends TestConfig{
         pre_icon = R.drawable.tap_test;
         test_text = R.string.dir_dexterity;
         test_view = R.layout.testtappage;
-        postTestPauseDur = 2;            
+        postTestPauseDur = 2;  
+        help_link = "https://youtu.be/tJLqvKHn2XQ";
     }
 	
 	public TapTestConfig(String hand) {
-        // TODO Auto-generated constructor stub
-	    if(hand.compareTo("left")==0){
+        if(hand.compareTo("left")==0){
 	        test_name = R.string.test_dexterity_left;
 	        pre_test_text = R.string.ins_dexterity_left;
 	        test_text = R.string.dir_dexterity_left;
@@ -36,6 +36,7 @@ public class TapTestConfig extends TestConfig{
 	    pre_icon = R.drawable.tap_test;
         test_view = R.layout.testtappage;
         postTestPauseDur = 2;
+        help_link = "https://youtu.be/tJLqvKHn2XQ";
     }
 
     private TapCapture tapObj = null;

@@ -52,6 +52,7 @@ public abstract class TestConfig {
 	public boolean preTestVibrate = false;
 	public boolean postTestVibrate = false;
 	public int pre_test_layout = R.layout.testpreppage;
+	public String help_link;
 	
 	private static ArrayList<TestConfig> enabled_tests = null;
 	public static boolean gyro_on = false; 
