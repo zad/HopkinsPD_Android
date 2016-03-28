@@ -15,9 +15,15 @@ public abstract class TestConfig {
 			R.string.test_balance,
 			R.string.test_gait,
 			R.string.test_dexterity,
+			R.string.test_dexterity_left,
+			R.string.test_dexterity_right,
 			R.string.test_reaction,
 			R.string.test_rest_tremor,
+			R.string.test_rest_tremor_left,
+			R.string.test_rest_tremor_right,
 			R.string.test_postural_tremor,
+			R.string.test_postural_tremor_left,
+			R.string.test_postural_tremor_right,
 	};
 	
 	public static final TestConfig[] ALL_TESTS = {
@@ -25,9 +31,15 @@ public abstract class TestConfig {
 			new BalanceTestConfig(),
 			new GaitTestConfig(),
 			new TapTestConfig(),
+			new TapTestConfig("left"),
+			new TapTestConfig("right"),
 			new ReactionTestConfig(),
 			new RestTremorTestConfig(),
-			new PosturalTremorTestConfig()
+			new RestTremorTestConfig("left"),
+			new RestTremorTestConfig("right"),
+			new PosturalTremorTestConfig(),
+			new PosturalTremorTestConfig("left"),
+			new PosturalTremorTestConfig("right")
 	};
 	
 	public int test_name;

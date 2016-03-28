@@ -141,6 +141,16 @@
 		      	android:defaultValue="@bool/default_test_dexterity"
 		    />
             <CheckBoxPreference 
+		        android:key="@string/test_dexterity_left"
+		      	android:title="Test Dexterity (Left hand)" 
+		      	android:defaultValue="@bool/default_test_dexterity_left"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_dexterity_right"
+		      	android:title="Test Dexterity (Right hand)" 
+		      	android:defaultValue="@bool/default_test_dexterity_right"
+		    />
+            <CheckBoxPreference 
 		        android:key="@string/test_reaction"
 		      	android:title="Test Reaction" 
 		      	android:defaultValue="@bool/default_test_reaction"
@@ -151,9 +161,29 @@
 		      	android:defaultValue="@bool/default_test_rest_tremor"
 		    />
             <CheckBoxPreference 
+		        android:key="@string/test_rest_tremor_left"
+		      	android:title="Test Rest Tremor (Left hand)" 
+		      	android:defaultValue="@bool/default_test_rest_tremor_left"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_rest_tremor_right"
+		      	android:title="Test Rest Tremor (Right hand)" 
+		      	android:defaultValue="@bool/default_test_rest_tremor_right"
+		    />
+            <CheckBoxPreference 
 		        android:key="@string/test_postural_tremor"
 		      	android:title="Test Postural Tremor" 
 		      	android:defaultValue="@bool/default_test_postural_tremor"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_postural_tremor_left"
+		      	android:title="Test Postural Tremor (Left hand)" 
+		      	android:defaultValue="@bool/default_test_postural_tremor_left"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_postural_tremor_right"
+		      	android:title="Test Postural Tremor (Right hand)" 
+		      	android:defaultValue="@bool/default_test_postural_tremor_right"
 		    />
         </PreferenceScreen>
 		<PreferenceScreen android:title="Passive Monitoring">

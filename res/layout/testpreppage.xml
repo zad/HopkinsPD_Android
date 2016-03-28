@@ -26,14 +26,9 @@
 					android:padding="5dip"
 		            android:layout_width="fill_parent" 
 		            android:layout_height="0dp" 
-		            android:layout_weight=".69" />
+		            android:layout_weight=".68" />
 		
-		    <ImageView
-		        android:id="@+id/text_icon"
-		        android:layout_width="fill_parent" 
-		        android:layout_height="wrap_content"
-		        
-		         />
+		    
 			
 		    <Button
 		        	android:id="@+id/button_starttest"
@@ -43,9 +38,14 @@
 		            android:layout_height="0dp" 
 		            android:padding="5dip"
 		            android:layout_width="fill_parent" 
-		            android:layout_weight=".23"
+		            android:layout_weight=".10"
 		            />
-            
+            <ImageView
+		        android:id="@+id/text_icon"
+		        android:layout_width="fill_parent" 
+		        android:layout_weight=".22"
+		       	android:layout_height="0dp" 
+		         />
         </LinearLayout>
     </ScrollView>
     

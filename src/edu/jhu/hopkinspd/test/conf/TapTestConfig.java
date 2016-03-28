@@ -20,7 +20,25 @@ public class TapTestConfig extends TestConfig{
         postTestPauseDur = 2;            
     }
 	
-	private TapCapture tapObj = null;
+	public TapTestConfig(String hand) {
+        // TODO Auto-generated constructor stub
+	    if(hand.compareTo("left")==0){
+	        test_name = R.string.test_dexterity_left;
+	        pre_test_text = R.string.ins_dexterity_left;
+	        test_text = R.string.dir_dexterity_left;
+	        
+	    }else if(hand.compareTo("right")==0){
+	        test_name = R.string.test_dexterity_right;
+	        pre_test_text = R.string.ins_dexterity_right;
+	        test_text = R.string.dir_dexterity_right;
+	        
+        }
+	    pre_icon = R.drawable.tap_test;
+        test_view = R.layout.testtappage;
+        postTestPauseDur = 2;
+    }
+
+    private TapCapture tapObj = null;
 	private Button button1 = null, button2 = null;
 	@Override
 	public void runTest(TestActivity activity,BufferedWriter logWriter) {

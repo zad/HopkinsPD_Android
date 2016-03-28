@@ -22,7 +22,25 @@ public class PosturalTremorTestConfig extends TestConfig{
             
     }
 	
-	private AccelCapture accelObj = null;
+	public PosturalTremorTestConfig(String hand) {
+        if(hand.compareTo("left")==0){
+            test_name = R.string.test_postural_tremor_left;
+            pre_test_text = R.string.ins_postural_tremor_left;
+            test_text = R.string.dir_postural_tremor_left;
+        }else if(hand.compareTo("right")==0){
+            test_name = R.string.test_postural_tremor_left;
+            pre_test_text = R.string.ins_postural_tremor_left;
+            test_text = R.string.dir_postural_tremor_left;
+        }
+        pre_icon = R.drawable.postural_tremor_test;
+        test_view = R.layout.testpage;
+        preTestPauseDur = 5;
+        testCaptureDur = 45;
+        preTestVibrate = true;
+        postTestVibrate = true;
+    }
+
+    private AccelCapture accelObj = null;
 	private GyroCapture gyroObj = null;
 	
 	@Override

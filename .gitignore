@@ -33,3 +33,4 @@ captures/
 
 # others
 *.svn
+.DS_Store

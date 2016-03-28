@@ -21,7 +21,25 @@ public class RestTremorTestConfig extends TestConfig{
         postTestVibrate = true;    
     }
 	
-	private AccelCapture accelObj = null;
+	public RestTremorTestConfig(String hand) {
+        if(hand.compareTo("left")==0){
+            test_name = R.string.test_rest_tremor_left;
+            pre_test_text = R.string.ins_rest_tremor_left;
+            test_text = R.string.dir_rest_tremor_left;
+        }else if(hand.compareTo("right")==0){
+            test_name = R.string.test_rest_tremor_right;
+            pre_test_text = R.string.ins_rest_tremor_right;
+            test_text = R.string.dir_rest_tremor_right;
+        }
+        pre_icon = R.drawable.rest_tremor_test;
+        test_view = R.layout.testpage;
+        preTestPauseDur = 5;
+        testCaptureDur = 45;
+        preTestVibrate = true;
+        postTestVibrate = true;   
+    }
+
+    private AccelCapture accelObj = null;
 	private GyroCapture gyroObj = null;
 	
 	@Override
