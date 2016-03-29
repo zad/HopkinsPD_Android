@@ -49,10 +49,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-
-
+import edu.jhu.hopkinspd.medlog.MedLogActivity;
 import edu.jhu.hopkinspd.medtracker.MedTrackerActivity;
 import edu.jhu.hopkinspd.task.NTPSyncTask;
 import edu.jhu.hopkinspd.test.TestPrepActivity;
@@ -64,7 +61,7 @@ public class MainActivity extends Activity implements SensorEventListener{
     BufferedWriter logTextStream = null, motionLabelStream = null;
 	
 	private Button recordButton = null, dashButton = null;
-	private Button medButton;
+	private Button medButton, medLogButton;
 	private TextView timeText = null;
 	private TextView promptText = null;
 
@@ -146,6 +143,18 @@ public class MainActivity extends Activity implements SensorEventListener{
 			}
 			
 		});
+        
+        medLogButton = (Button)findViewById(R.id.medLogButton);
+        medLogButton.setOnClickListener(new OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(app, MedLogActivity.class);
+                startActivity(in);
+
+            }
+            
+        });
         
         testButton = (Button)findViewById(R.id.testButton);
         
@@ -436,6 +445,12 @@ public class MainActivity extends Activity implements SensorEventListener{
         	
         }else
         	medButton.setVisibility(View.GONE);
+        
+        if(app.getBooleanPref(getString(R.string.medLogOn))){
+            medLogButton.setVisibility(View.VISIBLE);
+            
+        }else
+            medLogButton.setVisibility(View.GONE);
 	}
 
 	private BroadcastReceiver contextReceiver = new BroadcastReceiver()

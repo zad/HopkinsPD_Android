@@ -51,6 +51,17 @@
         android:visibility="gone"
          />
 	<Button
+        android:id="@+id/medLogButton"
+        android:text="@string/medLogButton_text"
+        android:textStyle="bold"
+        android:textSize="25sp" 
+        android:layout_height="wrap_content" 
+        android:layout_width="fill_parent" 
+        android:layout_weight=".08"
+        android:padding="15sp"
+        android:visibility="gone"
+         />
+	<Button
         android:id="@+id/testButton"
         android:textStyle="bold"
         android:textSize="25sp" 

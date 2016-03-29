@@ -1,0 +1,18 @@
+Example PD meds,Example dose (mg)
+Amantadine (Symmetrel),"50, 100"
+Apomorphine (Apokyn),"2, 4, 6"
+Benztropine (Cogentin),"0.5, 1, 2"
+Bromocriptine (Parlodel),"0.8, 2.5, 5"
+"Carbidopa, levodopa, and entacapone (Stalveo)"," 50, 75, 100, 125, 150, 200"
+"Carbidopa-levodopa (Sinemet, Sinemet CR)","10/100, 25/100, 25/250"
+Carbidopa/levodopa continuous release gel (Duopa),2000 (16 hour)
+Entacapone (Comtan),200
+Levodopa-benserazide (Madopar),"50/12.5, 100/25, 200/50"
+Melevodopa (Sirio),"100/25, 125/12.5"
+"Pramipexole (Mirapex, Mirapex ER, Mirapexin, Sifrol)","0.125, 0.25, 0.5, 0.75, 1, 1.5, 2.25, 3, 3.75, 4.5"
+Rasagiline (Azilect),"0.5, 1"
+"Ropinirole (Adartel, Requip, Requip XL, Ropark)","0.25, 0.5, 1.5, 2, 3, 4, 5, 6, 8, 12"
+Rotigotine (Neupro),"1, 2, 3, 4, 6, 8"
+"Selegiline (I-deprenyl, Eldepryl, Zelapar)","1.25 (Zelapar), 5, 6, 9, 12"
+Tolacapone (Tasmar),100
+"Trihexyphenidyl (Apo-Trihex, Artane)","0.4 (elixir), 2, 5"

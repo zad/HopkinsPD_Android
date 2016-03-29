@@ -59,6 +59,16 @@
             android:label="@string/action_settings">
         </activity>
         <activity
+            android:name="edu.jhu.hopkinspd.medlog.MedLogActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/action_settings">
+        </activity>
+        <activity
+            android:name="edu.jhu.hopkinspd.medlog.MedLogListActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/action_settings">
+        </activity>
+        <activity
             android:name="edu.jhu.hopkinspd.medtracker.MedActivity"
             android:screenOrientation="portrait"
             android:label="@string/action_settings">

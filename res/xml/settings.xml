@@ -438,10 +438,15 @@
 		    />
 		</PreferenceScreen>
 		<PreferenceScreen android:title="Medication">
-		    <CheckBoxPreference 
+		    <!-- <CheckBoxPreference 
 		        android:key="@string/medTrackerOn"
 		      	android:title="Medication Tracker" 
 		      	android:defaultValue="@bool/default_medtracker_on"
+		    /> -->
+		    <CheckBoxPreference 
+		        android:key="@string/medLogOn"
+		      	android:title="Medication Log" 
+		      	android:defaultValue="@bool/default_medlog_on"
 		    />
 		</PreferenceScreen>
 		<ListPreference android:title="Reset"

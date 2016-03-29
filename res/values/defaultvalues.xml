@@ -105,4 +105,5 @@
     
     <!-- Medication Tracker -->
     <bool name="default_medtracker_on">false</bool>
+    <bool name="default_medlog_on">false</bool>
 </resources>

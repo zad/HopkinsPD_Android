@@ -13,7 +13,7 @@
     <string name="fragment3">Stats</string>
     
     <string name="medButton_text">Medication Tracker</string>
-    
+    <string name="medLogButton_text">Medication Log</string>
     <!-- Fragment -->
     <string name="surveyButton">UPDRS Test</string>
     

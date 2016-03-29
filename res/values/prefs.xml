@@ -73,4 +73,5 @@
     <string name="dashboardOn">dashboardOn</string>
     <!-- medication tracker -->
     <string name="medTrackerOn">medTrackerOn</string>
+    <string name="medLogOn">medLogOn</string>
 </resources>
