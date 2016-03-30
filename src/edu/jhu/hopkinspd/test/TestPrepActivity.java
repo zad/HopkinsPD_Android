@@ -46,7 +46,9 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 	    	testNumber = 0;
 	    else
 	    	// single test mode contains TestNumber in bundle
-	    	testNumber = bundle.getInt("TestNumber", 0);	    
+	    	testNumber = bundle.getInt("TestNumber", 0);	
+	    if(testNumber == 0)
+	        TestConfig.updateEnabledTests();
 	    
 		if(testNumber >= TestConfig.getNumberOfTests())
 		{

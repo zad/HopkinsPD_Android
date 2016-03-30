@@ -64,6 +64,7 @@
     <string name="test_postural_tremor">test_postural_tremor</string>
     <string name="test_postural_tremor_left">test_postural_tremor_left</string>
     <string name="test_postural_tremor_right">test_postural_tremor_right</string>
+    <string name="medevent">medevent</string>
     <!-- NTP Sync -->
     <string name="ntpSyncOn">ntpSyncOn</string>
     <string name="ntpSyncInt">ntpSyncInt</string>

@@ -57,7 +57,7 @@ public abstract class TestConfig {
 	private static ArrayList<TestConfig> enabled_tests = null;
 	public static boolean gyro_on = false; 
 	
-	public static ArrayList<TestConfig> getEnabledTests(){
+	private static ArrayList<TestConfig> getEnabledTests(){
 		if(enabled_tests == null){
 			GlobalApp app = GlobalApp.getApp();
 			enabled_tests = new ArrayList<TestConfig>();
@@ -70,6 +70,18 @@ public abstract class TestConfig {
 			gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
 		}
 		return enabled_tests;
+	}
+	
+	public static void updateEnabledTests(){
+	    GlobalApp app = GlobalApp.getApp();
+        enabled_tests = new ArrayList<TestConfig>();
+        for(int i = 0; i < ALL_TEST_NAMES.length; i++){
+            int test = ALL_TEST_NAMES[i];
+            if(app.getBooleanPref(app.getString(test))){
+                enabled_tests.add(ALL_TESTS[i]);
+            }
+        }
+        gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
 	}
 	
 	public static int getNumberOfTests() {

@@ -6,13 +6,19 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import org.apache.commons.codec.binary.StringUtils;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import edu.jhu.hopkinspd.GlobalApp;
+import edu.jhu.hopkinspd.MainActivity;
 import edu.jhu.hopkinspd.R;
 
 public class MedLogListActivity extends ListActivity {
@@ -65,4 +71,14 @@ public class MedLogListActivity extends ListActivity {
         }
         
     }
+
+
+    
+
+    
+
+
+    
+    
+    
 }

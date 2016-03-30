@@ -52,24 +52,10 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import edu.jhu.hopkinspd.medlog.MedDoseAdapter;
 import edu.jhu.hopkinspd.security.AESCrypt;
 import edu.jhu.hopkinspd.task.NTPSyncTask;
+import edu.jhu.hopkinspd.test.AccelCapture;
 import edu.jhu.hopkinspd.utils.CrashReportSender;
 
 
@@ -824,7 +810,6 @@ public class GlobalApp extends Application{
 	public boolean isUserInfoAvailable() {
 		String userid = getStringPref(GlobalApp.PREF_KEY_USERID);
 		String pwd = getStringPref(GlobalApp.PREF_KEY_ENCRYPT_KEY);
-		Log.d(TAG, "userid = " + userid + " pwd = " + pwd);
 		if(userid.equals("") || pwd.equals("") || userid.equals("default"))
 		{
 			
@@ -955,6 +940,10 @@ public class GlobalApp extends Application{
     {
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     	return new Date(prefs.getLong(key, 0l));
+    }
+    
+    public void setDatePref(String key, Date date){
+        setLongPref(key, date.getTime());
     }
     
     public void setLongPref(String key, long value)
@@ -1648,4 +1637,49 @@ public class GlobalApp extends Application{
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
 	}
+
+	public void saveRecentMedIntake(String timeStr) {
+        Date time = new Date();
+        String medEventFileName = getTestDataFilename(time, 
+                R.string.medevent, "time", "csv");
+        DataOutputStream medEventFile = 
+                app.openTestStreamFile(medEventFileName);
+        try {
+            
+            medEventFile.writeChars(prettyDateString(time) + "," + timeStr);
+        } catch (IOException e) {
+            Log.e(TAG, "medEventFile WriteException");
+        }
+        app.closeTestStreamFile(medEventFile);
+        String medDoseFileName = getTestDataFilename(time, R.string.medevent, 
+                "dose", "csv");
+        DataOutputStream medDoseFile = 
+                app.openTestStreamFile(medDoseFileName);
+        try {
+            String selectedStr = 
+                    getStringPref(MedDoseAdapter.MedDoseSelectedPref);
+            StringBuilder sb = new StringBuilder();
+            for(String line : selectedStr.split("\\|"))
+            {
+                if(sb.length()!=0)
+                    sb.append("\n");
+                boolean firstItem = true;
+                for(String item : line.split(";")){
+                    if(firstItem)
+                        firstItem = false;
+                    else
+                        sb.append(",");
+                    if(item.contains(","))
+                        sb.append("\"").append(item).append("\"");
+                    else
+                        sb.append(item);
+                }
+            }
+                
+            medDoseFile.writeChars(sb.toString());
+        } catch (IOException e) {
+            Log.e(TAG, "medDoseFile WriteException");
+        } 
+        app.closeTestStreamFile(medDoseFile);
+    }
 }

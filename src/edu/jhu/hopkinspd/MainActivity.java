@@ -167,26 +167,126 @@ public class MainActivity extends Activity implements SensorEventListener{
 				Log.i(TAG, "Take test button pressed");
 				if(!app.isUserInfoAvailable()){
 					app.showUserSettings();
-					Toast.makeText(app, R.string.msgSetupPrefs, Toast.LENGTH_LONG).show();
+					Toast.makeText(app, R.string.msgSetupPrefs, 
+					        Toast.LENGTH_LONG).show();
 					return;
 				}
 				
-				if(app.getBooleanPref(getString(R.string.single_test))){
-					// start test selection dialog
-					Intent selectTest = new Intent(app, SelectTestActivity.class);
-					startActivity(selectTest);
-				}else{
-					Intent takeTests = new Intent(app, TestPrepActivity.class);
-
-					// Jump to specific test
-//					takeTests.putExtra("TestNumber", GlobalApp.TEST_REACTION);
-					app.initActiveTests();
-					startActivity(takeTests);
-	
+				if(!app.getBooleanPref(getString(R.string.medLogOn))){
+				    startTests();
+				    return;
 				}
 				
+				// if needs med update, dialog to ask for med update
+				Date lastMedUpdate = 
+				        app.getDatePref(MedLogActivity.LastMedUpdateDatePref);
+				int day_diff = (int) ((System.currentTimeMillis() - 
+				        lastMedUpdate.getTime())/1000/3600/24);
+				Log.d(TAG, "day_diff:" + day_diff);
+				if(day_diff > 90)
+				{
+				    // ask for med update
+				    AlertDialog.Builder alertDialogBuilder = 
+				            new AlertDialog.Builder(MainActivity.this);
+
+		            // set title
+		            alertDialogBuilder.setTitle(
+		                    "Please update your medication log");
+
+		            // set dialog message
+		            alertDialogBuilder
+		                .setMessage("Click yes to view medication log!")
+		                .setCancelable(false)
+		                .setPositiveButton("Yes",
+		                        new DialogInterface.OnClickListener() {
+		                    public void onClick(DialogInterface dialog,int id) {
+		                        app.setDatePref(
+		                                MedLogActivity.LastMedUpdateDatePref, 
+		                                new Date());
+		                        Intent medUpdate = new Intent(app, 
+		                                MedLogActivity.class);
+		                        startActivity(medUpdate);
+		                    }
+		                });
+
+	                // create alert dialog
+	                AlertDialog alertDialog = alertDialogBuilder.create();
+
+	                // show it
+	                alertDialog.show();
+		            
+			        
+				}else{
+    				// if the user is taking meds, 
+				    boolean takingMeds = 
+				            app.getBooleanPref(MedLogActivity.TakingMedsPref);
+				    if(takingMeds)
+				    {
+				        AlertDialog.Builder builderSingle = 
+				                new AlertDialog.Builder(MainActivity.this);
+				        builderSingle.setIcon(R.drawable.ic_launcher);
+				        builderSingle.setTitle("When did you take your medications:");
+
+				        final ArrayAdapter<String> arrayAdapter = 
+				                new ArrayAdapter<String>(
+				                    MainActivity.this,
+				                    android.R.layout.select_dialog_singlechoice);
+				        for(String time : MedLogActivity.RecentMedTakeTime){
+				            arrayAdapter.add(time);
+				        }
+				        builderSingle.setCancelable(false);
+				        // ask the most recent time of med intake
+				        builderSingle.setAdapter(
+			                arrayAdapter,
+			                new DialogInterface.OnClickListener() {
+			                    @Override
+			                    public void onClick(DialogInterface dialog, int which) {
+			                        final String strName = arrayAdapter.getItem(which);
+			                        AlertDialog.Builder builderInner = new AlertDialog.Builder(
+			                                MainActivity.this);
+			                        builderInner.setMessage(strName);
+			                        builderInner.setTitle("Your Selected Item is");
+			                        builderInner.setPositiveButton(
+		                                "Ok",
+		                                new DialogInterface.OnClickListener() {
+		                                    @Override
+		                                    public void onClick(
+		                                            DialogInterface dialog,
+		                                            int which) {
+		                                        dialog.dismiss();
+		                                        app.saveRecentMedIntake(strName);
+		                                        startTests();
+		                                    }
+
+                                            
+		                                });
+			                        builderInner.show();
+			                    }
+			                });
+				        builderSingle.show();
+				    }
+				    else
+				        startTests();
+    				
+				}
 								
 			}
+
+            private void startTests() {
+                if(app.getBooleanPref(getString(R.string.single_test))){
+                    // start test selection dialog
+                    Intent selectTest = new Intent(app, SelectTestActivity.class);
+                    startActivity(selectTest);
+                }else{
+                    Intent takeTests = new Intent(app, TestPrepActivity.class);
+
+                    // Jump to specific test
+//                  takeTests.putExtra("TestNumber", GlobalApp.TEST_REACTION);
+                    app.initActiveTests();
+                    startActivity(takeTests);
+    
+                }
+            }
         	
         });
 		
@@ -259,6 +359,7 @@ public class MainActivity extends Activity implements SensorEventListener{
 			Toast.makeText(app, R.string.msgSetupPrefs, Toast.LENGTH_LONG).show();
 		}
     }
+	
 	
 	private void enterUserInfo(){
 		LayoutInflater factory = LayoutInflater.from(this);            

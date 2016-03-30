@@ -2,6 +2,7 @@ package edu.jhu.hopkinspd.medlog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class MedDoseAdapter extends ArrayAdapter<ArrayList<String>>{
     private final Context context;
     private final ArrayList<ArrayList<String>> medDose;
     private HashMap<String, String[]> medDoseSelected;
-    private String MedDoseSelectedPref = "MedDoseSelectedPref";
+    public static final String MedDoseSelectedPref = "MedDoseSelectedPref";
 
     public MedDoseAdapter(Context context, int res, 
             ArrayList<ArrayList<String>> medDose) 
@@ -85,7 +86,7 @@ public class MedDoseAdapter extends ArrayAdapter<ArrayList<String>>{
         GlobalApp app = GlobalApp.getApp();
         Log.d(TAG, "selected pref:" + selected.toString());
         app.setStringPref(MedDoseSelectedPref, selected.toString());
-        
+        app.setDatePref(MedLogActivity.LastMedUpdateDatePref, new Date());
     }
 
     private boolean updateSelected(boolean checked, String med, String dose){
@@ -183,4 +184,6 @@ public class MedDoseAdapter extends ArrayAdapter<ArrayList<String>>{
             spinner.setEnabled(false);
         }
     }
+    
+    
 }

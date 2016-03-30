@@ -34,7 +34,13 @@ public class MedLogActivity extends Activity{
 	private static final String TAG = GlobalApp.TAG + "|MedTrackerActivity";
 	private GlobalApp app;
 	
-
+	public static final String[] RecentMedTakeTime = {
+	        "Within five minutes",
+	        "Within one hour",
+	        "Within five hours",
+	        "Within 12 hours",
+	        "Haven't taken any medications"
+	};
 	
 	private boolean enableDatetime = false;
 	
@@ -45,6 +51,7 @@ public class MedLogActivity extends Activity{
 	private CheckBox checkbox;
 	
 	public static final String TakingMedsPref = "TakingMedsPref";
+    public static final String LastMedUpdateDatePref = "LastMedUpdateDate";
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,14 +84,14 @@ public class MedLogActivity extends Activity{
                     boolean takingMeds) {
                 // TODO Auto-generated method stub
                 GlobalApp app = GlobalApp.getApp();
+                boolean takingMedsPref = app.getBooleanPref(TakingMedsPref);
+                if(takingMedsPref != takingMeds){
+                    app.setBooleanPref(TakingMedsPref, takingMeds);
+                    app.setDatePref(LastMedUpdateDatePref, new Date());
+                }
                 if(takingMeds){
-                    app.setBooleanPref(TakingMedsPref, true);
-//                    Intent in = new Intent(MedLogActivity.this, 
-//                            MedLogListActivity.class);
-//                    startActivity(in);
                     medButton.setEnabled(true);
                 }else{
-                    app.setBooleanPref(TakingMedsPref, false);
                     medButton.setEnabled(false);
                 }
             }});
@@ -99,6 +106,25 @@ public class MedLogActivity extends Activity{
         if(takingMeds){
             checkbox.setChecked(true);
             medButton.setEnabled(true);
+            if(!anyMedChecked()){
+                AlertDialog.Builder builderInner = new AlertDialog.Builder(
+                        this);
+                builderInner.setMessage("No medication was selected!");
+                builderInner.setTitle("Alert");
+                builderInner.setPositiveButton(
+                    "Ok",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(
+                                DialogInterface dialog,
+                                int which) {
+                            dialog.dismiss();
+                        }
+
+                        
+                    });
+                builderInner.show();
+            }
         }else{
             checkbox.setChecked(false);
             medButton.setEnabled(false);
@@ -108,21 +134,30 @@ public class MedLogActivity extends Activity{
 
 
 
-    public void back(View view){
-		finish();
-	}
-	
-	
-	
-	public void cancel(View v){
-		finish();
-	}
+	private boolean anyMedChecked() {
+        // TODO Auto-generated method stub
+        GlobalApp app = GlobalApp.getApp();
+        String selectedStr = 
+                app.getStringPref(MedDoseAdapter.MedDoseSelectedPref, "");
+        
+
+        if (selectedStr.contains(";checked;")) {
+            return true;
+        }
+        return false;
+    }
+
 	
 
-
-	
-
-
+	public void back(View view){
+        finish();
+    }
+    
+    
+    
+    public void cancel(View v){
+        finish();
+    }
 	
 	
 }
