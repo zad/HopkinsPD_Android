@@ -9,8 +9,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -79,6 +83,7 @@ public class ZipperService extends IntentService
     		emptyLogFilesAndDeleteStreamFiles(listFiles);
     	}
     	
+    	
 		
 		Intent cast = new Intent(GlobalApp.ZIPPER_DONE_ACTION);
 		sendBroadcast(cast);
@@ -135,6 +140,8 @@ public class ZipperService extends IntentService
 		}
 		return null;
     }
+    
+    
     
 	private void emptyLogFilesAndDeleteStreamFiles(File[] listFiles) {
 		

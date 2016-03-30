@@ -263,6 +263,7 @@ public class GlobalApp extends Application{
 	public static String STATS_SUBDIR = "stats";
 	public static String STREAMS_SUBDIR = "streams";
 	public static String LOGS_SUBDIR = "logs";
+	public static String TESTS_SUBDIR = "test";
 	
 	private static final int AES_FILE_VERSION = 1;
 	

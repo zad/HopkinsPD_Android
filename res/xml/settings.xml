@@ -99,6 +99,18 @@
 		      	android:summary="Root privilege is required!"
 		    />
         </PreferenceScreen>
+        <PreferenceScreen android:title="Medication">
+		    <!-- <CheckBoxPreference 
+		        android:key="@string/medTrackerOn"
+		      	android:title="Medication Tracker" 
+		      	android:defaultValue="@bool/default_medtracker_on"
+		    /> -->
+		    <CheckBoxPreference 
+		        android:key="@string/medLogOn"
+		      	android:title="Medication Log" 
+		      	android:defaultValue="@bool/default_medlog_on"
+		    />
+		</PreferenceScreen>
         <PreferenceScreen android:title="Active Tests">
             <CheckBoxPreference 
 		        android:key="@string/test_demo"
@@ -437,18 +449,7 @@
 		      	android:defaultValue="@bool/default_dashboard_on"
 		    />
 		</PreferenceScreen>
-		<PreferenceScreen android:title="Medication">
-		    <!-- <CheckBoxPreference 
-		        android:key="@string/medTrackerOn"
-		      	android:title="Medication Tracker" 
-		      	android:defaultValue="@bool/default_medtracker_on"
-		    /> -->
-		    <CheckBoxPreference 
-		        android:key="@string/medLogOn"
-		      	android:title="Medication Log" 
-		      	android:defaultValue="@bool/default_medlog_on"
-		    />
-		</PreferenceScreen>
+		
 		<ListPreference android:title="Reset"
             android:key="@string/reset" 
          />

@@ -11,8 +11,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -120,14 +124,23 @@ public class SyncService extends IntentService
 		{
 			app.writeLogTextLine(logTextStream, "No available internet connection", false);
 			sendServiceMessage("Failed to upload: No available Internet connection.");
-			return;
+			
 		}
+		cleanOldFiles();
 	}
 	
 	
 
 		
-	public void runAutoUpdate() {
+	private void cleanOldFiles() {
+        // TODO Auto-generated method stub
+	 // clean files generated one week ago
+        cleanOldFiles(GlobalApp.LOGS_SUBDIR, 7);
+        cleanOldFiles(GlobalApp.STREAMS_SUBDIR, 7);
+        cleanOldFiles(GlobalApp.TESTS_SUBDIR, 7);
+    }
+
+    public void runAutoUpdate() {
 		String local_version = app.getVersion();
 		String server_version = getLatestVersion(logTextStream);
 		if(server_version != null)
@@ -331,6 +344,41 @@ public class SyncService extends IntentService
 		app.writeLogTextLine(logTextStream, message, false);
 	}
 
-
+	public void cleanOldFiles(String subdir, int outOfDays){
+	    Log.i(TAG, "clean old files in " + subdir);
+        File dir = new File(app.getStringPref(GlobalApp.PREF_KEY_ROOT_PATH) 
+                + "/" + subdir);
+        
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -outOfDays);
+        Date outDay = cal.getTime();
+        FilenameFilter fnFilter = new FilenameFilter()
+        {
+            public boolean accept(File dir, String name)
+            {
+                return ((name.contains(".bin") | name.contains(".csv") | name.contains(".raw") | name.contains(".txt")))
+                      | name.contains(".log");
+            }
+        };
+        File[] files = dir.listFiles(fnFilter);
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        for(File file: files){
+            String fileName = file.getName();
+            String[] items = fileName.split("_");
+            if(items.length >= 2){
+                String dayStr = items[items.length-2];
+                try {
+                    Date day = format.parse(dayStr);
+                    if(day.before(outDay)){
+                        file.delete();
+                        Log.i(TAG, "clean old file:"+fileName);
+                    }
+                } catch (ParseException e) {
+                    Log.e(TAG,  "cleanOldFiles parse exception");
+                }
+                
+            }
+        }
+    }
 	
 }
