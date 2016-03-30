@@ -356,8 +356,12 @@ public class SyncService extends IntentService
         {
             public boolean accept(File dir, String name)
             {
-                return ((name.contains(".bin") | name.contains(".csv") | name.contains(".raw") | name.contains(".txt")))
-                      | name.contains(".log");
+                return name.endsWith(".bin") 
+                        | name.endsWith(".csv") 
+                        | name.endsWith(".raw") 
+                        | name.endsWith(".txt")
+                        | name.endsWith(".zip")
+                        | name.endsWith(".log");
             }
         };
         File[] files = dir.listFiles(fnFilter);

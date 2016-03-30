@@ -55,8 +55,35 @@
         android:layout_height="wrap_content"
         android:textSize="20sp" 
 		/> -->
+	<RadioGroup
+        android:id="@+id/radioMed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_weight=".7">
 
-    <CheckBox
+        <RadioButton
+            android:id="@+id/radioMedOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I am taking Parkinson's Disease Medications" 
+            android:textStyle="bold"
+        android:textSize="25sp"    
+        android:padding="15sp"
+             />
+
+        <RadioButton
+            android:id="@+id/radioMedOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I am NOT taking any Parkinson's Disease Medications" 
+            android:textStyle="bold"
+        android:textSize="25sp"    
+        android:padding="15sp"
+        />
+
+    </RadioGroup>
+    
+    <!-- <CheckBox
         android:id="@+id/MedLogCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,7 +91,7 @@
         android:textStyle="bold"
         android:textSize="25sp"    
         android:padding="15sp"
-        android:text="I am taking Parkinson's Disease Medications" />
+        android:text="I am taking Parkinson's Disease Medications" /> -->
 
     <Button
         android:id="@+id/MedButton"

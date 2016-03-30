@@ -1,11 +1,6 @@
 package edu.jhu.hopkinspd.medlog;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
+
 import java.util.Date;
 
 
@@ -24,15 +19,16 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.TextView;
-import android.widget.Toast;
+
+
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+
+
 
 public class MedLogActivity extends Activity{
 	private static final String TAG = GlobalApp.TAG + "|MedTrackerActivity";
-	private GlobalApp app;
+	
 	
 	public static final String[] RecentMedTakeTime = {
 	        "Within five minutes",
@@ -42,13 +38,10 @@ public class MedLogActivity extends Activity{
 	        "Haven't taken any medications"
 	};
 	
-	private boolean enableDatetime = false;
+
 	
 	private Button medButton;
-	
-	private TextView prompt;
-	
-	private CheckBox checkbox;
+	private RadioGroup rg;
 	
 	public static final String TakingMedsPref = "TakingMedsPref";
     public static final String LastMedUpdateDatePref = "LastMedUpdateDate";
@@ -56,13 +49,13 @@ public class MedLogActivity extends Activity{
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        app = (GlobalApp) getApplication();
+        
         Log.i(TAG, "onCreate: set default settings");
         
         setTitle("Add Medication Intake");
         setContentView(R.layout.medlogactivity);
         
-        prompt = (TextView) findViewById(R.id.med_prompt);
+        
         
         medButton = (Button)findViewById(R.id.MedButton);
         
@@ -75,72 +68,76 @@ public class MedLogActivity extends Activity{
 				startActivity(in);
 			}
 		});
+        rg = (RadioGroup)findViewById(R.id.radioMed);
         
-        checkbox = (CheckBox)findViewById(R.id.MedLogCheckBox);
-        checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+        rg.setOnCheckedChangeListener(new OnCheckedChangeListener(){
 
             @Override
-            public void onCheckedChanged(CompoundButton arg0, 
-                    boolean takingMeds) {
-                // TODO Auto-generated method stub
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                
+                
+                
                 GlobalApp app = GlobalApp.getApp();
                 boolean takingMedsPref = app.getBooleanPref(TakingMedsPref);
-                if(takingMedsPref != takingMeds){
-                    app.setBooleanPref(TakingMedsPref, takingMeds);
+                boolean checked = checkedId == R.id.radioMedOn;
+                if(takingMedsPref != checked){
+                    app.setBooleanPref(TakingMedsPref, checked);
                     app.setDatePref(LastMedUpdateDatePref, new Date());
+                    if(checked)
+                        checkSelectedMeds();
                 }
-                if(takingMeds){
+                if(checked){
                     medButton.setEnabled(true);
                 }else{
                     medButton.setEnabled(false);
                 }
+                
+                
             }});
+
     }
 	
 	
 	
 	@Override
     protected void onResume() {
+	    super.onResume();
 	    GlobalApp app = GlobalApp.getApp();
 	    boolean takingMeds = app.getBooleanPref(TakingMedsPref);
         if(takingMeds){
-            checkbox.setChecked(true);
-            medButton.setEnabled(true);
-            if(!anyMedChecked()){
-                AlertDialog.Builder builderInner = new AlertDialog.Builder(
-                        this);
-                builderInner.setMessage("No medication was selected!");
-                builderInner.setTitle("Alert");
-                builderInner.setPositiveButton(
-                    "Ok",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(
-                                DialogInterface dialog,
-                                int which) {
-                            dialog.dismiss();
-                        }
-
-                        
-                    });
-                builderInner.show();
-            }
+            rg.check(R.id.radioMedOn);
+            checkSelectedMeds();
         }else{
-            checkbox.setChecked(false);
-            medButton.setEnabled(false);
-        }
-        super.onResume();
+            rg.check(R.id.radioMedOff);
+        } 
     }
 
+	private void checkSelectedMeds(){
+	    if(!anyMedChecked()){
+            AlertDialog.Builder builderInner = new AlertDialog.Builder(
+                    this);
+            builderInner.setMessage("No medication was selected!");
+            builderInner.setTitle("Alert");
+            builderInner.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(
+                            DialogInterface dialog,
+                            int which) {
+                        dialog.dismiss();
+                    }
 
+                    
+                });
+            builderInner.show();
+        }
+	}
 
 	private boolean anyMedChecked() {
-        // TODO Auto-generated method stub
         GlobalApp app = GlobalApp.getApp();
         String selectedStr = 
                 app.getStringPref(MedDoseAdapter.MedDoseSelectedPref, "");
-        
-
         if (selectedStr.contains(";checked;")) {
             return true;
         }

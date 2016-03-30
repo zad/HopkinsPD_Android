@@ -330,7 +330,7 @@ public class GlobalApp extends Application{
 	
 
 	
-	public static List<DataFileListItem> dataFilesList = null;
+	private static List<DataFileListItem> dataFilesList = null;
 	public static class DataFileListItem
 	{
 		File f;
