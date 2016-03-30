@@ -15,6 +15,7 @@ public class PosturalTremorTestConfig extends TestConfig{
         pre_icon = R.drawable.postural_tremor_test;
         test_text = R.string.dir_postural_tremor;
         test_view = R.layout.testpage;
+        test_disp_name = this.getDisplayName(test_name);
         preTestPauseDur = 5;
         testCaptureDur = 45;
         preTestVibrate = true;
@@ -34,6 +35,7 @@ public class PosturalTremorTestConfig extends TestConfig{
         }
         pre_icon = R.drawable.postural_tremor_test;
         test_view = R.layout.testpage;
+        test_disp_name = this.getDisplayName(test_name);
         preTestPauseDur = 5;
         testCaptureDur = 45;
         preTestVibrate = true;

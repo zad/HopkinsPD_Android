@@ -41,6 +41,7 @@ public class GaitTestConfig extends TestConfig{
         pre_icon = R.drawable.gait_test;
         test_text = R.string.dir_gait;
         test_view = R.layout.testpage;
+        test_disp_name = this.getDisplayName(test_name);
         preTestPauseDur = 5;
         testCaptureDur = 30;
         preTestVibrate = true;
@@ -102,7 +103,7 @@ public class GaitTestConfig extends TestConfig{
 	    
 	    ArrayAdapter<String> adapter = 
 	            new ArrayAdapter<String>(testPrepActivity, 
-	                    android.R.layout.simple_spinner_dropdown_item) {
+	                    R.layout.phone_position_spinner) {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -126,7 +127,7 @@ public class GaitTestConfig extends TestConfig{
         };
 
         adapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item);
+                R.layout.phone_position_spinner);
         for(String item : PHONE_POSITIONS)
             adapter.add(item);
         
@@ -152,7 +153,8 @@ public class GaitTestConfig extends TestConfig{
             {
                 GlobalApp app = GlobalApp.getApp();
                 String selected = app.getStringPref(phonePositionPref, null);
-                if(selected != null){
+                if(selected.compareTo(
+                        PHONE_POSITIONS[PHONE_POSITIONS.length-1])!=0){
                     int testNumber = testPrepActivity.getTestNumber();
                     Log.i(TestPrepActivity.TAG, "Start test " + 
                             testNumber + " button pressed");

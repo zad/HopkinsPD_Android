@@ -134,67 +134,67 @@
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_voice"
-		      	android:title="Test Voice" 
+		      	android:title="@string/test_voice_disp_name" 
 		      	android:defaultValue="@bool/default_test_voice"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_balance"
-		      	android:title="Test Balance" 
+		      	android:title="@string/test_balance_disp_name" 
 		      	android:defaultValue="@bool/default_test_balance"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_gait"
-		      	android:title="Test Gait" 
+		      	android:title="@string/test_gait_disp_name" 
 		      	android:defaultValue="@bool/default_test_gait"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_dexterity"
-		      	android:title="Test Dexterity" 
+		      	android:title="@string/test_dexterity_disp_name" 
 		      	android:defaultValue="@bool/default_test_dexterity"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_dexterity_left"
-		      	android:title="Test Dexterity (Left hand)" 
+		      	android:title="@string/test_dexterity_left_disp_name" 
 		      	android:defaultValue="@bool/default_test_dexterity_left"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_dexterity_right"
-		      	android:title="Test Dexterity (Right hand)" 
+		      	android:title="@string/test_dexterity_right_disp_name" 
 		      	android:defaultValue="@bool/default_test_dexterity_right"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_reaction"
-		      	android:title="Test Reaction" 
+		      	android:title="@string/test_reaction_disp_name" 
 		      	android:defaultValue="@bool/default_test_reaction"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_rest_tremor"
-		      	android:title="Test Rest Tremor" 
+		      	android:title="@string/test_rest_tremor_disp_name" 
 		      	android:defaultValue="@bool/default_test_rest_tremor"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_rest_tremor_left"
-		      	android:title="Test Rest Tremor (Left hand)" 
+		      	android:title="@string/test_rest_tremor_left_disp_name" 
 		      	android:defaultValue="@bool/default_test_rest_tremor_left"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_rest_tremor_right"
-		      	android:title="Test Rest Tremor (Right hand)" 
+		      	android:title="@string/test_rest_tremor_right_disp_name" 
 		      	android:defaultValue="@bool/default_test_rest_tremor_right"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_postural_tremor"
-		      	android:title="Test Postural Tremor" 
+		      	android:title="@string/test_postural_tremor_disp_name" 
 		      	android:defaultValue="@bool/default_test_postural_tremor"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_postural_tremor_left"
-		      	android:title="Test Postural Tremor (Left hand)" 
+		      	android:title="@string/test_postural_tremor_left_disp_name" 
 		      	android:defaultValue="@bool/default_test_postural_tremor_left"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_postural_tremor_right"
-		      	android:title="Test Postural Tremor (Right hand)" 
+		      	android:title="@string/test_postural_tremor_right_disp_name" 
 		      	android:defaultValue="@bool/default_test_postural_tremor_right"
 		    />
         </PreferenceScreen>

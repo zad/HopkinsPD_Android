@@ -15,6 +15,7 @@ public class BalanceTestConfig extends TestConfig{
         pre_icon = R.drawable.balance_test;
         test_text = R.string.dir_balance;
         test_view = R.layout.testpage;
+        test_disp_name = this.getDisplayName(test_name);
         preTestPauseDur = 5;
         preTestVibrate = true;
         postTestVibrate = true;

@@ -129,5 +129,17 @@
 	    Keep your RIGHT arm holding the phone outstretched in front of you.
 	    </string>
 	    	
-    
+    <string name="test_voice_disp_name">Test Voice</string>
+    <string name="test_balance_disp_name">Test Balance</string>
+    <string name="test_gait_disp_name">Test Gait</string>
+    <string name="test_dexterity_disp_name">Test Dexterity</string>
+    <string name="test_dexterity_left_disp_name">Test Dexterity (Left hand)</string>
+    <string name="test_dexterity_right_disp_name">Test Dexterity (Right hand)</string>
+    <string name="test_reaction_disp_name">Test Reaction</string>
+    <string name="test_rest_tremor_disp_name">Test Rest Tremor</string>
+    <string name="test_rest_tremor_left_disp_name">Test Rest Tremor (Left hand)</string>
+    <string name="test_rest_tremor_right_disp_name">Test Rest Tremor (Right hand)</string>
+    <string name="test_postural_tremor_disp_name">Test Postural Tremor</string>
+    <string name="test_postural_tremor_left_disp_name">Test Postural Tremor (Left hand)</string>
+    <string name="test_postural_tremor_right_disp_name">Test Postural Tremor (Right hand)</string>
 </resources>

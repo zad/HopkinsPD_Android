@@ -32,7 +32,7 @@
 			  android:layout_width="fill_parent"
 			  android:layout_height="wrap_content"
 			  android:drawSelectorOnTop="true"
-			  android:textSize="30dip"
+			  android:spinnerMode="dialog"
 			  android:layout_weight=".20"
 			  android:layout_marginBottom="5dp"
 			  android:padding="5dip" />

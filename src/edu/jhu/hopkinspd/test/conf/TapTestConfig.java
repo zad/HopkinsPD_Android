@@ -17,6 +17,7 @@ public class TapTestConfig extends TestConfig{
         pre_icon = R.drawable.tap_test;
         test_text = R.string.dir_dexterity;
         test_view = R.layout.testtappage;
+        test_disp_name = this.getDisplayName(test_name);
         postTestPauseDur = 2;  
         help_link = "https://youtu.be/tJLqvKHn2XQ";
     }
@@ -35,6 +36,7 @@ public class TapTestConfig extends TestConfig{
         }
 	    pre_icon = R.drawable.tap_test;
         test_view = R.layout.testtappage;
+        test_disp_name = this.getDisplayName(test_name);
         postTestPauseDur = 2;
         help_link = "https://youtu.be/tJLqvKHn2XQ";
     }

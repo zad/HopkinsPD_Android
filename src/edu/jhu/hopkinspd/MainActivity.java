@@ -234,7 +234,16 @@ public class MainActivity extends Activity implements SensorEventListener{
 				        for(String time : MedLogActivity.RecentMedTakeTime){
 				            arrayAdapter.add(time);
 				        }
-				        builderSingle.setCancelable(false);
+//				        builderSingle.setCancelable(false);
+				        builderSingle.setNegativeButton("Cancel", 
+			                new DialogInterface.OnClickListener() {
+                                
+                                @Override
+                                public void onClick(DialogInterface dialog, 
+                                        int which) {
+                                    dialog.dismiss();
+                                }
+                            });
 				        // ask the most recent time of med intake
 				        builderSingle.setAdapter(
 			                arrayAdapter,

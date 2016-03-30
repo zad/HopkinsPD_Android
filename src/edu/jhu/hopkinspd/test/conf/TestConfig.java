@@ -43,7 +43,7 @@ public abstract class TestConfig {
 			new PosturalTremorTestConfig("right")
 	};
 	
-	public int test_name;
+	public int test_name, test_disp_name;
 	public int pre_test_text, pre_icon;
 	public int test_text, test_view;
 	public int preTestPauseDur = 2;
@@ -56,6 +56,15 @@ public abstract class TestConfig {
 	
 	private static ArrayList<TestConfig> enabled_tests = null;
 	public static boolean gyro_on = false; 
+	
+	protected int getDisplayName(int test_name){
+	    GlobalApp app = GlobalApp.getApp();
+	    String testName = app.getString(test_name);
+	    int test_display_name = app.getResources()
+	            .getIdentifier(testName + "_disp_name", "string", 
+	                    app.getPackageName());
+	    return test_display_name; 
+	}
 	
 	private static ArrayList<TestConfig> getEnabledTests(){
 		if(enabled_tests == null){
@@ -70,6 +79,17 @@ public abstract class TestConfig {
 			gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
 		}
 		return enabled_tests;
+	}
+	
+	public static String[] getEnabledTestDisplayNames(){
+	    GlobalApp app = GlobalApp.getApp();
+	    if(enabled_tests == null)
+	        getEnabledTests();
+	    String[] names = new String[enabled_tests.size()];
+	    for(int i =0; i < enabled_tests.size(); i++){
+	        names[i] = app.getString(enabled_tests.get(i).test_disp_name);
+	    }
+	    return names;
 	}
 	
 	public static void updateEnabledTests(){

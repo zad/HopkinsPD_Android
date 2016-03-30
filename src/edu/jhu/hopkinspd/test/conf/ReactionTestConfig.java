@@ -18,6 +18,7 @@ public class ReactionTestConfig extends TestConfig{
         pre_icon = R.drawable.reaction_test;
         test_text = R.string.dir_reaction;
         test_view = R.layout.testreactpage;
+        test_disp_name = this.getDisplayName(test_name);
         testCaptureDur = 30;
         help_link = "https://youtu.be/Brz2yZp_O7M";
     }
