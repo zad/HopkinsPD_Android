@@ -15,7 +15,7 @@ public class VoiceTestConfig extends TestConfig{
         test_text = R.string.dir_voice;
         test_view = R.layout.testpage;
         test_disp_name = this.getDisplayName(test_name);
-        // TODO: add voice test video
+        help_link = "https://youtu.be/BeUFgljiuJI";
     }
     
 	
