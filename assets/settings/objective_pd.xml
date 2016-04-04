@@ -83,10 +83,12 @@
     <bool name="test_dexterity_left">true</bool>
     <bool name="test_dexterity_right">true</bool>
     <bool name="test_reaction">true</bool>
-    <bool name="test_rest_tremor_left">true</bool>
-    <bool name="test_rest_tremor_right">true</bool>
-    <bool name="test_postural_tremor_left">true</bool>
-    <bool name="test_postural_tremor_right">true</bool>
+    <bool name="test_rest_tremor">true</bool>
+    <bool name="test_rest_tremor_left">false</bool>
+    <bool name="test_rest_tremor_right">false</bool>
+    <bool name="test_postural_tremor">true</bool>
+    <bool name="test_postural_tremor_left">false</bool>
+    <bool name="test_postural_tremor_right">false</bool>
     <bool name="test_gyro">true</bool>
     <bool name="medLogOn">true</bool>
     <!-- NTP Sync -->
