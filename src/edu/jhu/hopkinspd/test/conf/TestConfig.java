@@ -3,6 +3,7 @@ package edu.jhu.hopkinspd.test.conf;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
 
+import android.net.Uri;
 import android.view.MotionEvent;
 import edu.jhu.hopkinspd.GlobalApp;
 import edu.jhu.hopkinspd.R;
@@ -53,6 +54,8 @@ public abstract class TestConfig {
 	public boolean postTestVibrate = false;
 	public int pre_test_layout = R.layout.testpreppage;
 	public String help_link;
+
+    public int audio_ins;
 	
 	private static ArrayList<TestConfig> enabled_tests = null;
 	public static boolean gyro_on = false; 

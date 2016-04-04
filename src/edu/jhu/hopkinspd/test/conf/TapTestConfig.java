@@ -14,12 +14,8 @@ public class TapTestConfig extends TestConfig{
     public TapTestConfig(){
         test_name = R.string.test_dexterity;
         pre_test_text = R.string.ins_dexterity;
-        pre_icon = R.drawable.tap_test;
         test_text = R.string.dir_dexterity;
-        test_view = R.layout.testtappage;
-        test_disp_name = this.getDisplayName(test_name);
-        postTestPauseDur = 2;  
-        help_link = "https://youtu.be/tJLqvKHn2XQ";
+        generalTapTestConfig();
     }
 	
 	public TapTestConfig(String hand) {
@@ -34,12 +30,17 @@ public class TapTestConfig extends TestConfig{
 	        test_text = R.string.dir_dexterity_right;
 	        
         }
+        generalTapTestConfig();
+    }
+	
+	private void generalTapTestConfig(){
 	    pre_icon = R.drawable.tap_test;
         test_view = R.layout.testtappage;
         test_disp_name = this.getDisplayName(test_name);
         postTestPauseDur = 2;
         help_link = "https://youtu.be/tJLqvKHn2XQ";
-    }
+        audio_ins = R.raw.gait_test;
+	}
 
     private TapCapture tapObj = null;
 	private Button button1 = null, button2 = null;

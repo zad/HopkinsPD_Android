@@ -3,12 +3,17 @@ package edu.jhu.hopkinspd.test;
 import edu.jhu.hopkinspd.GlobalApp;
 import edu.jhu.hopkinspd.R;
 import edu.jhu.hopkinspd.test.conf.TestConfig;
+
+
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.hardware.*;
+
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +28,8 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 	
 	private SensorManager sensorManager = null;
 	private Sensor sensor = null;
-
+	public static final String PRETEST_INS_PREF = "pretest_ins";
+	
 	int testNumber = 0;
 	Button next = null;
 	TextView ins;
@@ -31,6 +37,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 	GlobalApp app;
 	public static boolean singleTestMode;
 	private TestConfig testConf;
+    private MediaPlayer mediaPlayer;
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -83,9 +90,37 @@ public class TestPrepActivity extends Activity implements SensorEventListener
         });
         setTextColor(app.getBooleanPref(getString(R.string.colorHighContrastOn)));
 		testConf.createPreTest(this);
+		
+		
     }
 	
-	private void setTextColor(boolean highContrast) {
+	
+	
+	@Override
+    protected void onResume() {
+        super.onResume();
+        if(testConf.audio_ins != 0)
+        {    
+            mediaPlayer = MediaPlayer.create(this, testConf.audio_ins);
+        }
+        if(app.getBooleanPref(PRETEST_INS_PREF)){
+            // start audio
+            if(mediaPlayer != null)
+            {   
+                try {
+                    mediaPlayer.start();
+                } catch (IllegalStateException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                
+            }
+        }
+    }
+
+
+
+    private void setTextColor(boolean highContrast) {
 		if(highContrast){
 			this.next.setTextColor(Color.WHITE);
 			ins.setTextColor(Color.WHITE);
@@ -133,11 +168,56 @@ public class TestPrepActivity extends Activity implements SensorEventListener
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.pretest_menu, menu);
         MenuItem help = menu.findItem(R.id.pretest_help);
-        help.setIcon(android.R.drawable.ic_menu_help);
+        help.setIcon(R.drawable.youtube);
+        MenuItem audioIns = menu.findItem(R.id.pretest_ins);
+        
+        audioIns.setIcon(android.R.drawable.ic_lock_silent_mode_off);
+        
+        boolean audioOn = app.getBooleanPref(PRETEST_INS_PREF);
+        setAudioIcon(audioIns, audioOn);
+        if(testConf.audio_ins == 0)
+            audioIns.setVisible(false);
         return true;
     }
     
-
+    private void setAudioIcon(MenuItem audioIns, boolean on){
+        if(on)
+        {
+            audioIns.setIcon(android.R.drawable.ic_lock_silent_mode_off);
+            app.setBooleanPref(PRETEST_INS_PREF, on);
+        }
+        else
+        {
+            audioIns.setIcon(android.R.drawable.ic_lock_silent_mode);
+            app.setBooleanPref(PRETEST_INS_PREF, on);
+        }
+    }
+    
+    private void switchAudioInstruction(MenuItem audioIns, boolean on){
+        setAudioIcon(audioIns, on);
+        if(on){
+            if(testConf.audio_ins != 0)
+            {    
+                mediaPlayer = MediaPlayer.create(this, testConf.audio_ins);
+            }
+            // start audio
+            if(mediaPlayer != null)
+            {   
+                try {
+                    mediaPlayer.start();
+                } catch (IllegalStateException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                
+            }
+        }
+        else{
+            // cancel audio
+            if(mediaPlayer != null && mediaPlayer.isPlaying())
+                mediaPlayer.stop();
+        }
+    }
     
     @Override
     public boolean onOptionsItemSelected( MenuItem item) {
@@ -152,6 +232,10 @@ public class TestPrepActivity extends Activity implements SensorEventListener
                     startActivity(intent);
                         
                 }
+                return true;
+            case R.id.pretest_ins:
+                boolean audioOn = app.getBooleanPref(PRETEST_INS_PREF);
+                switchAudioInstruction(item, !audioOn);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -12,15 +12,8 @@ public class PosturalTremorTestConfig extends TestConfig{
     public PosturalTremorTestConfig(){
         test_name = R.string.test_postural_tremor;
         pre_test_text = R.string.ins_postural_tremor;
-        pre_icon = R.drawable.postural_tremor_test;
         test_text = R.string.dir_postural_tremor;
-        test_view = R.layout.testpage;
-        test_disp_name = this.getDisplayName(test_name);
-        preTestPauseDur = 5;
-        testCaptureDur = 45;
-        preTestVibrate = true;
-        postTestVibrate = true;
-        help_link = "https://youtu.be/6QjjBa1HFVk";
+        generalPosturalTremorTestConfig();
     }
 	
 	public PosturalTremorTestConfig(String hand) {
@@ -33,7 +26,11 @@ public class PosturalTremorTestConfig extends TestConfig{
             pre_test_text = R.string.ins_postural_tremor_left;
             test_text = R.string.dir_postural_tremor_left;
         }
-        pre_icon = R.drawable.postural_tremor_test;
+        generalPosturalTremorTestConfig();
+    }
+
+	private void generalPosturalTremorTestConfig(){
+	    pre_icon = R.drawable.postural_tremor_test;
         test_view = R.layout.testpage;
         test_disp_name = this.getDisplayName(test_name);
         preTestPauseDur = 5;
@@ -41,8 +38,8 @@ public class PosturalTremorTestConfig extends TestConfig{
         preTestVibrate = true;
         postTestVibrate = true;
         help_link = "https://youtu.be/6QjjBa1HFVk";
-    }
-
+	}
+	
     private AccelCapture accelObj = null;
 	private GyroCapture gyroObj = null;
 	

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/pretest_ins" 
+        android:showAsAction="always" 
+        android:title="Instruction"
+        android:visible="true" android:enabled="true">
+    </item>
     <item android:id="@+id/pretest_help" 
         android:showAsAction="always" 
         android:title="help"

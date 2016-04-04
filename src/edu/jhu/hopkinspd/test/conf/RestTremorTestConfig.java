@@ -12,15 +12,13 @@ public class RestTremorTestConfig extends TestConfig{
     public RestTremorTestConfig(){
         test_name = R.string.test_rest_tremor;
         pre_test_text = R.string.ins_rest_tremor;
-        pre_icon = R.drawable.rest_tremor_test;
         test_text = R.string.dir_rest_tremor;
-        test_view = R.layout.testpage;
-        test_disp_name = this.getDisplayName(test_name);
-        preTestPauseDur = 5;
-        testCaptureDur = 45;
-        preTestVibrate = true;
-        postTestVibrate = true;  
-        help_link = "https://youtu.be/cPd1Ct0xOCg";
+        
+        audio_ins = R.raw.rest_tremor_test;
+        generalRestTremorTestConfig();
+        
+          
+        
     }
 	
 	public RestTremorTestConfig(String hand) {
@@ -33,7 +31,11 @@ public class RestTremorTestConfig extends TestConfig{
             pre_test_text = R.string.ins_rest_tremor_right;
             test_text = R.string.dir_rest_tremor_right;
         }
-        pre_icon = R.drawable.rest_tremor_test;
+        generalRestTremorTestConfig();
+    }
+	
+	private void generalRestTremorTestConfig(){
+	    pre_icon = R.drawable.rest_tremor_test;
         test_view = R.layout.testpage;
         test_disp_name = this.getDisplayName(test_name);
         preTestPauseDur = 5;
@@ -41,7 +43,7 @@ public class RestTremorTestConfig extends TestConfig{
         preTestVibrate = true;
         postTestVibrate = true;   
         help_link = "https://youtu.be/cPd1Ct0xOCg";
-    }
+	}
 
     private AccelCapture accelObj = null;
 	private GyroCapture gyroObj = null;

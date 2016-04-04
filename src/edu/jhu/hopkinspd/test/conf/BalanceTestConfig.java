@@ -20,6 +20,7 @@ public class BalanceTestConfig extends TestConfig{
         preTestVibrate = true;
         postTestVibrate = true;
         help_link = "https://youtu.be/xwJsLGdlhsE";
+        audio_ins = R.raw.balance_test;
     }
 	
 	private AccelCapture accelObj = null;

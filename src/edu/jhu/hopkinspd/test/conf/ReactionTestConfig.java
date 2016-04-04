@@ -21,6 +21,7 @@ public class ReactionTestConfig extends TestConfig{
         test_disp_name = this.getDisplayName(test_name);
         testCaptureDur = 30;
         help_link = "https://youtu.be/Brz2yZp_O7M";
+        audio_ins = R.raw.reaction_test;
     }
     
 	private ReactCapture reactObj = null;
