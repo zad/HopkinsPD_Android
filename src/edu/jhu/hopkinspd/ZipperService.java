@@ -212,7 +212,6 @@ public class ZipperService extends IntentService
     	catch (Exception e)
     	{
     		app.writeLogTextLine(logTextStream, "Zip service exception:" + e.getLocalizedMessage(), false);
-    		e.printStackTrace();
     	}
     	app.writeLogTextLine(logTextStream, "Zip files end", false);
     }
