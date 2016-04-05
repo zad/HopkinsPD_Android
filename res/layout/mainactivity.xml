@@ -20,12 +20,14 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:textSize="20sp" 
+	        
 			/>
 	    <TextView
 	        android:id="@+id/prompttext"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:textSize="20sp" 
+	        android:textSize="20sp"
+	        android:text="Hello!" 
 	        />	    
 	</LinearLayout>
 	<Spinner
@@ -69,6 +71,7 @@
         android:layout_width="fill_parent" 
         android:layout_weight=".08"
         android:padding="15sp"
+        android:text="test"
          />
 	
     <Button

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="reset">reset</string>
-    <string name="colorHighContrastOn">colorHighContrastOn</string>
+    <!-- <string name="colorHighContrastOn">colorHighContrastOn</string> -->
     <string name="language">language</string>
     <!-- menu -->
     <string name="clearDataOn">clearDataOn</string>

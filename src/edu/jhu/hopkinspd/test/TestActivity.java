@@ -19,20 +19,8 @@ public class TestActivity extends Activity
 {
 	protected static final String TAG = "TestActivity";
 
-//	int[] testInsStringList = {R.string.dir_voice, R.string.dir_balance, R.string.dir_gait,
-//			R.string.dir_dexterity, R.string.dir_reaction, R.string.dir_rest_tremor, R.string.dir_postural_tremor};
-//
-//	int[] testViewList = {R.layout.testpage, R.layout.testpage, R.layout.testpage,
-//			R.layout.testtappage, R.layout.testreactpage, R.layout.testpage, R.layout.testpage};
 
 	int testNumber = 0;
-//	private AudioCapture audioObj = null;
-//	private AccelCapture accelObj = null;
-//	private GyroCapture gyroObj = null;
-//	private boolean gyro_on = false;
-//	private TapCapture tapObj = null;
-//	private ReactCapture reactObj = null;
-//	private boolean reactButtonOn = false;
 	private Button button = null;
 	private GlobalApp app;
 	private Button nextButton = null;
@@ -117,8 +105,7 @@ public class TestActivity extends Activity
 				
 			}
 		}.start();
-		setTextColor(app.getBooleanPref(getString(R.string.colorHighContrastOn)));
-//		gyro_on = app.getBooleanPref(getString(R.string.test_gait));
+
 	}
 
 	private void setTextColor(boolean highContrast) {
@@ -202,7 +189,6 @@ public class TestActivity extends Activity
 
 		// When we're done, roll onto the next test prep page
 		testNumber += 1;
-//		testNumber = app.getNextTestNumber(testNumber+1);
 		if (!TestPrepActivity.singleTestMode 
 				&& testNumber < TestConfig.getNumberOfTests())
 		{
@@ -231,14 +217,7 @@ public class TestActivity extends Activity
 	public boolean dispatchTouchEvent(MotionEvent me)
 	{
 		testConf.dispatchTouchEvent(me);
-//		if (tapObj != null)
-//		{
-//			tapObj.handleTouchEvent(me);
-//		}
-//		if (reactObj != null)
-//		{
-//			reactObj.handleTouchEvent(me, reactButtonOn);
-//		}
+
 		if(app.isInTestDemo())
 			return super.dispatchTouchEvent(me);
 		else
@@ -246,10 +225,7 @@ public class TestActivity extends Activity
 		
 	}
 
-	//	@Override
-	//	public boolean onTouchEvent(MotionEvent me)
-	//	{
-	//	}
+
 
 	@Override
 	public void onBackPressed()
@@ -266,43 +242,7 @@ public class TestActivity extends Activity
 				preTestTimer.cancel();
 			if(postTestTimer != null)
 				postTestTimer.cancel();
-//			if (testNumber == GlobalApp.TEST_VOICE && audioObj != null)
-//			{	
-//				audioObj.stopRecording();
-//				audioObj.destroy();
-//			}
-//			else if ((testNumber == GlobalApp.TEST_BALANCE) 
-//					|| (testNumber == GlobalApp.TEST_GAIT)
-//					|| (testNumber == GlobalApp.TEST_REST_TREMOR)
-//					|| (testNumber == GlobalApp.TEST_POSTURAL_TREMOR)
-//					)
-//			{
-//				if(accelObj != null){
-//					accelObj.stopRecording();
-//					accelObj.destroy();	
-//				}
-//				if(gyro_on && gyroObj != null){
-//					gyroObj.stopRecording();
-//					gyroObj.destroy();
-//				}
-//			}
-//			else if (testNumber == GlobalApp.TEST_DEXTERITY)
-//			{
-//				button = (Button)findViewById(R.id.tap1_button);
-//				button.setVisibility(View.INVISIBLE);
-//				button = (Button)findViewById(R.id.tap2_button);
-//				button.setVisibility(View.INVISIBLE);
-//				if (tapObj != null){
-//					tapObj.stopRecording();
-//					tapObj.destroy();
-//				}
-//				
-//			}
-//			else if (testNumber == GlobalApp.TEST_REACTION && reactObj != null)
-//			{
-//				reactObj.stopRecording();
-//				reactObj.destroy();
-//			}
+
 			super.onBackPressed();
 		}
 	}

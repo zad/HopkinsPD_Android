@@ -44,14 +44,14 @@
         </CheckBoxPreference>
         -->
  	</PreferenceCategory> 
- 	<PreferenceCategory android:title="@string/style_setting" >
+ 	<!-- <PreferenceCategory android:title="@string/style_setting" >
  		<CheckBoxPreference
 		    android:key="@string/colorHighContrastOn"
 		    android:title="@string/colorPref"
 		    android:defaultValue="@bool/default_color"
 		    >
 		</CheckBoxPreference>
-	</PreferenceCategory> 
+	</PreferenceCategory>  -->
  	<!-- 
  	<PreferenceCategory android:title="@string/data_privacy_setting" >
  		<CheckBoxPreference

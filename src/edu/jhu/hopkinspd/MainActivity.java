@@ -3,26 +3,22 @@ package edu.jhu.hopkinspd;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.Calendar;
+
 import java.util.Date;
 import java.util.regex.Pattern;
 
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.BatteryManager;
 import android.os.Bundle;
@@ -44,7 +40,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -483,26 +478,12 @@ public class MainActivity extends Activity implements SensorEventListener{
  		}
  	};
  	
- 	private void setTextColor(boolean highContrast){
- 		if(highContrast)
- 		{
- 			this.testButton.setTextColor(Color.WHITE);
- 			this.recordButton.setTextColor(Color.WHITE);
- 			this.promptText.setTextColor(Color.WHITE);
- 			this.timeText.setTextColor(Color.WHITE);
- 		}else{
- 			this.testButton.setTextColor(Color.BLUE);
- 			this.recordButton.setTextColor(Color.BLUE);
- 			this.promptText.setTextColor(Color.BLACK);
- 			this.timeText.setTextColor(Color.BLACK);
- 		}
- 		
- 	}
+
  	
 	@Override
 	public void onResume() {
 		super.onResume();
-		setTextColor(app.getBooleanPref(getString(R.string.colorHighContrastOn)));
+
 		Log.v(TAG, "onResume");
 		testButton.setText(R.string.testButton);
 		promptText.setText(R.string.prompt_init);

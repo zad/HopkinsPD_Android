@@ -88,7 +88,6 @@ public class TestPrepActivity extends Activity implements SensorEventListener
             }
 
         });
-        setTextColor(app.getBooleanPref(getString(R.string.colorHighContrastOn)));
 		testConf.createPreTest(this);
 		
 		
@@ -133,15 +132,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 
 
 
-    private void setTextColor(boolean highContrast) {
-		if(highContrast){
-			this.next.setTextColor(Color.WHITE);
-			ins.setTextColor(Color.WHITE);
-		}else{
-			this.next.setTextColor(Color.BLUE);
-			ins.setTextColor(Color.BLACK);
-		}
-	}
+
 
 	private long lastBackClick;
     

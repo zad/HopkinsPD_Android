@@ -78,19 +78,10 @@ public class TestPostActivity extends Activity implements SensorEventListener{
             }
 
         });
-        setTextColor(app.getBooleanPref(getString(R.string.colorHighContrastOn)));
 		
     }
 	
-	private void setTextColor(boolean highContrast) {
-		if(highContrast){
-			this.next.setTextColor(Color.WHITE);
-			
-		}else{
-			this.next.setTextColor(Color.BLUE);
-			
-		}
-	}
+
 	
 	private long lastBackClick;
     @Override
