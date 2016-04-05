@@ -39,7 +39,7 @@ public class TapTestConfig extends TestConfig{
         test_disp_name = this.getDisplayName(test_name);
         postTestPauseDur = 2;
         help_link = "https://youtu.be/tJLqvKHn2XQ";
-        audio_ins = R.raw.gait_test;
+        audio_ins = R.raw.dexterity_test;
 	}
 
     private TapCapture tapObj = null;
