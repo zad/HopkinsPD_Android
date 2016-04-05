@@ -767,16 +767,18 @@ public class MainActivity extends Activity implements SensorEventListener{
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		if (event.values[0] > 0)
-		{
-			recordButton.setEnabled(true);
-			testButton.setEnabled(true);
-		}
-		else
-		{
-			recordButton.setEnabled(false);
-			testButton.setEnabled(false);
-		}
+	    if (app.getBooleanPref(GlobalApp.PREF_KEY_SWITCH)){
+    		if (event.values[0] > 0)
+    		{
+    			recordButton.setEnabled(true);
+    			testButton.setEnabled(true);
+    		}
+    		else
+    		{
+    			recordButton.setEnabled(false);
+    			testButton.setEnabled(false);
+    		}
+	    }
 	}
 	
 
