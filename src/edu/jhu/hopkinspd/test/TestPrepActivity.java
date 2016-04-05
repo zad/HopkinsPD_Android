@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.hardware.*;
 
 import android.media.MediaPlayer;
@@ -28,7 +27,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 	
 	private SensorManager sensorManager = null;
 	private Sensor sensor = null;
-	public static final String PRETEST_INS_PREF = "pretest_ins";
+	public static final String PRETEST_INS_MUTE_PREF = "pretest_ins_mute";
 	
 	int testNumber = 0;
 	Button next = null;
@@ -102,15 +101,14 @@ public class TestPrepActivity extends Activity implements SensorEventListener
         {    
             mediaPlayer = MediaPlayer.create(this, testConf.audio_ins);
         }
-        if(app.getBooleanPref(PRETEST_INS_PREF)){
+        if(!app.getBooleanPref(PRETEST_INS_MUTE_PREF)){
             // start audio
             if(mediaPlayer != null)
             {   
                 try {
                     mediaPlayer.start();
                 } catch (IllegalStateException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    Log.e(TAG, e.getLocalizedMessage());
                 }
                 
             }
@@ -122,15 +120,22 @@ public class TestPrepActivity extends Activity implements SensorEventListener
     @Override
     protected void onPause() {
         super.onPause();
-        if(mediaPlayer != null)
-        {   
-            if(mediaPlayer.isPlaying())
-                mediaPlayer.stop();
-            mediaPlayer.release();
-        }
+        cancelAudio();
     }
 
-
+    private void cancelAudio(){
+        if(mediaPlayer != null)
+        {   
+            try{
+                if(mediaPlayer.isPlaying())
+                    mediaPlayer.stop();
+                mediaPlayer.release();
+            }catch(Exception e)
+            {
+                Log.e(TAG, "cancelAudio exception");
+            }
+        }
+    }
 
 
 
@@ -177,29 +182,31 @@ public class TestPrepActivity extends Activity implements SensorEventListener
         
         audioIns.setIcon(android.R.drawable.ic_lock_silent_mode_off);
         
-        boolean audioOn = app.getBooleanPref(PRETEST_INS_PREF);
-        setAudioIcon(audioIns, audioOn);
+        boolean audioMute = app.getBooleanPref(PRETEST_INS_MUTE_PREF);
+        setAudioIcon(audioIns, audioMute, false);
         if(testConf.audio_ins == 0)
             audioIns.setVisible(false);
         return true;
     }
     
-    private void setAudioIcon(MenuItem audioIns, boolean on){
-        if(on)
+    private void setAudioIcon(MenuItem audioIns, boolean mute, boolean toast){
+        if(!mute)
         {
             audioIns.setIcon(android.R.drawable.ic_lock_silent_mode_off);
-            app.setBooleanPref(PRETEST_INS_PREF, on);
         }
         else
         {
             audioIns.setIcon(android.R.drawable.ic_lock_silent_mode);
-            app.setBooleanPref(PRETEST_INS_PREF, on);
+            if(toast)
+                Toast.makeText(app, "Mute all audio instructions", 
+                    Toast.LENGTH_LONG).show();
         }
+        app.setBooleanPref(PRETEST_INS_MUTE_PREF, mute);
     }
     
-    private void switchAudioInstruction(MenuItem audioIns, boolean on){
-        setAudioIcon(audioIns, on);
-        if(on){
+    private void switchAudioInstruction(MenuItem audioIns, boolean mute){
+        setAudioIcon(audioIns, mute, true);
+        if(!mute){
             if(testConf.audio_ins != 0)
             {    
                 mediaPlayer = MediaPlayer.create(this, testConf.audio_ins);
@@ -218,12 +225,7 @@ public class TestPrepActivity extends Activity implements SensorEventListener
         }
         else{
             // cancel audio
-            if(mediaPlayer != null)
-            {    
-                if(mediaPlayer.isPlaying())
-                    mediaPlayer.stop();
-                mediaPlayer.release();
-            }
+            cancelAudio();
         }
     }
     
@@ -242,8 +244,8 @@ public class TestPrepActivity extends Activity implements SensorEventListener
                 }
                 return true;
             case R.id.pretest_ins:
-                boolean audioOn = app.getBooleanPref(PRETEST_INS_PREF);
-                switchAudioInstruction(item, !audioOn);
+                boolean audioMute = app.getBooleanPref(PRETEST_INS_MUTE_PREF);
+                switchAudioInstruction(item, !audioMute);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
