@@ -120,6 +120,19 @@ public class TestPrepActivity extends Activity implements SensorEventListener
 
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(mediaPlayer != null)
+        {   
+            if(mediaPlayer.isPlaying())
+                mediaPlayer.stop();
+            mediaPlayer.release();
+        }
+    }
+
+
+
     private void setTextColor(boolean highContrast) {
 		if(highContrast){
 			this.next.setTextColor(Color.WHITE);
@@ -214,8 +227,12 @@ public class TestPrepActivity extends Activity implements SensorEventListener
         }
         else{
             // cancel audio
-            if(mediaPlayer != null && mediaPlayer.isPlaying())
-                mediaPlayer.stop();
+            if(mediaPlayer != null)
+            {    
+                if(mediaPlayer.isPlaying())
+                    mediaPlayer.stop();
+                mediaPlayer.release();
+            }
         }
     }
     

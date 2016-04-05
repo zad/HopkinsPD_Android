@@ -25,16 +25,16 @@
 					android:padding="5dip"
 		            android:layout_width="fill_parent" 
 		            android:layout_height="0dp" 
-		            android:layout_weight=".48" />
+		            android:layout_weight=".38" />
 	
 		    
 			 <Spinner android:id="@+id/phone_position_spinner"
 			  android:layout_width="fill_parent"
-			  android:layout_height="wrap_content"
+			  android:layout_height="50dip"
 			  android:drawSelectorOnTop="true"
 			  android:spinnerMode="dialog"
-			  android:layout_weight=".20"
-			  android:layout_marginBottom="5dp"
+			  
+			  android:textSize="25dip" 
 			  android:padding="5dip" />
 			
 		    <Button
@@ -44,7 +44,7 @@
 		            android:textStyle="bold"
 		            android:layout_height="0dp" 
 		            android:padding="5dip"
-		            android:layout_marginTop="5dp"
+		            
 		            android:layout_width="fill_parent" 
 		            android:layout_weight=".10"
 		            />

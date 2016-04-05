@@ -14,6 +14,7 @@ public class PosturalTremorTestConfig extends TestConfig{
         pre_test_text = R.string.ins_postural_tremor;
         test_text = R.string.dir_postural_tremor;
         generalPosturalTremorTestConfig();
+        audio_ins = R.raw.postural_tremor_test;
     }
 	
 	public PosturalTremorTestConfig(String hand) {

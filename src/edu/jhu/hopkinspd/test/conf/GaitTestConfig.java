@@ -32,7 +32,7 @@ public class GaitTestConfig extends TestConfig{
             "Purse/bag with strap over shoulder",
             "Other/not specified",
             // This is the text that will be displayed as hint.
-            "Please select phone position",
+            "[ Please select phone position ]",
     };
 
     public GaitTestConfig(){
@@ -107,14 +107,15 @@ public class GaitTestConfig extends TestConfig{
 	                    R.layout.phone_position_spinner) {
 
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
+            public View getView(int position, View convertView, 
+                    ViewGroup parent) {
 
                 View v = super.getView(position, convertView, parent);
-                if (position == getCount()) {
-                    ((TextView)v.findViewById(android.R.id.text1)).setText("");
-                    ((TextView)v.findViewById(android.R.id.text1))
-                        .setHint(getItem(getCount())); //"Hint to be displayed"
-                }
+//                if (position == getCount()) {
+//                    ((TextView)v.findViewById(android.R.id.text1)).setText("");
+//                    ((TextView)v.findViewById(android.R.id.text1))
+//                        .setHint(getItem(getCount())); //"Hint to be displayed"
+//                }
 
                 return v;
             }       
@@ -136,7 +137,7 @@ public class GaitTestConfig extends TestConfig{
 
 
         spin.setAdapter(adapter);
-        spin.setSelection(adapter.getCount()); //set the hint the default selection so it appears on launch.
+//        spin.setSelection(adapter.getCount()); //set the hint the default selection so it appears on launch.
         
 	    
 	    
@@ -145,7 +146,9 @@ public class GaitTestConfig extends TestConfig{
 	    String selected = app.getStringPref(phonePositionPref, null);
 	    if(selected != null){
 	        spin.setSelection(Arrays.asList(PHONE_POSITIONS).indexOf(selected));
-	    }
+	        
+	    }else
+	        spin.setSelection(PHONE_POSITIONS.length-1);
 	    Button next = 
 	            (Button)testPrepActivity.findViewById(R.id.button_starttest);
 	    next.setOnClickListener(new View.OnClickListener()
@@ -159,7 +162,8 @@ public class GaitTestConfig extends TestConfig{
                     int testNumber = testPrepActivity.getTestNumber();
                     Log.i(TestPrepActivity.TAG, "Start test " + 
                             testNumber + " button pressed");
-                    Intent nextTest = new Intent(testPrepActivity, TestActivity.class);
+                    Intent nextTest = new Intent(testPrepActivity, 
+                            TestActivity.class);
                     nextTest.putExtra("TestNumber", testNumber);
                     testPrepActivity.startActivity(nextTest);
                     testPrepActivity.finish();    

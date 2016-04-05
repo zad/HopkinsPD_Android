@@ -78,18 +78,7 @@ public class TestActivity extends Activity
 		
 		testConf.createTest(this);
 		
-//		if (testNumber == GlobalApp.TEST_DEXTERITY)
-//		{
-//			button = (Button)findViewById(R.id.tap1_button);
-//			button.setVisibility(View.INVISIBLE);
-//			button = (Button)findViewById(R.id.tap2_button);
-//			button.setVisibility(View.INVISIBLE);
-//		}
-//		if (testNumber == GlobalApp.TEST_REACTION)
-//		{
-//			button = (Button)findViewById(R.id.button_react);
-//			button.setVisibility(View.INVISIBLE);
-//		}
+
 		nextButton = (Button)findViewById(R.id.button_next);
 		nextButton.setVisibility(View.GONE);
 		
@@ -162,43 +151,7 @@ public class TestActivity extends Activity
 	private synchronized void runTest()
 	{
 		testConf.runTest(this, logWriter);
-//		if (testNumber == GlobalApp.TEST_VOICE)
-//		{
-//			audioObj = new AudioCapture(app, testNumber);
-//			if(!audioObj.startRecording())
-//			{
-//				String text = "Recording is not initialized. Please try again later.";		
-//				app.writeLogTextLine(logWriter, text, true);
-//			}
-//		}
-//		else if ((testNumber == GlobalApp.TEST_BALANCE) 
-//				|| (testNumber == GlobalApp.TEST_GAIT)
-//				|| (testNumber == GlobalApp.TEST_REST_TREMOR)
-//				|| (testNumber == GlobalApp.TEST_POSTURAL_TREMOR)
-//				)
-//		{
-//			accelObj = new AccelCapture(app, testNumber);
-//			accelObj.startRecording();
-//			
-//			if(gyro_on){
-//				gyroObj = new GyroCapture(app, testNumber);
-//				gyroObj.startRecording();
-//			}
-//		}
-//		else if (testNumber == GlobalApp.TEST_DEXTERITY)
-//		{
-//			button = (Button)findViewById(R.id.tap1_button);
-//			button.setVisibility(View.VISIBLE);
-//			button = (Button)findViewById(R.id.tap2_button);
-//			button.setVisibility(View.VISIBLE);
-//			tapObj = new TapCapture(app, testNumber);
-//			tapObj.startRecording();
-//		}
-//		else if (testNumber == GlobalApp.TEST_REACTION)
-//		{
-//			reactObj = new ReactCapture(app, testNumber);
-//			reactObj.startRecording();
-//		}
+
 
 		inTestTimer = 
 				new CountDownTimer(testConf.testCaptureDur*1000, 
@@ -207,23 +160,7 @@ public class TestActivity extends Activity
 			public void onTick(long millisLeft)
 			{
 				testConf.onInTestTimerTick(TestActivity.this);
-//				if (testNumber == GlobalApp.TEST_REACTION)
-//				{
-//					// Choose new random tap button status
-//					int reactButtonVisible = View.INVISIBLE;
-//					boolean random = Math.random() > 0.5;
-//					if (random != reactButtonOn)
-//					{
-//						reactButtonOn = random;
-//						button = (Button)findViewById(R.id.button_react);
-//						if (reactButtonOn)
-//						{
-//							reactButtonVisible = View.VISIBLE;
-//						}
-//						button.setVisibility(reactButtonVisible);
-//						reactObj.handleTouchEvent(null, reactButtonOn);
-//					}
-//				}
+
 			}
 
 			public void onFinish()
@@ -235,38 +172,7 @@ public class TestActivity extends Activity
 	
 	public synchronized void finishTest(){
 		testConf.completeTest();
-//		if (testNumber == GlobalApp.TEST_VOICE)
-//		{	
-//			audioObj.stopRecording();
-//			audioObj.destroy();
-//		}
-//		else if ((testNumber == GlobalApp.TEST_BALANCE) 
-//				|| (testNumber == GlobalApp.TEST_GAIT)
-//				|| (testNumber == GlobalApp.TEST_REST_TREMOR)
-//				|| (testNumber == GlobalApp.TEST_POSTURAL_TREMOR)
-//				)
-//		{
-//			accelObj.stopRecording();
-//			accelObj.destroy();
-//			if(gyro_on){
-//				gyroObj.stopRecording();
-//				gyroObj.destroy();
-//			}
-//		}
-//		else if (testNumber == GlobalApp.TEST_DEXTERITY)
-//		{
-//			button = (Button)findViewById(R.id.tap1_button);
-//			button.setVisibility(View.INVISIBLE);
-//			button = (Button)findViewById(R.id.tap2_button);
-//			button.setVisibility(View.INVISIBLE);
-//			tapObj.stopRecording();
-//			tapObj.destroy();
-//		}
-//		else if (testNumber == GlobalApp.TEST_REACTION)
-//		{
-//			reactObj.stopRecording();
-//			reactObj.destroy();
-//		}
+
 		postTestPause();
 	}
 
