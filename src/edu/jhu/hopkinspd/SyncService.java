@@ -143,7 +143,8 @@ public class SyncService extends IntentService
     public void runAutoUpdate() {
 		String local_version = app.getVersion();
 		String server_version = getLatestVersion(logTextStream);
-		if(server_version != null)
+		String pattern = "(\\d|\\.)*";
+		if(server_version != null && server_version.matches(pattern))
 		{
 			Log.i(TAG, "version:" + local_version + " " + server_version);
 			if(local_version.compareTo(server_version) == 0){
