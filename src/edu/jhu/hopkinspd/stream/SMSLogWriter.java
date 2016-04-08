@@ -96,7 +96,7 @@ public class SMSLogWriter extends StreamWriter{
 
 				if(app.getLongPref(LAST_TSP) == 0 || smsDayTime.getTime() > app.getLongPref(LAST_TSP)){
 					String time = app.prettyDateString(smsDayTime);
-					String line = String.format("%s,%s,%s,%s", time, typeOfSMS, Csv.escape(body));
+					String line = String.format("%s,%s,%s", time, typeOfSMS, body.length());
 					writeTextLine(line, streamSms);
 					if(smsDayTime.getTime() > last_tsp)
 						last_tsp = smsDayTime.getTime();
