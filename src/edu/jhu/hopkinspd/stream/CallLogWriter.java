@@ -63,18 +63,15 @@ public class CallLogWriter extends StreamWriter{
 	
 	private void getCallDetails() 
 	{ 
-		StringBuffer sb = new StringBuffer(); 
 		Cursor managedCursor = this.app.getContentResolver().query(CallLog.Calls.CONTENT_URI, null, null, null, null); 
-		int number = managedCursor.getColumnIndex(CallLog.Calls.NUMBER); 
 		int type = managedCursor.getColumnIndex(CallLog.Calls.TYPE); 
 		int date = managedCursor.getColumnIndex(CallLog.Calls.DATE); 
 		int duration = managedCursor.getColumnIndex(CallLog.Calls.DURATION); 
 		long last_tsp = 0;
-		sb.append("Call Log :"); 
-		String header = "Call Date, Phone Number, Call Type, Call Duration in Secs";
+		
+		String header = "Call Date, Call Type, Call Duration in Secs";
 		writeTextLine(header, streamCall);
-		while (managedCursor.moveToNext()) { 
-			String phNumber = managedCursor.getString(number); 
+		while (managedCursor.moveToNext()) {  
 			String callType = managedCursor.getString(type); 
 			String callDate = managedCursor.getString(date); 
 			Date callDayTime = new Date(Long.valueOf(callDate)); 
@@ -91,20 +88,15 @@ public class CallLogWriter extends StreamWriter{
 				dir = "MISSED"; 
 				break; 
 			} 
-			sb.append("\nPhone Number:--- " + phNumber + " \nCall Type:--- " 
-					+ dir + " \nCall Date:--- " + callDayTime 
-					+ " \nCall duration in sec :--- " + callDuration); 
-			sb.append("\n----------------------------------");
 			if(app.getLongPref(LAST_TSP) == 0 || callDayTime.getTime() > app.getLongPref(LAST_TSP)){
 				String time = app.prettyDateString(callDayTime);
-				String line = String.format("%s,%s,%s,%s", time, phNumber, dir, callDuration);
+				String line = String.format("%s,%s,%s", time, dir, callDuration);
 				writeTextLine(line, streamCall);
 				if(callDayTime.getTime() > last_tsp)
 					last_tsp = callDayTime.getTime();
 				
 			}
 		} 
-//		Log.i(TAG, sb.toString());
 		app.setLongPref(LAST_TSP, last_tsp);
 	}
 

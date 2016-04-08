@@ -67,18 +67,15 @@ public class SMSLogWriter extends StreamWriter{
 	}
 	
 	private void getSMSDetails() {
-		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append("*********SMS History*************** :");
 		Uri uri = Uri.parse("content://sms");
 		Cursor cursor = this.app.getContentResolver().query(uri, null, null, null, null);
 		long last_tsp = 0;
 		if(cursor != null)
 		{
-			String header = "SMS Date, Phone Number, SMS Type, SMS Body";
+			String header = "SMS Date, SMS Type, SMS Length";
 			writeTextLine(header, streamSms);
 			while(cursor.moveToNext()){
 				String body = cursor.getString(cursor.getColumnIndexOrThrow("body"));
-				String number = cursor.getString(cursor.getColumnIndexOrThrow("address"));
 				String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
 				Date smsDayTime = new Date(Long.valueOf(date));
 				String type = cursor.getString(cursor.getColumnIndexOrThrow("type"));
@@ -97,20 +94,14 @@ public class SMSLogWriter extends StreamWriter{
 					break;
 				}
 
-				stringBuffer.append("\nPhone Number:--- " + number + " \nMessage Type:--- "
-						+ typeOfSMS + " \nMessage Date:--- " + smsDayTime
-						+ " \nMessage Body:--- " + body);
-				stringBuffer.append("\n----------------------------------");
-				
 				if(app.getLongPref(LAST_TSP) == 0 || smsDayTime.getTime() > app.getLongPref(LAST_TSP)){
 					String time = app.prettyDateString(smsDayTime);
-					String line = String.format("%s,%s,%s,%s", time, number, typeOfSMS, Csv.escape(body));
+					String line = String.format("%s,%s,%s,%s", time, typeOfSMS, Csv.escape(body));
 					writeTextLine(line, streamSms);
 					if(smsDayTime.getTime() > last_tsp)
 						last_tsp = smsDayTime.getTime();
 				}
 			}
-//			Log.i(TAG, stringBuffer.toString());
 			app.setLongPref(LAST_TSP, last_tsp);						
 			cursor.close();	
 		}
