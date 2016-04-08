@@ -18,9 +18,15 @@
     <bool name="default_test_balance">true</bool>
     <bool name="default_test_gait">true</bool>
     <bool name="default_test_dexterity">true</bool>
+    <bool name="default_test_dexterity_left">false</bool>
+    <bool name="default_test_dexterity_right">false</bool>
     <bool name="default_test_reaction">true</bool>
     <bool name="default_test_rest_tremor">false</bool>
+    <bool name="default_test_rest_tremor_left">false</bool>
+    <bool name="default_test_rest_tremor_right">false</bool>
     <bool name="default_test_postural_tremor">false</bool>
+    <bool name="default_test_postural_tremor_left">false</bool>
+    <bool name="default_test_postural_tremor_right">false</bool>
     <!-- passive monitoring -->
     <!--
     	<item name="0">SENSOR_DELAY_FASTEST</item>
@@ -99,4 +105,5 @@
     
     <!-- Medication Tracker -->
     <bool name="default_medtracker_on">false</bool>
+    <bool name="default_medlog_on">false</bool>
 </resources>

@@ -1,11 +1,14 @@
 package edu.jhu.hopkinspd.test;
 
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.Date;
 
 import edu.jhu.hopkinspd.GlobalApp;
+import edu.jhu.hopkinspd.test.conf.TestConfig;
 import android.content.Context;
 import android.hardware.*;
+import android.util.Log;
 
 public class AccelCapture implements SensorEventListener
 {
@@ -24,10 +27,11 @@ public class AccelCapture implements SensorEventListener
 	private Sensor sensor = null;
 	public boolean isRecording = false;
 	private int bufferItems = 0;
-	private int testNumber = 0;
+//	private int testNumber = 0;
+	private TestConfig testConf;
 	private GlobalApp app;
 	private DataOutputStream testStreamFile = null;
-	public AccelCapture(GlobalApp app, int testNumber)
+	public AccelCapture(GlobalApp app, TestConfig testConf)
     {
 		this.app = app;
     	sensorManager = (SensorManager)app.getSystemService(Context.SENSOR_SERVICE);
@@ -36,7 +40,8 @@ public class AccelCapture implements SensorEventListener
         
         app.allocateStreamBuffer(CAPTURE_BUFFER_LENGTH, CAPTURE_BUFFER_ENTRIES);
 		bufferItems = 0;
-		this.testNumber = testNumber;
+//		this.testNumber = testNumber;
+		this.testConf = testConf;
     }
     
     public void destroy()
@@ -46,13 +51,27 @@ public class AccelCapture implements SensorEventListener
     	sensor = null;
     }
 	    
-    public void startRecording()
+    public void startRecording(String phone_position)
     {
 		Date time = new Date();
-		String filename = app.getTestDataFilename(time, testNumber, CAPTURE_FILETYPE, OUTPUT_EXT);
+		String filename = app.getTestDataFilename(time, testConf.test_name, 
+				CAPTURE_FILETYPE, OUTPUT_EXT);
 		testStreamFile = app.openTestStreamFile(filename);
     	bufferItems = 0;
     	isRecording = true;
+    	if(phone_position != null){
+    	    String phonePosFileName = app.getTestDataFilename(time, 
+    	            testConf.test_name, "phone", "txt");
+    	    DataOutputStream phonePosFile = 
+    	            app.openTestStreamFile(phonePosFileName);
+    	    try {
+                phonePosFile.writeChars(phone_position);
+            } catch (IOException e) {
+                Log.e(AccelCapture.class.getName(), 
+                        "phonePosFile WriteException");
+            }
+    	    app.closeTestStreamFile(phonePosFile);
+    	}
     }
     
     public void stopRecording()

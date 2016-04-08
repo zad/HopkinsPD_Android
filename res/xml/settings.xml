@@ -44,14 +44,14 @@
         </CheckBoxPreference>
         -->
  	</PreferenceCategory> 
- 	<PreferenceCategory android:title="@string/style_setting" >
+ 	<!-- <PreferenceCategory android:title="@string/style_setting" >
  		<CheckBoxPreference
 		    android:key="@string/colorHighContrastOn"
 		    android:title="@string/colorPref"
 		    android:defaultValue="@bool/default_color"
 		    >
 		</CheckBoxPreference>
-	</PreferenceCategory> 
+	</PreferenceCategory>  -->
  	<!-- 
  	<PreferenceCategory android:title="@string/data_privacy_setting" >
  		<CheckBoxPreference
@@ -99,6 +99,18 @@
 		      	android:summary="Root privilege is required!"
 		    />
         </PreferenceScreen>
+        <PreferenceScreen android:title="Medication">
+		    <!-- <CheckBoxPreference 
+		        android:key="@string/medTrackerOn"
+		      	android:title="Medication Tracker" 
+		      	android:defaultValue="@bool/default_medtracker_on"
+		    /> -->
+		    <CheckBoxPreference 
+		        android:key="@string/medLogOn"
+		      	android:title="Medication Log" 
+		      	android:defaultValue="@bool/default_medlog_on"
+		    />
+		</PreferenceScreen>
         <PreferenceScreen android:title="Active Tests">
             <CheckBoxPreference 
 		        android:key="@string/test_demo"
@@ -122,38 +134,68 @@
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_voice"
-		      	android:title="Test Voice" 
+		      	android:title="@string/test_voice_disp_name" 
 		      	android:defaultValue="@bool/default_test_voice"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_balance"
-		      	android:title="Test Balance" 
+		      	android:title="@string/test_balance_disp_name" 
 		      	android:defaultValue="@bool/default_test_balance"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_gait"
-		      	android:title="Test Gait" 
+		      	android:title="@string/test_gait_disp_name" 
 		      	android:defaultValue="@bool/default_test_gait"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_dexterity"
-		      	android:title="Test Dexterity" 
+		      	android:title="@string/test_dexterity_disp_name" 
 		      	android:defaultValue="@bool/default_test_dexterity"
 		    />
             <CheckBoxPreference 
+		        android:key="@string/test_dexterity_left"
+		      	android:title="@string/test_dexterity_left_disp_name" 
+		      	android:defaultValue="@bool/default_test_dexterity_left"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_dexterity_right"
+		      	android:title="@string/test_dexterity_right_disp_name" 
+		      	android:defaultValue="@bool/default_test_dexterity_right"
+		    />
+            <CheckBoxPreference 
 		        android:key="@string/test_reaction"
-		      	android:title="Test Reaction" 
+		      	android:title="@string/test_reaction_disp_name" 
 		      	android:defaultValue="@bool/default_test_reaction"
 		    />
             <CheckBoxPreference 
 		        android:key="@string/test_rest_tremor"
-		      	android:title="Test Rest Tremor" 
+		      	android:title="@string/test_rest_tremor_disp_name" 
 		      	android:defaultValue="@bool/default_test_rest_tremor"
 		    />
             <CheckBoxPreference 
+		        android:key="@string/test_rest_tremor_left"
+		      	android:title="@string/test_rest_tremor_left_disp_name" 
+		      	android:defaultValue="@bool/default_test_rest_tremor_left"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_rest_tremor_right"
+		      	android:title="@string/test_rest_tremor_right_disp_name" 
+		      	android:defaultValue="@bool/default_test_rest_tremor_right"
+		    />
+            <CheckBoxPreference 
 		        android:key="@string/test_postural_tremor"
-		      	android:title="Test Postural Tremor" 
+		      	android:title="@string/test_postural_tremor_disp_name" 
 		      	android:defaultValue="@bool/default_test_postural_tremor"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_postural_tremor_left"
+		      	android:title="@string/test_postural_tremor_left_disp_name" 
+		      	android:defaultValue="@bool/default_test_postural_tremor_left"
+		    />
+            <CheckBoxPreference 
+		        android:key="@string/test_postural_tremor_right"
+		      	android:title="@string/test_postural_tremor_right_disp_name" 
+		      	android:defaultValue="@bool/default_test_postural_tremor_right"
 		    />
         </PreferenceScreen>
 		<PreferenceScreen android:title="Passive Monitoring">
@@ -407,13 +449,7 @@
 		      	android:defaultValue="@bool/default_dashboard_on"
 		    />
 		</PreferenceScreen>
-		<PreferenceScreen android:title="Medication">
-		    <CheckBoxPreference 
-		        android:key="@string/medTrackerOn"
-		      	android:title="Medication Tracker" 
-		      	android:defaultValue="@bool/default_medtracker_on"
-		    />
-		</PreferenceScreen>
+		
 		<ListPreference android:title="Reset"
             android:key="@string/reset" 
          />

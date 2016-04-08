@@ -21,68 +21,125 @@
     <string name="ins_taketest">It\'s time to take your tests.
         </string>
     
-    <string name="ins_voice"><b>1. Voice test</b>.
+    <string name="ins_voice"><b>%1$d. Voice test</b>.
         Find a quiet location. When you are ready, press the button below.
 		</string>
 		
-	<string name="ins_balance"><b>2. Balance test</b>.
+	<string name="ins_balance"><b>%1$d. Balance test</b>.
 	    Now find a place where you can stand unaided.
 		</string>
     
-	<string name="ins_gait"><b>3. Gait test</b>.
+	<string name="ins_gait"><b>%1$d. Gait test</b>.
 	    Now find a place where you can walk for 20 yards unobstructed.
 		</string>
 	
-	<string name="ins_dexterity"><b>4. Dexterity test</b>.
+	<string name="ins_dexterity"><b>%1$d. Dexterity test</b>.
+	    When you are ready, press the button below.
+		</string>
+
+	<string name="ins_dexterity_left"><b>%1$d. Dexterity test (LEFT hand)</b>.
 	    When you are ready, press the button below.
 		</string>
 		
-	<string name="ins_reaction"><b>5. Reaction test</b>.
+	<string name="ins_dexterity_right"><b>%1$d. Dexterity test (RIGHT hand)</b>.
+	    When you are ready, press the button below.
+		</string>
+			
+	<string name="ins_reaction"><b>%1$d. Reaction test</b>.
 	    When you are ready, press the button below.
 		</string>
 	
-	<string name="ins_rest_tremor"><b>6. Rest tremor test</b>.
+	<string name="ins_rest_tremor"><b>%1$d. Rest tremor test</b>.
 	    Sit upright, hold the phone in your hand most affected by your tremor and rest it lightly in your lap. When you are ready, press the "Start test" button.
 		</string>
 	
-	<string name="ins_postural_tremor"><b>7. Postural tremor test</b>.
+	<string name="ins_rest_tremor_left"><b>%1$d. Rest tremor test (LEFT hand)</b>.
+	    Sit upright, hold the phone in your LEFT hand and rest it lightly in your lap. When you are ready, press the "Start test" button.
+		</string>
+		
+	<string name="ins_rest_tremor_right"><b>%1$d. Rest tremor test (RIGHT hand)</b>.
+	    Sit upright, hold the phone in your RIGHT hand and rest it lightly in your lap. When you are ready, press the "Start test" button.
+		</string>
+	
+	<string name="ins_postural_tremor"><b>%1$d. Postural tremor test</b>.
 	    Sit upright and hold the phone in the hand which is most affect by tremor, arm outstretched in front of you. Press Start.</string>
+	    
+	<string name="ins_postural_tremor_left"><b>%1$d. Postural tremor test (LEFT hand)</b>.
+	    Sit upright and hold the phone in the LEFT hand, arm outstretched in front of you. Press Start.</string>
+	    
+	<string name="ins_postural_tremor_right"><b>%1$d. Postural tremor test</b>.
+	    Sit upright and hold the phone in the RIGHT hand, arm outstretched in front of you. Press Start.</string>
 		
 	<string name="ins_finish"><b>Tests successfully completed!</b>
 	    Please press the button below to exit.
 		</string>
 	
-	<string name="dir_voice"><b>1. Voice test</b>.
+	<string name="dir_voice"><b>%1$d. Voice test</b>.
 	    Hold the phone to your ear. Take a deep breath, and say \'aaaaah\' at a comfortable
 	    and steady, tone and level, for as long as you can.
 	    </string>
 	    
-	<string name="dir_balance"><b>2. Balance test</b>.
+	<string name="dir_balance"><b>%1$d. Balance test</b>.
 	    Stand up straight, and place the phone in your pocket. When the buzzer vibrates,
 	    stay standing until the buzzer vibrates again.
 	    </string>
 
-	<string name="dir_gait"><b>3. Gait test</b>.
+	<string name="dir_gait"><b>%1$d. Gait test</b>.
 	    Stand up, and place the phone in your pocket. When the buzzer vibrates, walk forward 20 yards.
 	    Then stop, turn around, and walk back again.
 	    </string>
 	
-	<string name="dir_dexterity"><b>4. Dexterity test</b>.
+	<string name="dir_dexterity"><b>%1$d. Dexterity test</b>.
 	    Tap the buttons below with the index and middle fingers of one hand alternately, in a regular rhythm.
 	    </string>
+	    
+	<string name="dir_dexterity_left"><b>%1$d. Dexterity test (LEFT hand)</b>.
+	    Tap the buttons below with the index and middle fingers of the LEFT hand alternately, in a regular rhythm.
+	    </string>
 	
-	<string name="dir_reaction"><b>5. Reaction test</b>.
+	<string name="dir_dexterity_right"><b>%1$d. Dexterity test (RIGHT hand)</b>.
+	    Tap the buttons below with the index and middle fingers of the RIGHT hand alternately, in a regular rhythm.
+	    </string>
+	
+	<string name="dir_reaction"><b>%1$d. Reaction test</b>.
 	    Press the button below as soon as it appears; release as soon as it disappears.
 	    </string>
 	    
-	<string name="dir_rest_tremor"><b>6. Rest tremor test</b>.
+	<string name="dir_rest_tremor"><b>%1$d. Rest tremor test</b>.
 	    Close your eyes and count backwards from 100 while you continue to hold the phone.
 	    </string>
 
-	<string name="dir_postural_tremor"><b>7. Postural tremor test</b>.
+	<string name="dir_rest_tremor_left"><b>%1$d. Rest tremor test (LEFT hand)</b>.
+	    Close your eyes and count backwards from 100 while your LEFT hand continues to hold the phone.
+	    </string>
+	
+	<string name="dir_rest_tremor_right"><b>%1$d. Rest tremor test (RIGHT hand)</b>.
+	    Close your eyes and count backwards from 100 while your RIGHT hand continues to hold the phone.
+	    </string>
+	
+	<string name="dir_postural_tremor"><b>%1$d. Postural tremor test</b>.
 	    Keep your arm holding the phone outstretched in front of you.
 	    </string>
+	    
+	<string name="dir_postural_tremor_left"><b>%1$d. Postural tremor test (LEFT hand)</b>.
+	    Keep your LEFT arm holding the phone outstretched in front of you.
+	    </string>
+	    
+	<string name="dir_postural_tremor_right"><b>%1$d. Postural tremor test (RIGHT hand)</b>.
+	    Keep your RIGHT arm holding the phone outstretched in front of you.
+	    </string>
 	    	
-	
-    
+    <string name="test_voice_disp_name">Test Voice</string>
+    <string name="test_balance_disp_name">Test Balance</string>
+    <string name="test_gait_disp_name">Test Gait</string>
+    <string name="test_dexterity_disp_name">Test Dexterity</string>
+    <string name="test_dexterity_left_disp_name">Test Dexterity (Left hand)</string>
+    <string name="test_dexterity_right_disp_name">Test Dexterity (Right hand)</string>
+    <string name="test_reaction_disp_name">Test Reaction</string>
+    <string name="test_rest_tremor_disp_name">Test Rest Tremor</string>
+    <string name="test_rest_tremor_left_disp_name">Test Rest Tremor (Left hand)</string>
+    <string name="test_rest_tremor_right_disp_name">Test Rest Tremor (Right hand)</string>
+    <string name="test_postural_tremor_disp_name">Test Postural Tremor</string>
+    <string name="test_postural_tremor_left_disp_name">Test Postural Tremor (Left hand)</string>
+    <string name="test_postural_tremor_right_disp_name">Test Postural Tremor (Right hand)</string>
 </resources>

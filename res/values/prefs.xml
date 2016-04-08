@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="reset">reset</string>
-    <string name="colorHighContrastOn">colorHighContrastOn</string>
+    <!-- <string name="colorHighContrastOn">colorHighContrastOn</string> -->
     <string name="language">language</string>
     <!-- menu -->
     <string name="clearDataOn">clearDataOn</string>
@@ -55,9 +55,16 @@
     <string name="test_balance">test_balance</string>
     <string name="test_gait">test_gait</string>
     <string name="test_dexterity">test_dexterity</string>
+    <string name="test_dexterity_left">test_dexterity_left</string>
+    <string name="test_dexterity_right">test_dexterity_right</string>
     <string name="test_reaction">test_reaction</string>
     <string name="test_rest_tremor">test_rest_tremor</string>
+    <string name="test_rest_tremor_left">test_rest_tremor_left</string>
+    <string name="test_rest_tremor_right">test_rest_tremor_right</string>
     <string name="test_postural_tremor">test_postural_tremor</string>
+    <string name="test_postural_tremor_left">test_postural_tremor_left</string>
+    <string name="test_postural_tremor_right">test_postural_tremor_right</string>
+    <string name="medevent">medevent</string>
     <!-- NTP Sync -->
     <string name="ntpSyncOn">ntpSyncOn</string>
     <string name="ntpSyncInt">ntpSyncInt</string>
@@ -67,4 +74,5 @@
     <string name="dashboardOn">dashboardOn</string>
     <!-- medication tracker -->
     <string name="medTrackerOn">medTrackerOn</string>
+    <string name="medLogOn">medLogOn</string>
 </resources>

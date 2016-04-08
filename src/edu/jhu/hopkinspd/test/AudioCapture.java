@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.Date;
 
 import edu.jhu.hopkinspd.GlobalApp;
+import edu.jhu.hopkinspd.test.conf.TestConfig;
 import android.media.*;
 
 public class AudioCapture
@@ -17,10 +18,11 @@ public class AudioCapture
 	private int bufferSize = 0;
 	private Thread recordingThread = null;
 	private boolean isRecording = false;
-	private int testNumber = 0;
+//	private int testNumber = 0;
+	private TestConfig testConf;
 	private GlobalApp app;
 
-	public AudioCapture(GlobalApp app, int testNumber)
+	public AudioCapture(GlobalApp app, TestConfig testConf)
 	{
 		this.app = app;
 		bufferSize = AudioRecord.getMinBufferSize(CAPTURE_SAMPLERATE, 
@@ -29,7 +31,8 @@ public class AudioCapture
 				CAPTURE_SAMPLERATE,
 				CAPTURE_CHANNELS,
 				CAPTURE_AUDIO_ENCODING, bufferSize);
-		this.testNumber = testNumber;
+//		this.testNumber = testNumber;
+		this.testConf = testConf;
 	}
 	
 	public boolean startRecording()
@@ -59,7 +62,8 @@ public class AudioCapture
 	{
 		byte data[] = new byte[bufferSize];
 		Date time = new Date();
-		String filename = app.getTestDataFilename(time, testNumber, CAPTURE_FILETYPE, GlobalApp.RAW_DATA_EXTENSION);
+		String filename = app.getTestDataFilename(time, testConf.test_name, 
+				CAPTURE_FILETYPE, GlobalApp.RAW_DATA_EXTENSION);
 		FileOutputStream os = app.openRawDataFile(filename);
 
 		int read = 0;

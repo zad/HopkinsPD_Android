@@ -76,17 +76,15 @@
     <bool name="autoUpdateOn">true</bool>
     <!-- active tests -->
     <bool name="test_demo">false</bool>
-    <bool name="test_voice">true</bool>
-    <bool name="test_balance">true</bool>
+    <bool name="test_voice">false</bool>
+    <bool name="test_balance">false</bool>
     <bool name="test_gait">true</bool>
     <bool name="test_dexterity">false</bool>
-    <bool name="test_dexterity_left">true</bool>
-    <bool name="test_dexterity_right">true</bool>
-    <bool name="test_reaction">true</bool>
-    <bool name="test_rest_tremor">true</bool>
+    <bool name="test_dexterity_left">false</bool>
+    <bool name="test_dexterity_right">false</bool>
+    <bool name="test_reaction">false</bool>
     <bool name="test_rest_tremor_left">false</bool>
     <bool name="test_rest_tremor_right">false</bool>
-    <bool name="test_postural_tremor">true</bool>
     <bool name="test_postural_tremor_left">false</bool>
     <bool name="test_postural_tremor_right">false</bool>
     <bool name="test_gyro">true</bool>

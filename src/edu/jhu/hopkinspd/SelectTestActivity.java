@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import edu.jhu.hopkinspd.test.TestPrepActivity;
+import edu.jhu.hopkinspd.test.conf.TestConfig;
 
 public class SelectTestActivity extends Activity{
 
@@ -22,7 +23,7 @@ public class SelectTestActivity extends Activity{
 	}
 	
 	public void singleTest(View v){
-		String[] testArray = getResources().getStringArray(R.array.active_tests);    
+		String[] testArray = TestConfig.getEnabledTestDisplayNames();    
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Make your selection");
@@ -30,7 +31,7 @@ public class SelectTestActivity extends Activity{
             public void onClick(DialogInterface dialog, int item) {
                 // Do something with the selection
             	Intent takeTests = new Intent(app, TestPrepActivity.class);
-            	TestPrepActivity.singleTest = true;
+            	TestPrepActivity.singleTestMode = true;
         		// Jump to specific test
         		takeTests.putExtra("TestNumber", item);
         		app.initActiveTests();

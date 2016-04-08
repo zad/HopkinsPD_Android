@@ -4,7 +4,8 @@ import java.io.DataOutputStream;
 import java.util.Date;
 
 import edu.jhu.hopkinspd.GlobalApp;
-
+import edu.jhu.hopkinspd.test.conf.TestConfig;
+import android.os.CountDownTimer;
 import android.view.MotionEvent;
 
 public class ReactCapture
@@ -19,14 +20,17 @@ public class ReactCapture
 
 	public boolean isRecording = false;
 	private int bufferItems = 0;
-	private int testNumber = 0;
+//	private int testNumber = 0;
+	private TestConfig testConf;
 	private GlobalApp app;
 	private DataOutputStream testStreamFile = null;
-	public ReactCapture(GlobalApp app, int testNumber)
+	private CountDownTimer taskTimer = null;
+	
+	public ReactCapture(GlobalApp app, TestConfig testConf)
     {
 		this.app = app;
 		bufferItems = 0;
-		this.testNumber = testNumber;
+		this.testConf = testConf;
 		app.allocateStreamBuffer(CAPTURE_BUFFER_LENGTH, CAPTURE_BUFFER_ENTRIES);
     }
     
@@ -37,7 +41,8 @@ public class ReactCapture
     public void startRecording()
     {
 		Date time = new Date();
-		String filename = app.getTestDataFilename(time, testNumber, CAPTURE_FILETYPE, OUTPUT_EXT);
+		String filename = app.getTestDataFilename(time, testConf.test_name, 
+				CAPTURE_FILETYPE, OUTPUT_EXT);
 		testStreamFile = app.openTestStreamFile(filename);
     	bufferItems = 0;
     	isRecording = true;

@@ -52,24 +52,10 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import edu.jhu.hopkinspd.medlog.MedDoseAdapter;
 import edu.jhu.hopkinspd.security.AESCrypt;
 import edu.jhu.hopkinspd.task.NTPSyncTask;
+import edu.jhu.hopkinspd.test.AccelCapture;
 import edu.jhu.hopkinspd.utils.CrashReportSender;
 
 
@@ -277,6 +263,7 @@ public class GlobalApp extends Application{
 	public static String STATS_SUBDIR = "stats";
 	public static String STREAMS_SUBDIR = "streams";
 	public static String LOGS_SUBDIR = "logs";
+	public static String TESTS_SUBDIR = "test";
 	
 	private static final int AES_FILE_VERSION = 1;
 	
@@ -313,27 +300,27 @@ public class GlobalApp extends Application{
 //	private static DataOutputStream testStreamFile = null;
 	public static double[][] streamBuffer = null;
 	
-	public static final int TEST_VOICE = 0;
-	public static final int TEST_BALANCE = 1;
-	public static final int TEST_GAIT = 2;
-	public static final int TEST_DEXTERITY = 3;
-	public static final int TEST_REACTION = 4;
-	
-	public static final int TEST_REST_TREMOR = 5;
-	
-	public static final int TEST_POSTURAL_TREMOR = 6;
+//	public static final int TEST_VOICE = 0;
+//	public static final int TEST_BALANCE = 1;
+//	public static final int TEST_GAIT = 2;
+//	public static final int TEST_DEXTERITY = 3;
+//	public static final int TEST_REACTION = 4;
+//	
+//	public static final int TEST_REST_TREMOR = 5;
+//	
+//	public static final int TEST_POSTURAL_TREMOR = 6;
 	
 
 	
 	
 	
 	//                                      Vo, Ba, Ga, Dx, Re, RT, PT
-	public static int[] preTestPauseDur  = {2,  5,  5,  2,  2, 5, 5};
-	public static int[] postTestPauseDur = {0,  0,  0,  2,  0, 0, 0};
-	public static int[] testCaptureDur   = {20, 20, 30, 20, 30, 45, 45};
+//	public static int[] preTestPauseDur  = {2,  5,  5,  2,  2, 5, 5};
+//	public static int[] postTestPauseDur = {0,  0,  0,  2,  0, 0, 0};
+//	public static int[] testCaptureDur   = {20, 20, 30, 20, 30, 45, 45};
 //	public static int[] testCaptureDur   = {5, 5, 5, 5, 5};		// Short for tests
-	public static boolean[] preTestVibrate = {false, true, true, false, false, true, true};
-	public static boolean[] postTestVibrate = {false, true, true, false, false, true, true};
+//	public static boolean[] preTestVibrate = {false, true, true, false, false, true, true};
+//	public static boolean[] postTestVibrate = {false, true, true, false, false, true, true};
 	
 	public static int ZIP_BUFFER_SIZE = 65536;
 
@@ -343,7 +330,7 @@ public class GlobalApp extends Application{
 	
 
 	
-	public static List<DataFileListItem> dataFilesList = null;
+	private static List<DataFileListItem> dataFilesList = null;
 	public static class DataFileListItem
 	{
 		File f;
@@ -824,7 +811,6 @@ public class GlobalApp extends Application{
 	public boolean isUserInfoAvailable() {
 		String userid = getStringPref(GlobalApp.PREF_KEY_USERID);
 		String pwd = getStringPref(GlobalApp.PREF_KEY_ENCRYPT_KEY);
-		Log.d(TAG, "userid = " + userid + " pwd = " + pwd);
 		if(userid.equals("") || pwd.equals("") || userid.equals("default"))
 		{
 			
@@ -957,6 +943,10 @@ public class GlobalApp extends Application{
     	return new Date(prefs.getLong(key, 0l));
     }
     
+    public void setDatePref(String key, Date date){
+        setLongPref(key, date.getTime());
+    }
+    
     public void setLongPref(String key, long value)
     {
     	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -1067,24 +1057,42 @@ public class GlobalApp extends Application{
 	public String getMedTrackerFilename(Date time)
 	{
 		Resources res = getResources();
-		String userID = getStringPref(PREF_KEY_USERID, res.getString(R.string.default_userID));
+		String userID = getStringPref(PREF_KEY_USERID, 
+				res.getString(R.string.default_userID));
 		String phoneID = getStringPhoneID();
 		String rootPath = getStringPref(PREF_KEY_ROOT_PATH, "");
-		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_med_" + userID + "_" + phoneID + 
-			"_" + timeString(time) + ".csv";
+		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_med_" 
+				+ userID + "_" + phoneID + "_" + timeString(time) + ".csv";
 	}
 	
-	public String getTestDataFilename(Date time, int testNumber, String type, String ext)
-	{
-		Resources res = getResources();
-		String userID = getStringPref(PREF_KEY_USERID, res.getString(R.string.default_userID));
-		String phoneID = getStringPhoneID();
-		String rootPath = getStringPref(PREF_KEY_ROOT_PATH, "");
-		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_test" + testNumber + "_" + type + "_" + userID + "_" + phoneID + 
-			"_" + timeString(time) + "." + ext;
-	}
+//	public String getTestDataFilename(Date time, int testNumber, String type, 
+//			String ext)
+//	{
+//		Resources res = getResources();
+//		String userID = getStringPref(PREF_KEY_USERID, 
+//				res.getString(R.string.default_userID));
+//		String phoneID = getStringPhoneID();
+//		String rootPath = getStringPref(PREF_KEY_ROOT_PATH, "");
+//		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_test" 
+//				+ testNumber + "_" + type + "_" + userID + "_" + phoneID + 
+//			"_" + timeString(time) + "." + ext;
+//	}
 	
 
+	public String getTestDataFilename(Date time, int testName, 
+			String type, String ext)
+	{
+		Resources res = getResources();
+		String userID = getStringPref(PREF_KEY_USERID, 
+				res.getString(R.string.default_userID));
+		String phoneID = getStringPhoneID();
+		String rootPath = getStringPref(PREF_KEY_ROOT_PATH, "");
+		return rootPath + "/" + TEST_UPLOAD_SUBDIR + "/" + PREFIX + "_" 
+				+ getString(testName).replace('_', '-') + "_" 
+				+ type + "_" + userID + "_" 
+				+ phoneID +	"_" + timeString(time) + "." + ext;
+	}	
+	
 	public String getTestZipPackageFilename(Date time)
 	{
 		Resources res = getResources();
@@ -1448,85 +1456,85 @@ public class GlobalApp extends Application{
 		
 	}
 	
-	public int getNumberOfRestTests(int curTestNum){
-		int rest = 0;
-		int test = curTestNum++;
-		while(test < GlobalApp.NUMBER_OF_TESTS){
-			switch(test){
-			case GlobalApp.TEST_VOICE:
-				if(app.getBooleanPref(getString(R.string.test_voice)))
-					rest++;
-				break;
-			case GlobalApp.TEST_BALANCE:
-				if(app.getBooleanPref(getString(R.string.test_balance)))
-					rest++;
-				break;
-			case GlobalApp.TEST_GAIT:
-				if(app.getBooleanPref(getString(R.string.test_gait)))
-					rest++;
-				break;
-			case GlobalApp.TEST_DEXTERITY:
-				if(app.getBooleanPref(getString(R.string.test_dexterity)))
-					rest++;
-				break;
-			case GlobalApp.TEST_REACTION:
-				if(app.getBooleanPref(getString(R.string.test_reaction)))
-					rest++;
-				break;
-			case GlobalApp.TEST_REST_TREMOR:
-				if(app.getBooleanPref(getString(R.string.test_rest_tremor)))
-					rest++;
-				break;
-			case GlobalApp.TEST_POSTURAL_TREMOR:
-				if(app.getBooleanPref(getString(R.string.test_postural_tremor)))
-					rest++;
-				break;
-			}
-			
-				
-			test ++;
-		}
-		return rest;
-	}
+//	public int getNumberOfRestTests(int curTestNum){
+//		int rest = 0;
+//		int test = curTestNum++;
+//		while(test < GlobalApp.NUMBER_OF_TESTS){
+//			switch(test){
+//			case GlobalApp.TEST_VOICE:
+//				if(app.getBooleanPref(getString(R.string.test_voice)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_BALANCE:
+//				if(app.getBooleanPref(getString(R.string.test_balance)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_GAIT:
+//				if(app.getBooleanPref(getString(R.string.test_gait)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_DEXTERITY:
+//				if(app.getBooleanPref(getString(R.string.test_dexterity)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_REACTION:
+//				if(app.getBooleanPref(getString(R.string.test_reaction)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_REST_TREMOR:
+//				if(app.getBooleanPref(getString(R.string.test_rest_tremor)))
+//					rest++;
+//				break;
+//			case GlobalApp.TEST_POSTURAL_TREMOR:
+//				if(app.getBooleanPref(getString(R.string.test_postural_tremor)))
+//					rest++;
+//				break;
+//			}
+//			
+//				
+//			test ++;
+//		}
+//		return rest;
+//	}
 
-	public int getNextTestNumber(int num) {
-		while(num < GlobalApp.NUMBER_OF_TESTS){
-			switch(num){
-			case GlobalApp.TEST_VOICE:
-				if(app.getBooleanPref(getString(R.string.test_voice)))
-					return num;
-				break;
-			case GlobalApp.TEST_BALANCE:
-				if(app.getBooleanPref(getString(R.string.test_balance)))
-					return num;
-				break;
-			case GlobalApp.TEST_GAIT:
-				if(app.getBooleanPref(getString(R.string.test_gait)))
-					return num;
-				break;
-			case GlobalApp.TEST_DEXTERITY:
-				if(app.getBooleanPref(getString(R.string.test_dexterity)))
-					return num;
-				break;
-			case GlobalApp.TEST_REACTION:
-				if(app.getBooleanPref(getString(R.string.test_reaction)))
-					return num;
-				break;
-			case GlobalApp.TEST_REST_TREMOR:
-				if(app.getBooleanPref(getString(R.string.test_rest_tremor)))
-					return num;
-				break;
-			case GlobalApp.TEST_POSTURAL_TREMOR:
-				if(app.getBooleanPref(getString(R.string.test_postural_tremor)))
-					return num;
-				break;
-			}
-			
-				
-			num ++;
-		}
-		return num;
-	}
+//	public int getNextTestNumber(int num) {
+//		while(num < GlobalApp.NUMBER_OF_TESTS){
+//			switch(num){
+//			case GlobalApp.TEST_VOICE:
+//				if(app.getBooleanPref(getString(R.string.test_voice)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_BALANCE:
+//				if(app.getBooleanPref(getString(R.string.test_balance)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_GAIT:
+//				if(app.getBooleanPref(getString(R.string.test_gait)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_DEXTERITY:
+//				if(app.getBooleanPref(getString(R.string.test_dexterity)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_REACTION:
+//				if(app.getBooleanPref(getString(R.string.test_reaction)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_REST_TREMOR:
+//				if(app.getBooleanPref(getString(R.string.test_rest_tremor)))
+//					return num;
+//				break;
+//			case GlobalApp.TEST_POSTURAL_TREMOR:
+//				if(app.getBooleanPref(getString(R.string.test_postural_tremor)))
+//					return num;
+//				break;
+//			}
+//			
+//				
+//			num ++;
+//		}
+//		return num;
+//	}
 
 	public void runLastUpload(Context ctx, BufferedWriter logTextStream) {
 		app.writeLogTextLine(logTextStream, "run last upload", false);
@@ -1630,4 +1638,49 @@ public class GlobalApp extends Application{
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
 	}
+
+	public void saveRecentMedIntake(String timeStr) {
+        Date time = new Date();
+        String medEventFileName = getTestDataFilename(time, 
+                R.string.medevent, "time", "csv");
+        DataOutputStream medEventFile = 
+                app.openTestStreamFile(medEventFileName);
+        try {
+            
+            medEventFile.writeChars(prettyDateString(time) + "," + timeStr);
+        } catch (IOException e) {
+            Log.e(TAG, "medEventFile WriteException");
+        }
+        app.closeTestStreamFile(medEventFile);
+        String medDoseFileName = getTestDataFilename(time, R.string.medevent, 
+                "dose", "csv");
+        DataOutputStream medDoseFile = 
+                app.openTestStreamFile(medDoseFileName);
+        try {
+            String selectedStr = 
+                    getStringPref(MedDoseAdapter.MedDoseSelectedPref);
+            StringBuilder sb = new StringBuilder();
+            for(String line : selectedStr.split("\\|"))
+            {
+                if(sb.length()!=0)
+                    sb.append("\n");
+                boolean firstItem = true;
+                for(String item : line.split(";")){
+                    if(firstItem)
+                        firstItem = false;
+                    else
+                        sb.append(",");
+                    if(item.contains(","))
+                        sb.append("\"").append(item).append("\"");
+                    else
+                        sb.append(item);
+                }
+            }
+                
+            medDoseFile.writeChars(sb.toString());
+        } catch (IOException e) {
+            Log.e(TAG, "medDoseFile WriteException");
+        } 
+        app.closeTestStreamFile(medDoseFile);
+    }
 }

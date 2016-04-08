@@ -4,8 +4,10 @@ import java.io.BufferedWriter;
 
 import edu.jhu.hopkinspd.GlobalApp;
 import edu.jhu.hopkinspd.R;
+import edu.jhu.hopkinspd.test.conf.TestConfig;
 import android.app.Activity;
 import android.content.*;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.*;
 import android.util.Log;
@@ -17,37 +19,27 @@ public class TestActivity extends Activity
 {
 	protected static final String TAG = "TestActivity";
 
-	int[] testInsStringList = {R.string.dir_voice, R.string.dir_balance, R.string.dir_gait,
-			R.string.dir_dexterity, R.string.dir_reaction, R.string.dir_rest_tremor, R.string.dir_postural_tremor};
-
-	int[] testViewList = {R.layout.testpage, R.layout.testpage, R.layout.testpage,
-			R.layout.testtappage, R.layout.testreactpage, R.layout.testpage, R.layout.testpage};
 
 	int testNumber = 0;
-	private AudioCapture audioObj = null;
-	private AccelCapture accelObj = null;
-	private GyroCapture gyroObj = null;
-	private boolean gyro_on = false;
-	private TapCapture tapObj = null;
-	private ReactCapture reactObj = null;
-	private boolean reactButtonOn = false;
 	private Button button = null;
 	private GlobalApp app;
 	private Button nextButton = null;
 
 	private long lastBackClick;
 	
-	private CountDownTimer taskTimer = null;
+	
 
 	private String logFileType = "activetest";
 
 	private BufferedWriter logWriter;
 
-	private CountDownTimer cdTimer;
-
-	private CountDownTimer ptTimer;
+	private CountDownTimer preTestTimer;
+	private CountDownTimer inTestTimer = null;
+	private CountDownTimer postTestTimer;
 
 	TextView ins;
+	
+	TestConfig testConf;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -56,30 +48,25 @@ public class TestActivity extends Activity
 		app = (GlobalApp) getApplication();
 		logWriter = app.openLogTextFile(logFileType );
 		Bundle bundle = getIntent().getExtras();
+		testNumber = 0;
 		if (bundle != null)
 		{
 			testNumber = bundle.getInt("TestNumber", 0);
-			
-			
 		}
-
-		setContentView(testViewList[testNumber]);
+		
+		testConf = TestConfig.getTestConfig(testNumber);
+		setContentView(testConf.test_view);
 		ins = (TextView)findViewById(R.id.dir_text);
 		ins.setTextSize(GlobalApp.ACTIVE_TESTS_FONT_SIZE);
-		ins.setText(testInsStringList[testNumber]);
+		
+		Resources res = getResources();
+		String text = String.format(res.getString(testConf.test_text), 
+				testNumber+1);
+		ins.setText(text);
+		
+		testConf.createTest(this);
+		
 
-		if (testNumber == GlobalApp.TEST_DEXTERITY)
-		{
-			button = (Button)findViewById(R.id.tap1_button);
-			button.setVisibility(View.INVISIBLE);
-			button = (Button)findViewById(R.id.tap2_button);
-			button.setVisibility(View.INVISIBLE);
-		}
-		if (testNumber == GlobalApp.TEST_REACTION)
-		{
-			button = (Button)findViewById(R.id.button_react);
-			button.setVisibility(View.INVISIBLE);
-		}
 		nextButton = (Button)findViewById(R.id.button_next);
 		nextButton.setVisibility(View.GONE);
 		
@@ -96,16 +83,17 @@ public class TestActivity extends Activity
 		});
 		
 		// Pre-test pause
-		cdTimer =
-		new CountDownTimer(GlobalApp.preTestPauseDur[testNumber]*1000, 1000)
+		preTestTimer =
+		new CountDownTimer(testConf.preTestPauseDur*1000, 1000)
 		{
 			public void onTick(long millisLeft){}
 			public void onFinish()
 			{
 				// Pre-test vibrate?
-				if (GlobalApp.preTestVibrate[testNumber])
+				if (testConf.preTestVibrate)
 				{
-					((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(GlobalApp.VIBRATE_DUR*1000);
+					((Vibrator)getSystemService(Context.VIBRATOR_SERVICE))
+						.vibrate(GlobalApp.VIBRATE_DUR*1000);
 				}
 				
 				runTest();
@@ -117,8 +105,7 @@ public class TestActivity extends Activity
 				
 			}
 		}.start();
-		setTextColor(app.getBooleanPref(getString(R.string.colorHighContrastOn)));
-		gyro_on = app.getBooleanPref(getString(R.string.test_gait));
+
 	}
 
 	private void setTextColor(boolean highContrast) {
@@ -135,79 +122,32 @@ public class TestActivity extends Activity
 			ins.setTextColor(Color.BLACK);
 		}
 	}
+	
 	/**
 	 * Used in demo mode.
 	 * Skip the current test
 	 */
 	private void skipTest(){
-		if(taskTimer != null)
+		if(inTestTimer != null)
 		{
-			taskTimer.cancel();
+			inTestTimer.cancel();
 			finishTest();
 		}
 	}
 
 	private synchronized void runTest()
 	{
-		if (testNumber == GlobalApp.TEST_VOICE)
-		{
-			audioObj = new AudioCapture(app, testNumber);
-			if(!audioObj.startRecording())
-			{
-				String text = "Recording is not initialized. Please try again later.";		
-				app.writeLogTextLine(logWriter, text, true);
-			}
-		}
-		else if ((testNumber == GlobalApp.TEST_BALANCE) 
-				|| (testNumber == GlobalApp.TEST_GAIT)
-				|| (testNumber == GlobalApp.TEST_REST_TREMOR)
-				|| (testNumber == GlobalApp.TEST_POSTURAL_TREMOR)
-				)
-		{
-			accelObj = new AccelCapture(app, testNumber);
-			accelObj.startRecording();
-			
-			if(gyro_on){
-				gyroObj = new GyroCapture(app, testNumber);
-				gyroObj.startRecording();
-			}
-		}
-		else if (testNumber == GlobalApp.TEST_DEXTERITY)
-		{
-			button = (Button)findViewById(R.id.tap1_button);
-			button.setVisibility(View.VISIBLE);
-			button = (Button)findViewById(R.id.tap2_button);
-			button.setVisibility(View.VISIBLE);
-			tapObj = new TapCapture(app, testNumber);
-			tapObj.startRecording();
-		}
-		else if (testNumber == GlobalApp.TEST_REACTION)
-		{
-			reactObj = new ReactCapture(app, testNumber);
-			reactObj.startRecording();
-		}
+		testConf.runTest(this, logWriter);
 
-		taskTimer = new CountDownTimer(GlobalApp.testCaptureDur[testNumber]*1000, GlobalApp.CHANGE_REACT_DUR*1000)
+
+		inTestTimer = 
+				new CountDownTimer(testConf.testCaptureDur*1000, 
+						GlobalApp.CHANGE_REACT_DUR*1000)
 		{
 			public void onTick(long millisLeft)
 			{
-				if (testNumber == GlobalApp.TEST_REACTION)
-				{
-					// Choose new random tap button status
-					int reactButtonVisible = View.INVISIBLE;
-					boolean random = Math.random() > 0.5;
-					if (random != reactButtonOn)
-					{
-						reactButtonOn = random;
-						button = (Button)findViewById(R.id.button_react);
-						if (reactButtonOn)
-						{
-							reactButtonVisible = View.VISIBLE;
-						}
-						button.setVisibility(reactButtonVisible);
-						reactObj.handleTouchEvent(null, reactButtonOn);
-					}
-				}
+				testConf.onInTestTimerTick(TestActivity.this);
+
 			}
 
 			public void onFinish()
@@ -217,55 +157,26 @@ public class TestActivity extends Activity
 		}.start();
 	}
 	
-	private synchronized void finishTest(){
-		if (testNumber == GlobalApp.TEST_VOICE)
-		{	
-			audioObj.stopRecording();
-			audioObj.destroy();
-		}
-		else if ((testNumber == GlobalApp.TEST_BALANCE) 
-				|| (testNumber == GlobalApp.TEST_GAIT)
-				|| (testNumber == GlobalApp.TEST_REST_TREMOR)
-				|| (testNumber == GlobalApp.TEST_POSTURAL_TREMOR)
-				)
-		{
-			accelObj.stopRecording();
-			accelObj.destroy();
-			if(gyro_on){
-				gyroObj.stopRecording();
-				gyroObj.destroy();
-			}
-		}
-		else if (testNumber == GlobalApp.TEST_DEXTERITY)
-		{
-			button = (Button)findViewById(R.id.tap1_button);
-			button.setVisibility(View.INVISIBLE);
-			button = (Button)findViewById(R.id.tap2_button);
-			button.setVisibility(View.INVISIBLE);
-			tapObj.stopRecording();
-			tapObj.destroy();
-		}
-		else if (testNumber == GlobalApp.TEST_REACTION)
-		{
-			reactObj.stopRecording();
-			reactObj.destroy();
-		}
+	public synchronized void finishTest(){
+		testConf.completeTest();
+
 		postTestPause();
 	}
 
 	private void postTestPause()
 	{
 		// Post-test pause
-		ptTimer = 
-		new CountDownTimer(GlobalApp.postTestPauseDur[testNumber]*1000, 1000)
+		postTestTimer = 
+		new CountDownTimer(testConf.postTestPauseDur*1000, 1000)
 		{
 			public void onTick(long millisLeft){}
 			public void onFinish()
 			{
 				// Post-test vibrate?
-				if (GlobalApp.postTestVibrate[testNumber])
+				if (testConf.postTestVibrate)
 				{
-					((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(GlobalApp.VIBRATE_DUR * 1000);
+					((Vibrator)getSystemService(Context.VIBRATOR_SERVICE))
+						.vibrate(GlobalApp.VIBRATE_DUR * 1000);
 				}
 				testComplete();
 			}
@@ -277,10 +188,9 @@ public class TestActivity extends Activity
 		Intent nextPage = null;
 
 		// When we're done, roll onto the next test prep page
-//		testNumber += 1;
-		testNumber = app.getNextTestNumber(testNumber+1);
-		if (!TestPrepActivity.singleTest 
-				&& testNumber < GlobalApp.NUMBER_OF_TESTS)
+		testNumber += 1;
+		if (!TestPrepActivity.singleTestMode 
+				&& testNumber < TestConfig.getNumberOfTests())
 		{
 			if (app.isNextTestScreenOn()){
 				nextPage = new Intent(app, TestPostActivity.class);
@@ -293,7 +203,7 @@ public class TestActivity extends Activity
 		else
 		{
 			nextPage = new Intent(app, TestEndActivity.class);
-			if(TestPrepActivity.singleTest)
+			if(TestPrepActivity.singleTestMode)
 				Log.i(TAG, "single test end");
 			else
 				Log.i(TAG, "testNumber reaches to NUMBER_OF_TESTS: " + testNumber);
@@ -306,14 +216,8 @@ public class TestActivity extends Activity
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent me)
 	{
-		if (tapObj != null)
-		{
-			tapObj.handleTouchEvent(me);
-		}
-		if (reactObj != null)
-		{
-			reactObj.handleTouchEvent(me, reactButtonOn);
-		}
+		testConf.dispatchTouchEvent(me);
+
 		if(app.isInTestDemo())
 			return super.dispatchTouchEvent(me);
 		else
@@ -321,10 +225,7 @@ public class TestActivity extends Activity
 		
 	}
 
-	//	@Override
-	//	public boolean onTouchEvent(MotionEvent me)
-	//	{
-	//	}
+
 
 	@Override
 	public void onBackPressed()
@@ -334,49 +235,14 @@ public class TestActivity extends Activity
 			lastBackClick = current;
 			Toast.makeText(app, "click again to exit current test", Toast.LENGTH_LONG).show();
 		}else{
-			if(taskTimer != null)
-				taskTimer.cancel();
-			if(cdTimer != null)
-				cdTimer.cancel();
-			if(ptTimer != null)
-				ptTimer.cancel();
-			if (testNumber == GlobalApp.TEST_VOICE && audioObj != null)
-			{	
-				audioObj.stopRecording();
-				audioObj.destroy();
-			}
-			else if ((testNumber == GlobalApp.TEST_BALANCE) 
-					|| (testNumber == GlobalApp.TEST_GAIT)
-					|| (testNumber == GlobalApp.TEST_REST_TREMOR)
-					|| (testNumber == GlobalApp.TEST_POSTURAL_TREMOR)
-					)
-			{
-				if(accelObj != null){
-					accelObj.stopRecording();
-					accelObj.destroy();	
-				}
-				if(gyro_on && gyroObj != null){
-					gyroObj.stopRecording();
-					gyroObj.destroy();
-				}
-			}
-			else if (testNumber == GlobalApp.TEST_DEXTERITY)
-			{
-				button = (Button)findViewById(R.id.tap1_button);
-				button.setVisibility(View.INVISIBLE);
-				button = (Button)findViewById(R.id.tap2_button);
-				button.setVisibility(View.INVISIBLE);
-				if (tapObj != null){
-					tapObj.stopRecording();
-					tapObj.destroy();
-				}
-				
-			}
-			else if (testNumber == GlobalApp.TEST_REACTION && reactObj != null)
-			{
-				reactObj.stopRecording();
-				reactObj.destroy();
-			}
+			testConf.cancelTest();
+			if(inTestTimer != null)
+				inTestTimer.cancel();
+			if(preTestTimer != null)
+				preTestTimer.cancel();
+			if(postTestTimer != null)
+				postTestTimer.cancel();
+
 			super.onBackPressed();
 		}
 	}

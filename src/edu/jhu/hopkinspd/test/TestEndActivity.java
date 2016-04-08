@@ -46,19 +46,9 @@ public class TestEndActivity extends Activity
 		LongOperation task = new LongOperation();
 		task.execute();
 		
-		setTextColor(app.getBooleanPref(getString(R.string.colorHighContrastOn)));
-		
 	}
 	
-	private void setTextColor(boolean highContrast) {
-		if(highContrast){
-			finish.setTextColor(Color.WHITE);
-			ins.setTextColor(Color.WHITE);
-		}else{
-			finish.setTextColor(Color.BLUE);
-			ins.setTextColor(Color.BLACK);
-		}
-	}
+
 	
 	class LongOperation extends AsyncTask<Void, Void, Void>
 	{
@@ -84,11 +74,7 @@ public class TestEndActivity extends Activity
 					
 			}
 			
-//			// Encrypt zip file to Dropbox upload folder for background sync
-//			String aes = app.encryptTestUploadZipFile(zipFilename);
-//			File[] listZipFiles = new File[1];
-//			listZipFiles[0] = new File(aes);
-//			app.uploadFiles(TAG, listZipFiles );
+
 			return null;
 		}
 

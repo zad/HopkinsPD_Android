@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <CheckBox
+        android:id="@+id/medCheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" 
+        android:maxLines="3"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:weightSum="1.0" >
+
+        <TextView
+            android:id="@+id/textView_dose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".2"
+            android:text="Dose:"
+            android:textSize="15sp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold" />
+	
+	    <Spinner
+	        android:id="@+id/doseSpinner"
+	        android:layout_width="0dp"
+	        android:textSize="15sp"
+	        android:layout_weight=".7"
+	        android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

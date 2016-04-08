@@ -21,14 +21,21 @@
             
 			<TextView
 			        android:id="@+id/text_ins"
-		            android:text="@string/ins_voice"
 		            android:textSize="30dip" 
 					android:padding="5dip"
 		            android:layout_width="fill_parent" 
 		            android:layout_height="0dp" 
-		            android:layout_weight=".68" />
-		
+		            android:layout_weight=".38" />
+	
 		    
+			 <Spinner android:id="@+id/phone_position_spinner"
+			  android:layout_width="fill_parent"
+			  android:layout_height="50dip"
+			  android:drawSelectorOnTop="true"
+			  android:spinnerMode="dialog"
+			  
+			  android:textSize="25dip" 
+			  android:padding="5dip" />
 			
 		    <Button
 		        	android:id="@+id/button_starttest"
@@ -37,6 +44,7 @@
 		            android:textStyle="bold"
 		            android:layout_height="0dp" 
 		            android:padding="5dip"
+		            
 		            android:layout_width="fill_parent" 
 		            android:layout_weight=".10"
 		            />
