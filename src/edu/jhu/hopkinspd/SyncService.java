@@ -367,23 +367,24 @@ public class SyncService extends IntentService
         };
         File[] files = dir.listFiles(fnFilter);
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        for(File file: files){
-            String fileName = file.getName();
-            String[] items = fileName.split("_");
-            if(items.length >= 2){
-                String dayStr = items[items.length-2];
-                try {
-                    Date day = format.parse(dayStr);
-                    if(day.before(outDay)){
-                        file.delete();
-                        Log.i(TAG, "clean old file:"+fileName);
+        if(files != null)
+            for(File file: files){
+                String fileName = file.getName();
+                String[] items = fileName.split("_");
+                if(items.length >= 2){
+                    String dayStr = items[items.length-2];
+                    try {
+                        Date day = format.parse(dayStr);
+                        if(day.before(outDay)){
+                            file.delete();
+                            Log.i(TAG, "clean old file:"+fileName);
+                        }
+                    } catch (ParseException e) {
+                        Log.e(TAG,  "cleanOldFiles parse exception");
                     }
-                } catch (ParseException e) {
-                    Log.e(TAG,  "cleanOldFiles parse exception");
+                    
                 }
-                
             }
-        }
     }
 	
 }
