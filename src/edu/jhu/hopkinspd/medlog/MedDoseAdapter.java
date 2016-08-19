@@ -84,7 +84,7 @@ public class MedDoseAdapter extends ArrayAdapter<ArrayList<String>>{
                 .append(result[1]);
         }
         GlobalApp app = GlobalApp.getApp();
-        Log.d(TAG, "selected pref:" + selected.toString());
+        Log.d(TAG, "saveMedDoseSelected:" + selected.toString());
         app.setStringPref(MedDoseSelectedPref, selected.toString());
         app.setDatePref(MedLogActivity.LastMedUpdateDatePref, new Date());
     }
@@ -94,7 +94,9 @@ public class MedDoseAdapter extends ArrayAdapter<ArrayList<String>>{
         String pre_checked = result[0];
         result[0] = checked? "checked":"unchecked";
         String pre_dose = result[1];
-        result[1] = dose;
+        if(dose != null)
+            // dose changed
+            result[1] = dose;
         Log.d(TAG, "update: " + med + " " + Arrays.toString(result));
         if(pre_checked.compareTo(result[0])!=0 
                 || pre_dose.compareTo(result[1])!=0)
@@ -119,13 +121,13 @@ public class MedDoseAdapter extends ArrayAdapter<ArrayList<String>>{
         @Override
         public void onCheckedChanged(CompoundButton cb, boolean checked) {
             
-            Log.d(TAG, "checked:" + checked);
+            Log.d(TAG, "checked:" + checked +  " dose:" + spinner.getSelectedItem());
             CheckBox checkbox = (CheckBox) cb;
             
             
             boolean checkChanged = 
-                    updateSelected(checked, checkbox.getText().toString(), 
-                            (String)spinner.getSelectedItem());
+                    updateSelected(checked, checkbox.getText().toString(), null); 
+                            
             updateView(med, checkbox, text, spinner);
             if(checkChanged){
                 if(checkbox.isChecked()){
@@ -173,15 +175,28 @@ public class MedDoseAdapter extends ArrayAdapter<ArrayList<String>>{
             Spinner spinner) {
         String[] result = this.medDoseSelected.get(med);
         if(result[0].compareTo("checked")==0){
-            checkbox.setChecked(true);
+            if(!checkbox.isChecked())
+                checkbox.setChecked(true);
             checkbox.setTextColor(Color.WHITE);
             text.setEnabled(true);
             spinner.setEnabled(true);
+            
         }else{
-            checkbox.setChecked(false);
+            if(checkbox.isChecked())
+                checkbox.setChecked(false);
             checkbox.setTextColor(Color.GRAY);
             text.setEnabled(false);
             spinner.setEnabled(false);
+        }
+        
+        for(int i=0; i< spinner.getCount(); i++){
+            String dose = (String) spinner.getItemAtPosition(i);
+            if(dose.compareTo(result[1])==0)
+            {
+                if(spinner.getSelectedItemPosition() != i)
+                    spinner.setSelection(i);
+                break;
+            }
         }
     }
     
