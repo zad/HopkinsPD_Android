@@ -174,6 +174,14 @@ public class MedDoseAdapter extends ArrayAdapter<ArrayList<String>>{
     private void updateView(String med, CheckBox checkbox, TextView text, 
             Spinner spinner) {
         String[] result = this.medDoseSelected.get(med);
+        if(result == null)
+        {
+            Log.d(TAG, "this med is not included due to some reason, e.g., update");
+            result = new String[2];
+            result[0] = "unchecked";
+            result[1] = "unknown";
+            medDoseSelected.put(med, result);
+        }
         if(result[0].compareTo("checked")==0){
             if(!checkbox.isChecked())
                 checkbox.setChecked(true);
