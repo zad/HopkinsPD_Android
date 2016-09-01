@@ -46,7 +46,8 @@ public class AccelCapture implements SensorEventListener
     
     public void destroy()
     {
-    	sensorManager.unregisterListener(this);
+        if(sensorManager != null)
+            sensorManager.unregisterListener(this);
     	sensorManager = null;
     	sensor = null;
     }
