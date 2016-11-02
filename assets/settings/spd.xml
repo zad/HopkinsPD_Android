@@ -89,7 +89,7 @@
     <bool name="test_postural_tremor">true</bool>
     <bool name="test_postural_tremor_left">false</bool>
     <bool name="test_postural_tremor_right">false</bool>
-    <bool name="test_gyro">true</bool>
+    <bool name="test_gyro">false</bool>
     <bool name="medLogOn">true</bool>
     <!-- NTP Sync -->
     <bool name="ntpSyncOn">false</bool>
