@@ -55,15 +55,20 @@ public class WatchDogService extends IntentService{
 		String streamsPath = rootPath + "/" + GlobalApp.STREAMS_SUBDIR;
 		File streamsDir = new File(streamsPath);
 		long last = 0;
-		for(File streamFile : streamsDir.listFiles()){
-			long lastM = streamFile.lastModified();
-			if(lastM > last) last = lastM;
-		}
-		long current = (new Date()).getTime();
-		if(current - last > WATCHDOG_THRESHOLD){
-			return false;
+		File[] files = streamsDir.listFiles();
+		if(files != null)
+		{
+    		for(File streamFile : files){
+    			long lastM = streamFile.lastModified();
+    			if(lastM > last) last = lastM;
+    		}
+    		long current = (new Date()).getTime();
+    		if(current - last > WATCHDOG_THRESHOLD){
+    			return false;
+    		}else
+    			return true;
 		}else
-			return true;
+		    return false;
 	}
 
 	private boolean recordingRequired() {
