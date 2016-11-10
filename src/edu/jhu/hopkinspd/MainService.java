@@ -23,7 +23,7 @@ public class MainService extends BaseService{
 
 	private static final int ONGOING_NOTIFICATION_ID = 1;
 	// Main thread to record data
-	private RecorderThread recorder = null;
+	private RecorderHandlerThread recorder = null;
 	
 	// Battery Information updated by battery receiver
 //	private boolean isCharging;
@@ -130,14 +130,14 @@ public class MainService extends BaseService{
 
 	private void startMonitoring(){
 		// Start recorder/sensors
-		recorder = new RecorderThread();
-		recorder.setPriority(RECORDER_THREAD_PRIORITY);
+	    Log.d(TAG, "enter startMonitoring");
+		recorder = new RecorderHandlerThread("recorder");
+		recorder.setApp((GlobalApp) getApplication());
 		recorder.start();
-		while(recorder.handler == null)
-		{			
-		}
+		recorder.prepareHandler();
 		// Initialize streams
-        sendRecorderThreadMsg(GlobalApp.STREAM_INIT, this.getApplication());
+		recorder.postTask(recorder.initTask);
+//        sendRecorderThreadMsg(GlobalApp.STREAM_INIT, this.getApplication());
         startRecording(new Date());
 		
 		am = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
@@ -161,6 +161,7 @@ public class MainService extends BaseService{
 //			app.writeLogTextLine(logTextStream, message, false);
 //		}
 		app.setBooleanPref(IS_MONITORING, true);
+		Log.d(TAG, "complete startMonitoring");
 	}
 	
 	private void pauseMonitoring(){
@@ -169,7 +170,8 @@ public class MainService extends BaseService{
     	if(recorder != null)
     	{
     		stopRecording(new Date());
-    		sendRecorderThreadMsg(GlobalApp.STREAM_DESTROY, null);
+    		recorder.postTask(recorder.destroyTask);
+//    		sendRecorderThreadMsg(GlobalApp.STREAM_DESTROY, null);
     		recorder = null;
     	}
     	
@@ -218,6 +220,7 @@ public class MainService extends BaseService{
 
 	private void startZipService() {
     	// create the pending intent
+	    Log.d(TAG, "enter startZipService");
     	Intent intent = new Intent(GlobalApp.ZIPPER_START_ACTION);
 		zipIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		// setup alarm service to wake up and start service periodically
@@ -237,6 +240,7 @@ public class MainService extends BaseService{
 //		alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
 //				SystemClock.elapsedRealtime(), intervalMills,
 //				zipIntent);
+		Log.d(TAG, "complete startZipService");
 	}
 
     private void stopZipService() {
@@ -300,7 +304,9 @@ public class MainService extends BaseService{
 	
 	private boolean startRecording(Date time)
 	{
-        sendRecorderThreadMsg(GlobalApp.STREAM_START, time);
+	    recorder.setStartTime(time);
+	    recorder.postTask(recorder.startTask);
+//        sendRecorderThreadMsg(GlobalApp.STREAM_START, time);
 		long tsp = time.getTime();
 		this.setLongPref(GlobalApp.PREF_KEY_RECORD_LAST_START, tsp);
 		this.setLongPref(GlobalApp.PREF_KEY_RECORD_LAST_RESTART, tsp);
@@ -309,14 +315,18 @@ public class MainService extends BaseService{
 
 	private void stopRecording(Date time)
 	{
-        sendRecorderThreadMsg(GlobalApp.STREAM_STOP, time);
+	    recorder.setStopTime(time);
+	    recorder.postTask(recorder.stopTask);
+//        sendRecorderThreadMsg(GlobalApp.STREAM_STOP, time);
         this.setLongPref(GlobalApp.PREF_KEY_RECORD_LAST_STOP, time.getTime());
         Log.v(TAG,"stopRecording");
 	}
 
 	private void restartRecording(Date prev)
 	{
-        sendRecorderThreadMsg(GlobalApp.STREAM_RESTART, prev);
+	    recorder.setRestartTime(prev);
+	    recorder.postTask(recorder.restartTask);
+//        sendRecorderThreadMsg(GlobalApp.STREAM_RESTART, prev);
 	}
 
 

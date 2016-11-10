@@ -14,11 +14,14 @@ import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
 import android.view.WindowManager;
 
-public class RecorderThread extends Thread
+public class RecorderHandlerThread extends HandlerThread
 {
-//	private static RecorderThread instance;
+    public RecorderHandlerThread(String name) {
+        super(name);
+    }
+
 	public  Handler handler;
-	public static final String TAG = GlobalApp.TAG + "|" + "RecorderThread";
+	public static final String TAG = GlobalApp.TAG + "|" + "RecorderHandlerThread";
 
 	
 	private static final int WAKE_LOCK_ACQUIRE_PAUSE = 1000;
@@ -32,11 +35,7 @@ public class RecorderThread extends Thread
 	public GlobalApp app = null;
 	
 	private int state;
-	private int prevScreenTimeout;
-//	private int prevScreenBrightness;
 	private Timer keepAliveTimer;
-	private int accelStopCnt;
-	private int wakelockAutoState;
 	protected int accelRunCnt;
 	
 	public static final int INIT = 1;
@@ -90,41 +89,85 @@ public class RecorderThread extends Thread
 		return state;
 	}
 	
-	public void run()
-    {
-        Looper.prepare();
-        handler = new Handler()
-        {
-            public void handleMessage(Message msg)
-            {
-            	switch (msg.what)
-            	{
-            	case GlobalApp.STREAM_INIT:
-            		app = (GlobalApp)msg.obj;
-            		logTextStream = app.openLogTextFile(logFileType);
-            		initStreams();
-            		break;
-            		
-            	case GlobalApp.STREAM_START:
-            		startStreams((Date)msg.obj);
-            		break;
-            		
-            	case GlobalApp.STREAM_RESTART:
-            		restartStreams((Date)msg.obj);
-            		break;
-            		
-            	case GlobalApp.STREAM_STOP:
-            		stopStreams((Date)msg.obj);
-            		break;
-            		
-            	case GlobalApp.STREAM_DESTROY:
-            		destroyStreams();
-            		break;
-            	}
-            }
-        };
-        Looper.loop();
-    }
+	public Runnable initTask = new Runnable(){
+	    @Override
+	    public void run(){
+    	    logTextStream = app.openLogTextFile(logFileType);
+            initStreams();
+	    }
+	};
+	
+	public Runnable startTask = new Runnable(){
+        @Override
+        public void run(){
+            startStreams(startTime);
+        }
+    };
+    
+    public Runnable restartTask = new Runnable(){
+        @Override
+        public void run(){
+            restartStreams(restartTime);
+        }
+    };
+    
+    public Runnable stopTask = new Runnable(){
+        @Override
+        public void run(){
+            stopStreams(stopTime);
+        }
+    };
+    
+    public Runnable destroyTask = new Runnable(){
+        @Override
+        public void run(){
+            destroyStreams();
+        }
+    };
+    
+    private Date startTime, restartTime, stopTime;
+	
+	public void setApp(GlobalApp app){
+	    this.app = app;
+	}
+	
+	
+	
+//	public void run()
+//    {
+//        Looper.prepare();
+//        handler = new Handler()
+//        {
+//            public void handleMessage(Message msg)
+//            {
+//            	switch (msg.what)
+//            	{
+//            	case GlobalApp.STREAM_INIT:
+//            		app = (GlobalApp)msg.obj;
+//            		logTextStream = app.openLogTextFile(logFileType);
+//            		initStreams();
+//            		break;
+//            		
+//            	case GlobalApp.STREAM_START:
+//            		startStreams((Date)msg.obj);
+//            		break;
+//            		
+//            	case GlobalApp.STREAM_RESTART:
+//            		restartStreams((Date)msg.obj);
+//            		break;
+//            		
+//            	case GlobalApp.STREAM_STOP:
+//            		stopStreams((Date)msg.obj);
+//            		break;
+//            		
+//            	case GlobalApp.STREAM_DESTROY:
+//            		destroyStreams();
+//            		break;
+//            	}
+//            }
+//        };
+//        Looper.loop();
+//    }
 	
 	private void initStreams()
 	{
@@ -357,4 +400,25 @@ public class RecorderThread extends Thread
     	return prefs.getBoolean(key, false);
     }
 
+    public void prepareHandler() {
+        this.handler = new Handler(getLooper());
+    }
+    
+    public void postTask(Runnable task){
+        handler.post(task);
+    }
+
+
+
+    public void setStartTime(Date time) {
+        startTime = time;
+    }
+    
+    public void setRestartTime(Date time) {
+        restartTime = time;
+    }
+    
+    public void setStopTime(Date time) {
+        stopTime = time;
+    }
 }
