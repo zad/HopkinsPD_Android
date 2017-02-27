@@ -1,9 +1,40 @@
+/*
+ * Copyright (c) 2015 Johns Hopkins University. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * - Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright
+ *   notice, this list of conditions and the following disclaimer in the
+ *   documentation and/or other materials provided with the
+ *   distribution.
+ * - Neither the name of the copyright holder nor the names of
+ *   its contributors may be used to endorse or promote products derived
+ *   from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 package edu.jhu.hopkinspd;
 
 
 import java.util.Date;
 import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,7 +42,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Message;
-
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -23,7 +54,7 @@ public class MainService extends BaseService{
 
 	private static final int ONGOING_NOTIFICATION_ID = 1;
 	// Main thread to record data
-	private RecorderThread recorder = null;
+	private RecorderHandlerThread recorder = null;
 	
 	// Battery Information updated by battery receiver
 //	private boolean isCharging;
@@ -104,40 +135,76 @@ public class MainService extends BaseService{
 	}
 
 	
-	@SuppressWarnings("deprecation")
 	private void startNotification(String title, String message) {
 		stopForeground(true);
-		Notification notification = new Notification(R.drawable.neurometric,
-//				getText(R.string.notification),
-				message,
-		        System.currentTimeMillis());
 		// add custom view
-		RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notification_motion);
+//        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notification_motion);
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        
+        // Because clicking the notification opens a new ("special") activity, there's
+        // no need to create an artificial back stack.
+        PendingIntent resultPendingIntent =
+            PendingIntent.getActivity(
+            this,
+            0,
+            resultIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
+		NotificationCompat.Builder mBuilder =
+		        new NotificationCompat.Builder(this)
+		        .setSmallIcon(R.drawable.ic_schedule_white_24dp)
+		        .setContentTitle(title)
+		        .setContentText(message)
+		        .setWhen(System.currentTimeMillis())
+//		        .setContent(contentView)
+		        .setContentIntent(resultPendingIntent)
+		        ;
 		
-		notification.contentView = contentView;
-		Intent notificationIntent = new Intent(this, MainActivity.class);
-		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-		notification.setLatestEventInfo(this, title, message, pendingIntent);
-		Toast.makeText(app, message, Toast.LENGTH_SHORT).show();
-		
+		Notification notification = mBuilder.build();
 		startForeground(ONGOING_NOTIFICATION_ID, notification);
-		notification.flags |= Notification.FLAG_ONGOING_EVENT | Notification.FLAG_FOREGROUND_SERVICE | Notification.FLAG_NO_CLEAR;
+		notification.flags |= Notification.FLAG_ONGOING_EVENT 
+		        | Notification.FLAG_FOREGROUND_SERVICE 
+		        | Notification.FLAG_NO_CLEAR;
+	    
+		Toast.makeText(app, message, Toast.LENGTH_SHORT).show();
+		// Gets an instance of the NotificationManager service
+		NotificationManager mNotifyMgr =
+		        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		// Builds the notification and issues it.
+		mNotifyMgr.notify(ONGOING_NOTIFICATION_ID, notification);
+		
+//		Notification notification = new Notification(R.drawable.neurometric,
+////				getText(R.string.notification),
+//				message,
+//		        System.currentTimeMillis());
+		
+//		notification.contentView = contentView;
+//		Intent notificationIntent = new Intent(this, MainActivity.class);
+//		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//		notification.setLatestEventInfo(this, title, message, pendingIntent);
+//		Toast.makeText(app, message, Toast.LENGTH_SHORT).show();
+		
+		
+//		startForeground(ONGOING_NOTIFICATION_ID, notification);
+//		notification.flags |= Notification.FLAG_ONGOING_EVENT | Notification.FLAG_FOREGROUND_SERVICE | Notification.FLAG_NO_CLEAR;
 		 
-		boardcastNotification(message);
+//		boardcastNotification(message);
 	}
 
 
 	private void startMonitoring(){
 		// Start recorder/sensors
-		recorder = new RecorderThread();
-		recorder.setPriority(RECORDER_THREAD_PRIORITY);
+	    Log.d(TAG, "enter startMonitoring");
+		recorder = new RecorderHandlerThread("recorder");
+		recorder.setApp((GlobalApp) getApplication());
 		recorder.start();
-		while(recorder.handler == null)
-		{			
-		}
+		recorder.prepareHandler();
 		// Initialize streams
-        sendRecorderThreadMsg(GlobalApp.STREAM_INIT, this.getApplication());
+		recorder.postTask(recorder.initTask);
+//        sendRecorderThreadMsg(GlobalApp.STREAM_INIT, this.getApplication());
         startRecording(new Date());
 		
 		am = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
@@ -161,6 +228,7 @@ public class MainService extends BaseService{
 //			app.writeLogTextLine(logTextStream, message, false);
 //		}
 		app.setBooleanPref(IS_MONITORING, true);
+		Log.d(TAG, "complete startMonitoring");
 	}
 	
 	private void pauseMonitoring(){
@@ -169,7 +237,8 @@ public class MainService extends BaseService{
     	if(recorder != null)
     	{
     		stopRecording(new Date());
-    		sendRecorderThreadMsg(GlobalApp.STREAM_DESTROY, null);
+    		recorder.postTask(recorder.destroyTask);
+//    		sendRecorderThreadMsg(GlobalApp.STREAM_DESTROY, null);
     		recorder = null;
     	}
     	
@@ -218,6 +287,7 @@ public class MainService extends BaseService{
 
 	private void startZipService() {
     	// create the pending intent
+	    Log.d(TAG, "enter startZipService");
     	Intent intent = new Intent(GlobalApp.ZIPPER_START_ACTION);
 		zipIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		// setup alarm service to wake up and start service periodically
@@ -237,6 +307,7 @@ public class MainService extends BaseService{
 //		alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, 
 //				SystemClock.elapsedRealtime(), intervalMills,
 //				zipIntent);
+		Log.d(TAG, "complete startZipService");
 	}
 
     private void stopZipService() {
@@ -300,7 +371,9 @@ public class MainService extends BaseService{
 	
 	private boolean startRecording(Date time)
 	{
-        sendRecorderThreadMsg(GlobalApp.STREAM_START, time);
+	    recorder.setStartTime(time);
+	    recorder.postTask(recorder.startTask);
+//        sendRecorderThreadMsg(GlobalApp.STREAM_START, time);
 		long tsp = time.getTime();
 		this.setLongPref(GlobalApp.PREF_KEY_RECORD_LAST_START, tsp);
 		this.setLongPref(GlobalApp.PREF_KEY_RECORD_LAST_RESTART, tsp);
@@ -309,14 +382,18 @@ public class MainService extends BaseService{
 
 	private void stopRecording(Date time)
 	{
-        sendRecorderThreadMsg(GlobalApp.STREAM_STOP, time);
+	    recorder.setStopTime(time);
+	    recorder.postTask(recorder.stopTask);
+//        sendRecorderThreadMsg(GlobalApp.STREAM_STOP, time);
         this.setLongPref(GlobalApp.PREF_KEY_RECORD_LAST_STOP, time.getTime());
         Log.v(TAG,"stopRecording");
 	}
 
 	private void restartRecording(Date prev)
 	{
-        sendRecorderThreadMsg(GlobalApp.STREAM_RESTART, prev);
+	    recorder.setRestartTime(prev);
+	    recorder.postTask(recorder.restartTask);
+//        sendRecorderThreadMsg(GlobalApp.STREAM_RESTART, prev);
 	}
 
 
