@@ -1,6 +1,8 @@
 package edu.jhu.hopkinspd.test;
 
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
+import java.io.FileWriter;
 import java.util.Date;
 
 import edu.jhu.hopkinspd.GlobalApp;
@@ -18,14 +20,9 @@ public class GyroCapture implements SensorEventListener
 	private static final int SENSOR_TYPE = Sensor.TYPE_GYROSCOPE;
 	private static final int SENSOR_RATE = SensorManager.SENSOR_DELAY_FASTEST;
 
-	public static final int CAPTURE_BUFFER_LENGTH = 100;
-	public static final int CAPTURE_BUFFER_ENTRIES = 4;
-
 	private SensorManager sensorManager = null;
 	private Sensor sensor = null;
 	public boolean isRecording = false;
-	private int bufferItems = 0;
-//	private int testNumber = 0;
 	private GlobalApp app;
 	private boolean sensorAvailable = true;
 	private DataOutputStream testStreamFile = null;
@@ -38,10 +35,7 @@ public class GyroCapture implements SensorEventListener
         sensor = sensorManager.getDefaultSensor(SENSOR_TYPE);
         sensorAvailable = sensorManager.registerListener(this, sensor, SENSOR_RATE);
         
-        app.allocateStreamBuffer(CAPTURE_BUFFER_LENGTH, CAPTURE_BUFFER_ENTRIES);
-		bufferItems = 0;
-//		this.testNumber = testNumber;
-		this.testConf = testConf;
+        this.testConf = testConf;
     }
     
     public void destroy()
@@ -59,7 +53,6 @@ public class GyroCapture implements SensorEventListener
 			String filename = app.getTestDataFilename(time, testConf.test_name, 
 					CAPTURE_FILETYPE, OUTPUT_EXT);
 			testStreamFile = app.openTestStreamFile(filename);
-	    	bufferItems = 0;
 	    	isRecording = true;
 		}
     }
@@ -70,10 +63,6 @@ public class GyroCapture implements SensorEventListener
     		isRecording = false;
 
         	// Write out remainder of buffer if anything left
-        	if (bufferItems > 0)
-        	{
-            	app.writeTestStreamFrames(testStreamFile, bufferItems, OUTPUT_FORMAT);
-        	}
         	app.closeTestStreamFile(testStreamFile);    		
     	}
     }
@@ -83,17 +72,8 @@ public class GyroCapture implements SensorEventListener
 		if (isRecording)
 		{
 			// the time unit is second
-        	GlobalApp.streamBuffer[bufferItems][0] = ((double)event.timestamp)/1000000000.0d;
-        	GlobalApp.streamBuffer[bufferItems][1] = event.values[0];
-        	GlobalApp.streamBuffer[bufferItems][2] = event.values[1];
-        	GlobalApp.streamBuffer[bufferItems][3] = event.values[2];
-        	
-        	bufferItems ++;
-        	if (bufferItems == CAPTURE_BUFFER_LENGTH)
-        	{
-            	app.writeTestStreamFrames(testStreamFile, bufferItems, OUTPUT_FORMAT);
-            	bufferItems = 0;
-        	}
+
+		    app.writeTestStreamFrames(testStreamFile, event.timestamp, event.values, OUTPUT_FORMAT);
 		}
 	}
 

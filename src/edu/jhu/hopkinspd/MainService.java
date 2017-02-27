@@ -4,6 +4,7 @@ package edu.jhu.hopkinspd;
 import java.util.Date;
 import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -11,7 +12,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Message;
-
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.Toast;
@@ -104,27 +105,63 @@ public class MainService extends BaseService{
 	}
 
 	
-	@SuppressWarnings("deprecation")
 	private void startNotification(String title, String message) {
 		stopForeground(true);
-		Notification notification = new Notification(R.drawable.neurometric,
-//				getText(R.string.notification),
-				message,
-		        System.currentTimeMillis());
 		// add custom view
-		RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notification_motion);
+//        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notification_motion);
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        
+        // Because clicking the notification opens a new ("special") activity, there's
+        // no need to create an artificial back stack.
+        PendingIntent resultPendingIntent =
+            PendingIntent.getActivity(
+            this,
+            0,
+            resultIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
+		NotificationCompat.Builder mBuilder =
+		        new NotificationCompat.Builder(this)
+		        .setSmallIcon(R.drawable.ic_schedule_white_24dp)
+		        .setContentTitle(title)
+		        .setContentText(message)
+		        .setWhen(System.currentTimeMillis())
+//		        .setContent(contentView)
+		        .setContentIntent(resultPendingIntent)
+		        ;
 		
-		notification.contentView = contentView;
-		Intent notificationIntent = new Intent(this, MainActivity.class);
-		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-		notification.setLatestEventInfo(this, title, message, pendingIntent);
-		Toast.makeText(app, message, Toast.LENGTH_SHORT).show();
-		
+		Notification notification = mBuilder.build();
 		startForeground(ONGOING_NOTIFICATION_ID, notification);
-		notification.flags |= Notification.FLAG_ONGOING_EVENT | Notification.FLAG_FOREGROUND_SERVICE | Notification.FLAG_NO_CLEAR;
+		notification.flags |= Notification.FLAG_ONGOING_EVENT 
+		        | Notification.FLAG_FOREGROUND_SERVICE 
+		        | Notification.FLAG_NO_CLEAR;
+	    
+		Toast.makeText(app, message, Toast.LENGTH_SHORT).show();
+		// Gets an instance of the NotificationManager service
+		NotificationManager mNotifyMgr =
+		        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		// Builds the notification and issues it.
+		mNotifyMgr.notify(ONGOING_NOTIFICATION_ID, notification);
+		
+//		Notification notification = new Notification(R.drawable.neurometric,
+////				getText(R.string.notification),
+//				message,
+//		        System.currentTimeMillis());
+		
+//		notification.contentView = contentView;
+//		Intent notificationIntent = new Intent(this, MainActivity.class);
+//		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//		notification.setLatestEventInfo(this, title, message, pendingIntent);
+//		Toast.makeText(app, message, Toast.LENGTH_SHORT).show();
+		
+		
+//		startForeground(ONGOING_NOTIFICATION_ID, notification);
+//		notification.flags |= Notification.FLAG_ONGOING_EVENT | Notification.FLAG_FOREGROUND_SERVICE | Notification.FLAG_NO_CLEAR;
 		 
-		boardcastNotification(message);
+//		boardcastNotification(message);
 	}
 
 

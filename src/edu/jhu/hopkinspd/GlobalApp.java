@@ -72,7 +72,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-
+import android.hardware.SensorEvent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.BatteryManager;
@@ -1286,6 +1286,55 @@ public class GlobalApp extends Application{
 			}
 		}
 	}
+	
+	public void writeTestStreamFrames(DataOutputStream testStreamFile, long tsp, float[] values, int outputFormat)
+    {
+	    double dt = (double) (tsp/1000000000.0d);
+        if (testStreamFile != null)
+        {
+            try
+            {           
+                switch (outputFormat)
+                {
+                // Text strings in CSV format
+                case OUTPUT_FORMAT_TXT:
+                    int i = 0;
+              
+                    testStreamFile.writeBytes(Double.toString(dt) + ",");
+                    for(i=0;i<values.length;i++)
+                        if (i < (values.length - 1))
+                        {    
+                            testStreamFile.writeBytes(Double.toString(values[i]) + ",");
+                        }else
+                            testStreamFile.writeBytes(Double.toString(values[i]));
+                    testStreamFile.writeByte(10);
+                    break;
+                    // Raw 64-bit, double big-endian format
+                case OUTPUT_FORMAT_DOUBLE:
+                    testStreamFile.writeDouble(dt);
+                    for(i=0;i<values.length;i++)
+                        testStreamFile.writeDouble(values[i]);
+                    break;
+
+                    // Raw 32-bit, float big-endian format
+                case OUTPUT_FORMAT_FLOAT:
+                    testStreamFile.writeFloat((float)dt);
+                    for(i=0;i<values.length;i++)
+                        testStreamFile.writeFloat(values[i]);
+                    break;
+                }
+     
+
+                
+                
+                                
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
 	
 	public FileOutputStream openRawDataFile(String filename)
 	{

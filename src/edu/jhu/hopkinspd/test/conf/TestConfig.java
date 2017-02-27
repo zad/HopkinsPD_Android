@@ -79,7 +79,7 @@ public abstract class TestConfig {
 					enabled_tests.add(ALL_TESTS[i]);
 				}
 			}
-//			gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
+			gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
 		}
 		return enabled_tests;
 	}
@@ -104,7 +104,7 @@ public abstract class TestConfig {
                 enabled_tests.add(ALL_TESTS[i]);
             }
         }
-//        gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
+        gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
 	}
 	
 	public static int getNumberOfTests() {
