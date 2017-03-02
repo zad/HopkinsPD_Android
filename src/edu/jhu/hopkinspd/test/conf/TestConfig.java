@@ -33,7 +33,7 @@ package edu.jhu.hopkinspd.test.conf;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
 
-import android.net.Uri;
+
 import android.view.MotionEvent;
 import edu.jhu.hopkinspd.GlobalApp;
 import edu.jhu.hopkinspd.R;
@@ -109,7 +109,7 @@ public abstract class TestConfig {
 					enabled_tests.add(ALL_TESTS[i]);
 				}
 			}
-			gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
+			
 		}
 		return enabled_tests;
 	}
@@ -134,7 +134,7 @@ public abstract class TestConfig {
                 enabled_tests.add(ALL_TESTS[i]);
             }
         }
-        gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
+        
 	}
 	
 	public static int getNumberOfTests() {
