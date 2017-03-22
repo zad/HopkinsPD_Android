@@ -57,6 +57,7 @@ import android.util.Log;
 import android.widget.BaseAdapter;
 
 import android.widget.Toast;
+import edu.jhu.hopkinspd.test.conf.TestConfig;
 
 
 public class UserSettingActivity extends PreferenceActivity implements
@@ -354,6 +355,9 @@ OnSharedPreferenceChangeListener
 				app.startNTPSyncService();
 				Log.i(TAG, "startNTPService");
 			}
+		}
+		else if(key.equals(getResources().getString(R.string.test_gyro))){
+		    TestConfig.gyro_on = app.getBooleanPref(app.getString(R.string.test_gait));
 		}
 	}
 	

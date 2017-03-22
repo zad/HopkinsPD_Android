@@ -64,6 +64,7 @@ public class GaitTestConfig extends TestConfig{
             // This is the text that will be displayed as hint.
             "[ Please select phone position ]",
     };
+    private static final String TAG = "GaitTestConfig";
 
     public GaitTestConfig(){
         test_name = R.string.test_gait;
@@ -94,7 +95,7 @@ public class GaitTestConfig extends TestConfig{
 		
 		accelObj = new AccelCapture(app, this);
 		accelObj.startRecording(phone_position);
-		
+		Log.d(TAG, "gyro_on" + gyro_on);
 		if(gyro_on){
 			gyroObj = new GyroCapture(app, this);
 			gyroObj.startRecording();
