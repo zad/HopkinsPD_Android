@@ -1,6 +1,6 @@
 # HopkinsPD_Android
 The android client for HopkinsPD
-
+[HopkinsPD Active Test Instructions](https://www.youtube.com/channel/UCk9_EZQcsc-x_HPT4jwyIAA)
 
 # Copyright
 Copyright (c) 2015 Johns Hopkins University. All rights reserved.
