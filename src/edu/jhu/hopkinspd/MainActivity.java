@@ -78,6 +78,7 @@ import edu.jhu.hopkinspd.medlog.MedLogActivity;
 import edu.jhu.hopkinspd.medtracker.MedTrackerActivity;
 import edu.jhu.hopkinspd.task.NTPSyncTask;
 import edu.jhu.hopkinspd.test.TestPrepActivity;
+import edu.jhu.hopkinspd.test.conf.TestConfig;
 
 
 public class MainActivity extends Activity implements SensorEventListener{
@@ -182,9 +183,9 @@ public class MainActivity extends Activity implements SensorEventListener{
         });
         
         testButton = (Button)findViewById(R.id.testButton);
-        
-        
-        
+        TestConfig.updateEnabledTests();
+        if(TestConfig.getNumberOfTests() == 0)
+            testButton.setVisibility(View.GONE);
         testButton.setOnClickListener(new OnClickListener(){
        
 			@Override
